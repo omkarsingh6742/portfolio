@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omkar Singh | Aspiring Investment Banking & Private Equity Analyst Portfolio</title>
+    <meta name="description" content="Portfolio of Omkar Singh - Aspiring Investment Banking & Private Equity Analyst, B.Com Commerce Student at Mount Carmel College, Bangalore. Download Resume & View FP&A Budget Variance Model.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Money & Commerce Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js for Interactive Financial Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Interactive Background Money Particles Canvas -->
+    <canvas id="bgCanvas" class="interactive-bg-canvas"></canvas>
+
+    <!-- Floating 3D Money Badges -->
+    <div class="floating-money-badge fmb-1"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+    <div class="floating-money-badge fmb-2"><i class="fa-solid fa-sack-dollar"></i></div>
+    <div class="floating-money-badge fmb-3"><i class="fa-solid fa-vault"></i></div>
+    <div class="floating-money-badge fmb-4"><i class="fa-solid fa-arrow-trend-up"></i></div>
+
+    <!-- Financial Ticker Bar -->
+    <div class="top-market-bar">
+        <div class="container market-bar-inner">
+            <div class="market-left">
+                <span class="status-indicator"></span>
+                <span class="mono-text"><i class="fa-solid fa-coins text-gold"></i> BENGALURU, INDIA &bull; INVESTMENT BANKING & PRIVATE EQUITY ANALYST</span>
+            </div>
+            <div class="market-right mono-text">
+                <span><i class="fa-solid fa-chart-line text-emerald"></i> NIFTY: <strong>24,850.40 ▲</strong></span>
+                <span class="divider">|</span>
+                <span><i class="fa-solid fa-arrow-trend-up text-gold"></i> SENSEX: <strong>81,430.15 ▲</strong></span>
+                <span class="divider">|</span>
+                <span class="text-gold"><i class="fa-solid fa-file-pdf"></i> RESUME READY</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive Navigation Header -->
+    <header class="executive-header">
+        <div class="container header-inner">
+            <a href="#" class="brand-logo-black">
+                <div class="black-logo-icon"><i class="fa-solid fa-vault text-gold"></i></div>
+                <div class="black-logo-meta">
+                    <span class="brand-name">OMKAR SINGH</span>
+                    <span class="brand-sub mono-text"><i class="fa-solid fa-money-bill-wave text-emerald"></i> IB & PRIVATE EQUITY ANALYST</span>
+                </div>
+            </a>
+
+            <nav class="nav-links-black">
+                <a href="#about" class="black-nav-link active">Summary</a>
+                <a href="#projects" class="black-nav-link"><i class="fa-solid fa-file-excel text-emerald"></i> Projects & Graphs</a>
+                <a href="#education" class="black-nav-link">Education</a>
+                <a href="#certifications" class="black-nav-link">Certifications</a>
+                <a href="#skills" class="black-nav-link">Skills</a>
+                <a href="#extracurricular" class="black-nav-link">Activities</a>
+                <a href="Omkar_Singh_Resume.pdf" download="Omkar_Singh_Resume.pdf" class="black-nav-link btn-resume-nav"><i class="fa-solid fa-file-pdf text-gold"></i> Resume</a>
+                <a href="#contact" class="black-nav-link btn-contact-nav"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+            </nav>
+
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Flow (Continuous Sections) -->
+    <main class="container">
+        
+        <!-- SECTION 1: HERO / EXECUTIVE SUMMARY -->
+        <section id="about" class="hero-black-section">
+            <div class="hero-black-grid">
+                <div class="hero-black-content">
+                    <div class="black-badge-pill">
+                        <span class="badge-dot"></span> <i class="fa-solid fa-money-bill-trend-up"></i> B.Com Commerce & Corporate Finance Specialist
+                    </div>
+                    <h1 class="black-hero-title">
+                        Aspiring Investment Banking & <span class="gradient-gold-text">Private Equity Analyst</span>
+                    </h1>
+                    <p class="black-hero-subtitle">
+                        Commerce undergraduate student at <strong>Mount Carmel College, Bangalore</strong> (2025–2028). Specialized in Corporate Finance, Equity Management, Discounting, Compounding, and Financial Accounting. Certified by NPTEL Swayam in Corporate Finance.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="Omkar_Singh_Resume.pdf" download="Omkar_Singh_Resume.pdf" class="btn-black btn-gold glow-btn">
+                            <i class="fa-solid fa-file-pdf"></i> Download Resume
+                        </a>
+                        <a href="#projects" class="btn-black btn-outline">
+                            <i class="fa-solid fa-file-excel text-emerald"></i> View FP&A Model
+                        </a>
+                        <a href="#contact" class="btn-black btn-outline">
+                            <i class="fa-solid fa-paper-plane text-gold"></i> Contact Omkar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-black-card-col">
+                    <div class="black-glass-card tilt-card">
+                        <div class="card-header-black">
+                            <span class="mono-text"><i class="fa-solid fa-id-card text-gold"></i> PROFILE_SUMMARY.MD</span>
+                            <span class="status-badge text-emerald mono-text">VERIFIED</span>
+                        </div>
+                        <div class="card-body-black">
+                            <div class="bio-avatar-row">
+                                <div class="avatar-ring-black">
+                                    <span>OS</span>
+                                </div>
+                                <div>
+                                    <h3 class="analyst-name">Omkar Singh</h3>
+                                    <p class="text-gold mono-text"><i class="fa-solid fa-building-columns"></i> Mount Carmel College, Bangalore</p>
+                                    <p class="text-muted" style="font-size: 0.85rem;"><i class="fa-solid fa-location-dot"></i> Bengaluru, Karnataka, India</p>
+                                </div>
+                            </div>
+                            <div class="metric-list-black">
+                                <div class="m-item-black">
+                                    <span class="m-label"><i class="fa-solid fa-building-columns text-gold"></i> Target Focus</span>
+                                    <span class="m-val font-bold">Investment Banking & Private Equity</span>
+                                </div>
+                                <div class="m-item-black">
+                                    <span class="m-label"><i class="fa-solid fa-graduation-cap"></i> Degree Program</span>
+                                    <span class="m-val">B.Com, Commerce (2025–2028)</span>
+                                </div>
+                                <div class="m-item-black">
+                                    <span class="m-label"><i class="fa-solid fa-award text-gold"></i> Class X CBSE Score</span>
+                                    <span class="m-val text-gold mono-text">86.40% Distinction</span>
+                                </div>
+                                <div class="m-item-black">
+                                    <span class="m-label"><i class="fa-solid fa-star text-emerald"></i> Class XII PU Board</span>
+                                    <span class="m-val mono-text">80.17% Commerce</span>
+                                </div>
+                                <div class="m-item-black">
+                                    <span class="m-label"><i class="fa-solid fa-certificate text-gold"></i> Certification</span>
+                                    <span class="m-val text-emerald">NPTEL Corporate Finance</span>
+                                </div>
+                                <div class="m-item-black">
+                                    <span class="m-label"><i class="fa-solid fa-file-pdf text-gold"></i> Curriculum Vitae</span>
+                                    <span class="m-val text-emerald font-bold"><a href="Omkar_Singh_Resume.pdf" download="Omkar_Singh_Resume.pdf" style="text-decoration: underline;"><i class="fa-solid fa-download"></i> PDF Resume</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: STATS BANNER -->
+        <section class="stats-black-banner">
+            <div class="stats-black-grid">
+                <div class="stat-black-box">
+                    <div class="stat-num mono-text" data-target="2028">2028</div>
+                    <div class="stat-lbl">B.Com Graduation Target</div>
+                </div>
+                <div class="stat-black-box">
+                    <div class="stat-num mono-text text-gold" data-target="86.4">86.40%</div>
+                    <div class="stat-lbl">CBSE Class X Distinction</div>
+                </div>
+                <div class="stat-black-box">
+                    <div class="stat-num mono-text text-emerald" data-target="80.17">80.17%</div>
+                    <div class="stat-lbl">PUC XII State Board Merit</div>
+                </div>
+                <div class="stat-black-box">
+                    <div class="stat-num mono-text text-gold" data-target="100">100%</div>
+                    <div class="stat-lbl">IB & Private Equity Focus</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: FEATURED FP&A MODEL & DYNAMIC CHARTS -->
+        <section id="projects" class="black-section">
+            <div class="section-header-black">
+                <span class="kicker-black mono-text"><i class="fa-solid fa-file-excel text-gold"></i> FINANCIAL PLANNING & ANALYSIS</span>
+                <h2 class="title-black">FP&A Budget Variance <span class="gradient-gold-text">Model & Analytics</span></h2>
+                <p class="subtitle-black">Live preloaded model built from NEXGEN TECH Q3 Budget vs. Actual Report with complete 10 line items and interactive financial charts.</p>
+            </div>
+
+            <!-- Verified Exact Excel KPI Cards -->
+            <div class="fpa-kpi-grid">
+                <div class="kpi-card tilt-card">
+                    <span class="kpi-label mono-text"><i class="fa-solid fa-wallet text-gold"></i> TOTAL BUDGETED</span>
+                    <h3 class="kpi-value mono-text" id="kpiBudgeted">₹7,05,000</h3>
+                    <span class="kpi-sub">Q3 Target Budget</span>
+                </div>
+                <div class="kpi-card tilt-card">
+                    <span class="kpi-label mono-text"><i class="fa-solid fa-receipt text-emerald"></i> TOTAL SPENT</span>
+                    <h3 class="kpi-value mono-text text-emerald" id="kpiSpent">₹7,45,000</h3>
+                    <span class="kpi-sub">Q3 Actual Expenditure</span>
+                </div>
+                <div class="kpi-card tilt-card">
+                    <span class="kpi-label mono-text"><i class="fa-solid fa-scale-balanced text-gold"></i> NET VARIANCE</span>
+                    <h3 class="kpi-value mono-text text-gold" id="kpiVariance">+₹40,000 (+5.67%)</h3>
+                    <span class="kpi-sub">Over Budget (+5.67%)</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Chart Visualizations -->
+            <div class="fpa-charts-grid">
+                <div class="chart-card tilt-card">
+                    <div class="chart-header-row">
+                        <h4><i class="fa-solid fa-chart-column text-gold"></i> Budgeted vs. Actual Spending by Category</h4>
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">INR (₹)</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="barChartSpending"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card tilt-card">
+                    <div class="chart-header-row">
+                        <h4><i class="fa-solid fa-chart-pie text-emerald"></i> Expense Breakdown (% Share)</h4>
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">DEPARTMENT SHARE</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="doughnutChartBreakdown"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete 10 Line-Item Interactive Excel Data Table -->
+            <div class="excel-preload-card tilt-card">
+                <div class="excel-card-header">
+                    <div class="excel-header-title">
+                        <i class="fa-solid fa-file-excel text-emerald" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <h3>NEXGEN TECH PVT LTD — Q3 Budget vs. Actual Report</h3>
+                            <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> ALL 10 EXCEL LINE ITEMS AUDITED</span>
+                        </div>
+                    </div>
+                    <a href="FPA_Budget_Variance_Model.xlsx" download="FPA_Budget_Variance_Model.xlsx" class="btn-black btn-gold glow-btn">
+                        <i class="fa-solid fa-download"></i> Download Excel (.xlsx)
+                    </a>
+                </div>
+
+                <div class="table-responsive-box" style="margin-top: 20px;">
+                    <table class="excel-rendered-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>EXPENSE CATEGORY</th>
+                                <th>EXPENSE DESCRIPTION</th>
+                                <th>BUDGETED AMOUNT (₹)</th>
+                                <th>ACTUAL SPENT (₹)</th>
+                                <th>VARIANCE (₹)</th>
+                                <th>% VARIANCE</th>
+                                <th>STATUS FLAG</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-bullhorn text-gold"></i> Marketing</span></td>
+                                <td>Instagram & Google Ads</td>
+                                <td class="mono-text">1,50,000</td>
+                                <td class="mono-text">1,85,000</td>
+                                <td class="mono-text text-gold">+35,000</td>
+                                <td class="mono-text text-gold">+23.33%</td>
+                                <td><span class="status-pill unfav">Unfavorable (+23.3%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-bullhorn text-gold"></i> Marketing</span></td>
+                                <td>Influencer Outreach</td>
+                                <td class="mono-text">80,000</td>
+                                <td class="mono-text">72,000</td>
+                                <td class="mono-text text-emerald">-8,000</td>
+                                <td class="mono-text text-emerald">-10.00%</td>
+                                <td><span class="status-pill fav">Favorable (-10.0%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-server text-emerald"></i> Technology</span></td>
+                                <td>Cloud Server (AWS)</td>
+                                <td class="mono-text">60,000</td>
+                                <td class="mono-text">65,000</td>
+                                <td class="mono-text text-gold">+5,000</td>
+                                <td class="mono-text text-gold">+8.33%</td>
+                                <td><span class="status-pill unfav">Unfavorable (+8.3%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-server text-emerald"></i> Technology</span></td>
+                                <td>Software Subscriptions</td>
+                                <td class="mono-text">35,000</td>
+                                <td class="mono-text">35,000</td>
+                                <td class="mono-text">0</td>
+                                <td class="mono-text">0.00%</td>
+                                <td><span class="status-pill fav">On Target (0.0%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-users text-gold"></i> HR & Admin</span></td>
+                                <td>Office Rent</td>
+                                <td class="mono-text">1,20,000</td>
+                                <td class="mono-text">1,20,000</td>
+                                <td class="mono-text">0</td>
+                                <td class="mono-text">0.00%</td>
+                                <td><span class="status-pill fav">On Target (0.0%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-users text-gold"></i> HR & Admin</span></td>
+                                <td>Team Snacks & Coffee</td>
+                                <td class="mono-text">15,000</td>
+                                <td class="mono-text">22,000</td>
+                                <td class="mono-text text-gold">+7,000</td>
+                                <td class="mono-text text-gold">+46.67%</td>
+                                <td><span class="status-pill unfav">Unfavorable (+46.7%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-truck text-emerald"></i> Operations</span></td>
+                                <td>Courier & Logistics</td>
+                                <td class="mono-text">45,000</td>
+                                <td class="mono-text">38,000</td>
+                                <td class="mono-text text-emerald">-7,000</td>
+                                <td class="mono-text text-emerald">-15.56%</td>
+                                <td><span class="status-pill fav">Favorable (-15.6%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-truck text-emerald"></i> Operations</span></td>
+                                <td>Vendor Payments</td>
+                                <td class="mono-text">90,000</td>
+                                <td class="mono-text">95,000</td>
+                                <td class="mono-text text-gold">+5,000</td>
+                                <td class="mono-text text-gold">+5.56%</td>
+                                <td><span class="status-pill unfav">Unfavorable (+5.6%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-handshake text-gold"></i> Sales</span></td>
+                                <td>Client Meetings & Travel</td>
+                                <td class="mono-text">40,000</td>
+                                <td class="mono-text">48,000</td>
+                                <td class="mono-text text-gold">+8,000</td>
+                                <td class="mono-text text-gold">+20.00%</td>
+                                <td><span class="status-pill unfav">Unfavorable (+20.0%)</span></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td><span class="black-tag"><i class="fa-solid fa-handshake text-gold"></i> Sales</span></td>
+                                <td>Sales Commission</td>
+                                <td class="mono-text">70,000</td>
+                                <td class="mono-text">65,000</td>
+                                <td class="mono-text text-emerald">-5,000</td>
+                                <td class="mono-text text-emerald">-7.14%</td>
+                                <td><span class="status-pill fav">Favorable (-7.1%)</span></td>
+                            </tr>
+                            <tr class="grandtotal-row" style="background: rgba(245, 158, 11, 0.15); font-weight: 800;">
+                                <td>Σ</td>
+                                <td colspan="2">TOTAL EXPENSES (GRAND TOTAL)</td>
+                                <td class="mono-text">7,05,000</td>
+                                <td class="mono-text">7,45,000</td>
+                                <td class="mono-text text-gold">+40,000</td>
+                                <td class="mono-text text-gold">+5.67%</td>
+                                <td><span class="status-pill unfav">Net Variance (+5.67%)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: EDUCATION -->
+        <section id="education" class="black-section">
+            <div class="section-header-black">
+                <span class="kicker-black mono-text"><i class="fa-solid fa-building-columns text-gold"></i> ACADEMIC HISTORY</span>
+                <h2 class="title-black">Education & <span class="gradient-gold-text">Qualifications</span></h2>
+            </div>
+
+            <div class="timeline-black">
+                <!-- Education 1 -->
+                <div class="timeline-card-black tilt-card">
+                    <div class="time-badge-black mono-text">2025 — 2028 (Ongoing)</div>
+                    <h3 class="time-title-black">B.Com, Commerce</h3>
+                    <h4 class="time-institution-black text-gold"><i class="fa-solid fa-building-columns"></i> Mount Carmel College, Bangalore</h4>
+                    <p class="time-desc-black">Undergraduate program with focused study in Business Administration, Accounting, Corporate Finance, and Financial Management.</p>
+                    <div class="tags-group-black">
+                        <span class="black-tag"><i class="fa-solid fa-calculator"></i> Accounting</span>
+                        <span class="black-tag"><i class="fa-solid fa-sack-dollar"></i> Corporate Finance</span>
+                        <span class="black-tag"><i class="fa-solid fa-scale-balanced"></i> Commerce</span>
+                    </div>
+                </div>
+
+                <!-- Education 2 -->
+                <div class="timeline-card-black tilt-card">
+                    <div class="time-badge-black mono-text">2025</div>
+                    <h3 class="time-title-black">Senior Secondary (XII) - Commerce</h3>
+                    <h4 class="time-institution-black text-emerald"><i class="fa-solid fa-school"></i> The National PU College, Jayanagar</h4>
+                    <p class="time-desc-black">Completed Senior Secondary Commerce curriculum under the Karnataka State Board with distinction.</p>
+                    <div class="score-badge-black mono-text text-gold">
+                        <i class="fa-solid fa-star"></i> Percentage: <strong>80.17%</strong>
+                    </div>
+                </div>
+
+                <!-- Education 3 -->
+                <div class="timeline-card-black tilt-card">
+                    <div class="time-badge-black mono-text">2023</div>
+                    <h3 class="time-title-black">Secondary (X)</h3>
+                    <h4 class="time-institution-black text-emerald"><i class="fa-solid fa-book-open"></i> Narayana E Techno School</h4>
+                    <p class="time-desc-black">Completed Secondary School Certificate under the CBSE curriculum with academic distinction.</p>
+                    <div class="score-badge-black mono-text text-emerald">
+                        <i class="fa-solid fa-award"></i> Percentage: <strong>86.40%</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: TRAININGS & CERTIFICATIONS -->
+        <section id="certifications" class="black-section">
+            <div class="section-header-black">
+                <span class="kicker-black mono-text"><i class="fa-solid fa-certificate text-gold"></i> VIRTUAL ACADEMY</span>
+                <h2 class="title-black">Trainings & <span class="gradient-gold-text">Certifications</span></h2>
+            </div>
+
+            <div class="cert-card-black tilt-card">
+                <div class="cert-header-black">
+                    <div class="cert-icon-black"><i class="fa-solid fa-building-columns text-gold"></i></div>
+                    <div class="cert-meta-black">
+                        <h3>Corporate Finance Certification</h3>
+                        <p class="mono-text text-gold"><i class="fa-regular fa-calendar"></i> Jul 2025 – Sep 2025 | NPTEL, Swayam, Virtual</p>
+                    </div>
+                </div>
+                <p class="cert-desc-black">
+                    An online certification that taught me about corporate finance, equity management, discounting and compounding.
+                </p>
+                <div class="cert-pillars-black">
+                    <div class="pillar-item"><i class="fa-solid fa-check text-emerald"></i> Discounting & Compounding</div>
+                    <div class="pillar-item"><i class="fa-solid fa-check text-emerald"></i> Equity Management</div>
+                    <div class="pillar-item"><i class="fa-solid fa-check text-emerald"></i> Corporate Valuation</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: SKILLS MATRIX -->
+        <section id="skills" class="black-section">
+            <div class="section-header-black">
+                <span class="kicker-black mono-text"><i class="fa-solid fa-coins text-gold"></i> PROFICIENCIES</span>
+                <h2 class="title-black">Skill & Tool <span class="gradient-gold-text">Matrix</span></h2>
+            </div>
+
+            <div class="skills-grid-black">
+                <div class="skill-card-black tilt-card">
+                    <div class="skill-icon-black text-gold"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Accounting</h3>
+                    <p>Financial statement analysis, ledger maintenance, and core accounting principles.</p>
+                    <span class="skill-tag-black mono-text"><i class="fa-solid fa-sack-dollar text-emerald"></i> Core Skill</span>
+                </div>
+
+                <div class="skill-card-black tilt-card">
+                    <div class="skill-icon-black text-emerald"><i class="fa-solid fa-file-excel"></i></div>
+                    <h3>MS-Excel</h3>
+                    <p>Spreadsheet modeling, VLOOKUP/XLOOKUP, formulas, and financial calculation functions.</p>
+                    <span class="skill-tag-black mono-text"><i class="fa-solid fa-sack-dollar text-gold"></i> Financial Tool</span>
+                </div>
+
+                <div class="skill-card-black tilt-card">
+                    <div class="skill-icon-black text-emerald"><i class="fa-solid fa-handshake"></i></div>
+                    <h3>Sales</h3>
+                    <p>Commercial negotiation, value proposition presentation, and client engagement.</p>
+                    <span class="skill-tag-black mono-text"><i class="fa-solid fa-coins text-gold"></i> Operations</span>
+                </div>
+
+                <div class="skill-card-black tilt-card">
+                    <div class="skill-icon-black text-gold"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <h3>MS-PowerPoint</h3>
+                    <p>Executive presentation design, financial chart visual decks, and business reporting.</p>
+                    <span class="skill-tag-black mono-text"><i class="fa-solid fa-money-bill-trend-up text-emerald"></i> Executive Decks</span>
+                </div>
+
+                <div class="skill-card-black tilt-card">
+                    <div class="skill-icon-black text-emerald"><i class="fa-solid fa-list-check"></i></div>
+                    <h3>Google Forms</h3>
+                    <p>Survey creation, data collection, and registration workflow administration for college events.</p>
+                    <span class="skill-tag-black mono-text"><i class="fa-solid fa-vault text-gold"></i> Data Collection</span>
+                </div>
+
+                <div class="skill-card-black tilt-card">
+                    <div class="skill-icon-black text-gold"><i class="fa-solid fa-file-word"></i></div>
+                    <h3>MS-Word & MS-Office</h3>
+                    <p>Formal document drafting, business correspondence, report formatting, and productivity tools.</p>
+                    <span class="skill-tag-black mono-text"><i class="fa-solid fa-certificate text-emerald"></i> Office Suite</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: EXTRA CURRICULAR ACTIVITIES -->
+        <section id="extracurricular" class="black-section">
+            <div class="section-header-black">
+                <span class="kicker-black mono-text"><i class="fa-solid fa-users-gear text-gold"></i> LEADERSHIP & OPERATIONS</span>
+                <h2 class="title-black">Extra Curricular <span class="gradient-gold-text">Activities</span></h2>
+            </div>
+
+            <div class="activity-card-black tilt-card">
+                <div class="activity-header-black">
+                    <div class="activity-icon-black"><i class="fa-solid fa-users text-gold"></i></div>
+                    <div>
+                        <h3>College Fest Registration Team</h3>
+                        <p class="text-gold mono-text"><i class="fa-solid fa-building-columns"></i> Mount Carmel College Fest Operations</p>
+                    </div>
+                </div>
+                <p class="activity-desc-black">
+                    Working for the registration team for the college fest, coordinating delegate registrations, handling Google Forms data processing, and managing event logistics.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 8: DIRECT CORRESPONDENCE -->
+        <section id="contact" class="black-section">
+            <div class="section-header-black">
+                <span class="kicker-black mono-text"><i class="fa-solid fa-paper-plane text-gold"></i> DIRECT DISPATCH</span>
+                <h2 class="title-black">Direct <span class="gradient-gold-text">Correspondence</span></h2>
+                <p class="subtitle-black">Send a message directly via Email to Omkar Singh.</p>
+            </div>
+
+            <div class="contact-black-grid">
+                <div class="contact-black-info">
+                    <p class="contact-intro-black">Aspiring to enter Investment Banking & Private Equity. Open to internships and finance opportunities in Bengaluru.</p>
+
+                    <div class="c-card-black tilt-card">
+                        <i class="fa-solid fa-envelope text-gold"></i>
+                        <div>
+                            <span class="mono-text text-muted">EMAIL ADDRESS</span>
+                            <a href="mailto:omkarsingh6742@gmail.com" class="val-black mono-text">omkarsingh6742@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="c-card-black tilt-card">
+                        <i class="fa-solid fa-location-dot text-gold"></i>
+                        <div>
+                            <span class="mono-text text-muted">LOCATION</span>
+                            <span class="val-black">Bengaluru, Karnataka, India</span>
+                        </div>
+                    </div>
+
+                    <div class="c-card-black tilt-card">
+                        <i class="fa-solid fa-file-pdf text-gold"></i>
+                        <div>
+                            <span class="mono-text text-muted">OFFICIAL RESUME</span>
+                            <a href="Omkar_Singh_Resume.pdf" download="Omkar_Singh_Resume.pdf" class="val-black mono-text text-emerald"><i class="fa-solid fa-download"></i> Download Omkar_Singh_Resume.pdf</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-black-form-col">
+                    <form id="contactForm" class="form-black tilt-card">
+                        <div class="form-group-black">
+                            <label for="senderName"><i class="fa-solid fa-user"></i> FULL NAME</label>
+                            <input type="text" id="senderName" name="name" placeholder="Your Full Name" required class="input-black">
+                        </div>
+
+                        <div class="form-group-black">
+                            <label for="senderEmail"><i class="fa-solid fa-envelope"></i> EMAIL ADDRESS</label>
+                            <input type="email" id="senderEmail" name="email" placeholder="your.email@example.com" required class="input-black">
+                        </div>
+
+                        <div class="form-group-black">
+                            <label for="subject"><i class="fa-solid fa-coins text-gold"></i> SUBJECT</label>
+                            <input type="text" id="subject" name="_subject" placeholder="Subject" required class="input-black">
+                        </div>
+
+                        <div class="form-group-black">
+                            <label for="message"><i class="fa-solid fa-comment-dots"></i> MESSAGE</label>
+                            <textarea id="message" rows="4" placeholder="Your message..." required class="input-black"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-black btn-gold glow-btn btn-full" id="submitFormBtn">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                        </button>
+                        <div id="formStatus" class="form-status-black"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Executive Dark Footer -->
+    <footer class="footer-black">
+        <div class="container footer-inner-black">
+            <div class="footer-brand-black">
+                <strong><i class="fa-solid fa-vault text-gold"></i> OMKAR SINGH</strong> — Aspiring Investment Banking & Private Equity Analyst
+            </div>
+            <div class="footer-copy-black mono-text">
+                &copy; 2026 OMKAR SINGH. MOUNT CARMEL COLLEGE, BANGALORE. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "omkar-singh-portfolio",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/FPA_Budget_Variance_Model.xlsx",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        }
+      ]
+    },
+    {
+      "source": "/Omkar_Singh_Resume.pdf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        }
+      ]
+    }
+  ]
+}
