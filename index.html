@@ -20,11 +20,45 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
     <style>
+        .case-study-container-box {
+            background: rgba(13, 17, 23, 0.85);
+            border: 2px solid var(--accent-gold);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 35px;
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.18);
+            position: relative;
+            backdrop-filter: blur(12px);
+        }
+
+        .case-study-header-block {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 1px dashed rgba(245, 158, 11, 0.3);
+            padding-bottom: 25px;
+        }
+
+        .case-study-title {
+            font-family: var(--font-heading);
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .case-study-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
         .projects-showcase-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 28px;
-            margin-top: 30px;
         }
 
         .project-card-premium {
@@ -65,7 +99,7 @@
 
         .project-title {
             font-family: var(--font-heading);
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 700;
             margin-bottom: 10px;
             line-height: 1.3;
@@ -282,7 +316,7 @@
             </div>
         </section>
 
-        <!-- SECTION 3: ALL 3 FEATURED PROJECTS SHOWCASE -->
+        <!-- SECTION 3: ALL 3 FEATURED PROJECTS SHOWCASE INSIDE VISIBLE RECTANGLE BOX -->
         <section id="projects" class="black-section">
             <div class="section-header-black">
                 <span class="kicker-black mono-text"><i class="fa-solid fa-folder-open text-gold"></i> FINANCIAL MODELING & ANALYTICS SHOWCASE</span>
@@ -290,84 +324,100 @@
                 <p class="subtitle-black">Explore all 3 core financial projects with live online previews and direct raw file downloads (.xlsx & .pbix).</p>
             </div>
 
-            <div class="projects-showcase-grid">
-
-                <!-- PROJECT CARD 1 -->
-                <div class="project-card-premium tilt-card">
-                    <div>
-                        <div class="project-icon-badge" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-emerald);">
-                            <i class="fa-solid fa-file-excel text-emerald"></i>
-                        </div>
-                        <div class="project-meta-tags">
-                            <span class="black-tag mono-text"><i class="fa-solid fa-calculator text-gold"></i> FP&A Analytics</span>
-                            <span class="black-tag mono-text text-emerald">Excel (.xlsx)</span>
-                        </div>
-                        <h3 class="project-title">FP&A Budget Variance Model</h3>
-                        <p class="project-desc">
-                            Complete Q3 Budget vs. Actual Report featuring 10 audited line items across 5 departments. Includes KPI cards, Chart.js visualizations, and favorable/unfavorable status flags.
-                        </p>
-                    </div>
-
-                    <div class="project-action-btns">
-                        <a href="project-fpa-model.html" class="btn-project-action btn-preview">
-                            <i class="fa-solid fa-eye"></i> Preview Online
-                        </a>
-                        <a href="FPA_Budget_Variance_Model.xlsx" download="FPA_Budget_Variance_Model.xlsx" class="btn-project-action btn-download-proj">
-                            <i class="fa-solid fa-download"></i> Download (.xlsx)
-                        </a>
+            <!-- Prominent Visible Rectangle Container Box -->
+            <div class="case-study-container-box">
+                
+                <!-- Main Header inside the Rectangle Box -->
+                <div class="case-study-header-block">
+                    <h2 class="case-study-title">
+                        "NexGen Tech Case Study: End-to-End Financial Analytics, Power BI Dashboarding & DCF Valuation"
+                    </h2>
+                    <div class="case-study-subtitle">
+                        (Corporate Finance Case Study — Simulated Tech Company Scenario)
                     </div>
                 </div>
 
-                <!-- PROJECT CARD 2 -->
-                <div class="project-card-premium tilt-card">
-                    <div>
-                        <div class="project-icon-badge" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-gold);">
-                            <i class="fa-solid fa-chart-line text-gold"></i>
+                <!-- Grid of 3 Project Cards inside the Visible Rectangle Box -->
+                <div class="projects-showcase-grid">
+
+                    <!-- PROJECT CARD 1 -->
+                    <div class="project-card-premium tilt-card">
+                        <div>
+                            <div class="project-icon-badge" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-emerald);">
+                                <i class="fa-solid fa-file-excel text-emerald"></i>
+                            </div>
+                            <div class="project-meta-tags">
+                                <span class="black-tag mono-text"><i class="fa-solid fa-calculator text-gold"></i> FP&A Analytics</span>
+                                <span class="black-tag mono-text text-emerald">Excel (.xlsx)</span>
+                            </div>
+                            <h3 class="project-title">FP&A Budget Variance Model</h3>
+                            <p class="project-desc">
+                                Complete Q3 Budget vs. Actual Report featuring 10 audited line items across 5 departments. Includes KPI cards, Chart.js visualizations, and favorable/unfavorable status flags.
+                            </p>
                         </div>
-                        <div class="project-meta-tags">
-                            <span class="black-tag mono-text"><i class="fa-solid fa-sack-dollar text-gold"></i> Valuation & Forecasting</span>
-                            <span class="black-tag mono-text text-gold">Excel (.xlsx)</span>
+
+                        <div class="project-action-btns">
+                            <a href="project-fpa-model.html" class="btn-project-action btn-preview">
+                                <i class="fa-solid fa-eye"></i> Preview Online
+                            </a>
+                            <a href="FPA_Budget_Variance_Model.xlsx" download="FPA_Budget_Variance_Model.xlsx" class="btn-project-action btn-download-proj">
+                                <i class="fa-solid fa-download"></i> Download (.xlsx)
+                            </a>
                         </div>
-                        <h3 class="project-title">NexGen Tech Financial Model and DCF Valuation</h3>
-                        <p class="project-desc">
-                            Pro Forma 3-Year Income Statement, Cash Flow & Balance Sheet model (2026–2029) with dynamic Scenario Switcher (Base, Bull, Bear), EBITDA margins, and Two-Way DCF Sensitivity Matrix (`₹1,92,38,543`).
-                        </p>
                     </div>
 
-                    <div class="project-action-btns">
-                        <a href="project-3year-model.html" class="btn-project-action btn-preview">
-                            <i class="fa-solid fa-eye"></i> Preview Online
-                        </a>
-                        <a href="NexGen_Tech_Financial_Model_and_DCF_Valuation.xlsx" download="NexGen_Tech_Financial_Model_and_DCF_Valuation.xlsx" class="btn-project-action btn-download-proj">
-                            <i class="fa-solid fa-download"></i> Download (.xlsx)
-                        </a>
-                    </div>
-                </div>
-
-                <!-- PROJECT CARD 3 -->
-                <div class="project-card-premium tilt-card">
-                    <div>
-                        <div class="project-icon-badge" style="background: rgba(59, 130, 246, 0.15); border: 1px solid var(--accent-blue);">
-                            <i class="fa-solid fa-chart-column text-gold"></i>
+                    <!-- PROJECT CARD 2 -->
+                    <div class="project-card-premium tilt-card">
+                        <div>
+                            <div class="project-icon-badge" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-gold);">
+                                <i class="fa-solid fa-chart-line text-gold"></i>
+                            </div>
+                            <div class="project-meta-tags">
+                                <span class="black-tag mono-text"><i class="fa-solid fa-sack-dollar text-gold"></i> Valuation & Forecasting</span>
+                                <span class="black-tag mono-text text-gold">Excel (.xlsx)</span>
+                            </div>
+                            <h3 class="project-title">NexGen Tech Financial Model and DCF Valuation</h3>
+                            <p class="project-desc">
+                                Pro Forma 3-Year Income Statement, Cash Flow & Balance Sheet model (2026–2029) with dynamic Scenario Switcher (Base, Bull, Bear), EBITDA margins, and Two-Way DCF Sensitivity Matrix (`₹1,92,38,543`).
+                            </p>
                         </div>
-                        <div class="project-meta-tags">
-                            <span class="black-tag mono-text"><i class="fa-solid fa-database text-gold"></i> Power BI Analytics</span>
-                            <span class="black-tag mono-text" style="color: var(--accent-blue);">Power BI (.pbix)</span>
+
+                        <div class="project-action-btns">
+                            <a href="project-3year-model.html" class="btn-project-action btn-preview">
+                                <i class="fa-solid fa-eye"></i> Preview Online
+                            </a>
+                            <a href="NexGen_Tech_Financial_Model_and_DCF_Valuation.xlsx" download="NexGen_Tech_Financial_Model_and_DCF_Valuation.xlsx" class="btn-project-action btn-download-proj">
+                                <i class="fa-solid fa-download"></i> Download (.xlsx)
+                            </a>
                         </div>
-                        <h3 class="project-title">Q3 Budget vs. Actual Variance Power BI Dashboard</h3>
-                        <p class="project-desc">
-                            Interactive Power BI Desktop Dashboard featuring category slicers, clustered column charts, donut visual breakdowns, DAX measures, and green/red conditional formatting.
-                        </p>
                     </div>
 
-                    <div class="project-action-btns">
-                        <a href="project-powerbi-dashboard.html" class="btn-project-action btn-preview">
-                            <i class="fa-solid fa-eye"></i> Preview Online
-                        </a>
-                        <a href="Q3_Budget_vs_Actual_Variance_Model.pbix" download="Q3_Budget_vs_Actual_Variance_Model.pbix" class="btn-project-action btn-download-proj">
-                            <i class="fa-solid fa-download"></i> Download (.pbix)
-                        </a>
+                    <!-- PROJECT CARD 3 -->
+                    <div class="project-card-premium tilt-card">
+                        <div>
+                            <div class="project-icon-badge" style="background: rgba(59, 130, 246, 0.15); border: 1px solid var(--accent-blue);">
+                                <i class="fa-solid fa-chart-column text-gold"></i>
+                            </div>
+                            <div class="project-meta-tags">
+                                <span class="black-tag mono-text"><i class="fa-solid fa-database text-gold"></i> Power BI Analytics</span>
+                                <span class="black-tag mono-text" style="color: var(--accent-blue);">Power BI (.pbix)</span>
+                            </div>
+                            <h3 class="project-title">Q3 Budget vs. Actual Variance Power BI Dashboard</h3>
+                            <p class="project-desc">
+                                Interactive Power BI Desktop Dashboard featuring category slicers, clustered column charts, donut visual breakdowns, DAX measures, and green/red conditional formatting.
+                            </p>
+                        </div>
+
+                        <div class="project-action-btns">
+                            <a href="project-powerbi-dashboard.html" class="btn-project-action btn-preview">
+                                <i class="fa-solid fa-eye"></i> Preview Online
+                            </a>
+                            <a href="Q3_Budget_vs_Actual_Variance_Model.pbix" download="Q3_Budget_vs_Actual_Variance_Model.pbix" class="btn-project-action btn-download-proj">
+                                <i class="fa-solid fa-download"></i> Download (.pbix)
+                            </a>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
