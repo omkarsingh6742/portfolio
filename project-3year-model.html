@@ -64,7 +64,7 @@
                     <i class="fa-solid fa-sliders text-gold" style="font-size: 1.5rem;"></i>
                     <div>
                         <h3>Dynamic Active Scenario Switcher</h3>
-                        <span class="mono-text text-muted" style="font-size:0.75rem;">SELECT MODEL SCENARIO TO RECALCULATE PROJECTIONS</span>
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">SELECT MODEL SCENARIO TO RECALCULATE PROJECTIONS & SENSITIVITY MATRIX</span>
                     </div>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div>
-                    <span class="matrix-top-left-yellow">IMPLIED ENTERPRISE VALUE: ₹ 1,92,38,543</span>
+                    <span class="matrix-top-left-yellow" id="badgeMatrixEv">IMPLIED ENTERPRISE VALUE: ₹ 1,92,38,543</span>
                 </div>
             </div>
 
@@ -132,7 +132,7 @@
                     <thead>
                         <tr>
                             <th style="vertical-align: middle; background: rgba(245, 158, 11, 0.15); color: var(--accent-gold);">
-                                <span style="background: #ffff00; color: #000; padding: 4px 8px; border-radius: 4px; font-weight: 900; display: inline-block;">IMPLIED ENTERPRISE VALUE<br>₹ 1,92,38,543</span><br>
+                                <span style="background: #ffff00; color: #000; padding: 4px 8px; border-radius: 4px; font-weight: 900; display: inline-block;" id="headerMatrixEvBox">IMPLIED ENTERPRISE VALUE<br>₹ 1,92,38,543</span><br>
                                 <span style="font-size: 0.725rem; font-weight: 500; margin-top: 4px; display: inline-block;">WACC \ Terminal Growth (g)</span>
                             </th>
                             <th>2.0%</th>
@@ -278,7 +278,6 @@
 
             let curRev = sc.baseRev;
             let curPpeVal = sc.ppe;
-            let startCash = 1500000;
             let accumDepr = 0;
             let startRetained = 1309246;
 
@@ -359,7 +358,11 @@
 
         function calculateSensitivityMatrix(sc) {
             const data = calculateModel(sc);
-            const baseEv = 19238543;
+            // Dynamic Scenario Multiplier based on 2029 EBITDA vs Base EBITDA
+            const baseEbitdaRef = 2232031.25;
+            const scenarioRatio = data.ebitda[3] / baseEbitdaRef;
+            const scenarioBaseEv = Math.round(19238543 * scenarioRatio);
+
             const waccList = [0.08, 0.09, 0.10, 0.11, 0.12];
             const gList = [0.020, 0.025, 0.030, 0.035, 0.040];
 
@@ -370,12 +373,12 @@
                 for (let c = 0; c < gList.length; c++) {
                     const g = gList[c];
                     const multiplier = ((1 + g) / (w - g)) / ((1 + 0.03) / (0.10 - 0.03));
-                    const cellEv = Math.round(baseEv * multiplier);
+                    const cellEv = Math.round(scenarioBaseEv * multiplier);
                     row.push({ w, g, ev: cellEv });
                 }
                 matrix.push(row);
             }
-            return { waccList, gList, matrix, baseEv };
+            return { waccList, gList, matrix, scenarioBaseEv };
         }
 
         function renderAll(scKey) {
@@ -389,7 +392,10 @@
             document.getElementById('kpi2029Ebitda').textContent = fmt(data.ebitda[3]);
             document.getElementById('kpiEbitdaMargin').textContent = `EBITDA Margin: ${((data.ebitda[3] / data.rev[3]) * 100).toFixed(1)}%`;
             
-            document.getElementById('kpiDcfVal').textContent = "₹1,92,38,543";
+            const activeEvStr = fmt(sens.scenarioBaseEv);
+            document.getElementById('kpiDcfVal').textContent = activeEvStr;
+            document.getElementById('badgeMatrixEv').textContent = `IMPLIED ENTERPRISE VALUE: ${activeEvStr}`;
+            document.getElementById('headerMatrixEvBox').innerHTML = `IMPLIED ENTERPRISE VALUE<br>${activeEvStr}`;
 
             // Render Income Statement
             const tbodyInc = document.getElementById('incomeBody');
@@ -448,7 +454,7 @@
                         <td style="font-weight:700; ${isBaseRow ? 'color:var(--accent-gold);' : ''}">${waccPct}</td>
                         ${row.map((cell, cIdx) => {
                             const isBaseCell = (rIdx === 2 && cIdx === 2);
-                            const cls = isBaseCell ? 'matrix-cell-base' : (cell.ev > sens.baseEv ? 'matrix-cell-bull' : 'matrix-cell-bear');
+                            const cls = isBaseCell ? 'matrix-cell-base' : (cell.ev > sens.scenarioBaseEv ? 'matrix-cell-bull' : 'matrix-cell-bear');
                             return `<td class="${cls}">${fmt(cell.ev)}</td>`;
                         }).join('')}
                     </tr>
