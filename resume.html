@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Omkar Singh - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            color: #1e293b;
+            background: #ffffff;
+            line-height: 1.45;
+            font-size: 9.5pt;
+            width: 210mm;
+            height: 297mm;
+            padding: 14mm 16mm;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .header {
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+        .name {
+            font-size: 22pt;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+        .target-role {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #d97706;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .contact-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 6px;
+            font-size: 9pt;
+            color: #475569;
+            font-weight: 500;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .contact-item a {
+            color: #0284c7;
+            text-decoration: none;
+        }
+
+        /* SECTION HEADINGS */
+        .section-title {
+            font-size: 10.5pt;
+            font-weight: 800;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1.5px solid #cbd5e1;
+            padding-bottom: 3px;
+            margin-top: 11px;
+            margin-bottom: 7px;
+        }
+
+        /* OBJECTIVE */
+        .objective-text {
+            font-size: 9pt;
+            color: #334155;
+            line-height: 1.4;
+        }
+
+        /* EDUCATION */
+        .edu-item {
+            margin-bottom: 6px;
+        }
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 9.5pt;
+            color: #0f172a;
+        }
+        .edu-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 8.8pt;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        /* PROJECTS / CASE STUDIES */
+        .proj-item {
+            margin-bottom: 7px;
+        }
+        .proj-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .proj-title {
+            font-weight: 700;
+            font-size: 9.5pt;
+            color: #0f172a;
+        }
+        .proj-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: #d97706;
+            background: #fffbeb;
+            border: 1px solid #fef3c7;
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+        .proj-bullets {
+            margin-top: 3px;
+            padding-left: 14px;
+            font-size: 8.8pt;
+            color: #334155;
+        }
+        .proj-bullets li {
+            margin-bottom: 2px;
+            line-height: 1.35;
+        }
+
+        /* CERTIFICATIONS */
+        .cert-item {
+            margin-bottom: 4px;
+        }
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 9.2pt;
+            color: #0f172a;
+        }
+        .cert-desc {
+            font-size: 8.8pt;
+            color: #475569;
+        }
+
+        /* SKILLS MATRIX */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 16px;
+            font-size: 8.8pt;
+        }
+        .skill-group-title {
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .skill-list {
+            color: #334155;
+        }
+
+        /* ACTIVITIES */
+        .act-bullets {
+            padding-left: 14px;
+            font-size: 8.8pt;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="name">Omkar Singh</div>
+        <div class="target-role">Aspiring Investment Banking & Private Equity Analyst</div>
+        <div class="contact-row">
+            <div class="contact-item">📧 omkarsingh6742@gmail.com</div>
+            <div class="contact-item">📞 +91 7667300380</div>
+            <div class="contact-item">📍 Bengaluru, Karnataka, India</div>
+            <div class="contact-item">🌐 <a href="https://portfolio-steel-eta-t6jtivqtl7.vercel.app/">Portfolio Website</a></div>
+        </div>
+    </div>
+
+    <!-- CAREER OBJECTIVE -->
+    <div class="section-title">Career Objective</div>
+    <p class="objective-text">
+        Driven Commerce undergraduate at Mount Carmel College specializing in Corporate Finance, Financial Modeling, DCF Valuation, and FP&A Analytics. Seeking an entry-level Investment Banking / Private Equity Analyst role to apply rigorous 3-statement modeling, scenario stress-testing, and business intelligence capabilities.
+    </p>
+
+    <!-- EDUCATION -->
+    <div class="section-title">Education</div>
+    
+    <div class="edu-item">
+        <div class="edu-header">
+            <span>B.Com, Commerce</span>
+            <span>2025 – 2028</span>
+        </div>
+        <div class="edu-sub">
+            <span>Mount Carmel College, Bangalore</span>
+            <span>Undergraduate Degree</span>
+        </div>
+    </div>
+
+    <div class="edu-item">
+        <div class="edu-header">
+            <span>Senior Secondary (XII), Karnataka State Board</span>
+            <span>2025</span>
+        </div>
+        <div class="edu-sub">
+            <span>The National PU College, Jayanagar &bull; Commerce Stream</span>
+            <span>Percentage: <strong>80.17%</strong></span>
+        </div>
+    </div>
+
+    <div class="edu-item">
+        <div class="edu-header">
+            <span>Secondary (X), CBSE</span>
+            <span>2023</span>
+        </div>
+        <div class="edu-sub">
+            <span>Narayana E Techno School</span>
+            <span>Percentage: <strong>86.40%</strong></span>
+        </div>
+    </div>
+
+    <!-- CORPORATE FINANCE CASE STUDY & PROJECTS -->
+    <div class="section-title">Financial Modeling & Analytics Case Studies</div>
+
+    <div class="proj-item">
+        <div class="proj-header">
+            <span class="proj-title">NexGen Tech Financial Model & DCF Valuation</span>
+            <span class="proj-tag">EXCEL MODELING & VALUATION</span>
+        </div>
+        <ul class="proj-bullets">
+            <li>Engineered an integrated 4-year Pro Forma 3-Statement Model (Income Statement, Cash Flow, Balance Sheet) for 2026–2029.</li>
+            <li>Built dynamic Base, Bull, and Bear scenario switchers with automated EBITDA forecasts, working capital schedules, and debt amortizations.</li>
+            <li>Constructed a Two-Way DCF Sensitivity Matrix (WACC vs. Terminal Growth Rate $g$) establishing an Implied Enterprise Value of <strong>₹1,92,38,543</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="proj-item">
+        <div class="proj-header">
+            <span class="proj-title">Q3 Budget vs. Actual Variance Power BI Dashboard</span>
+            <span class="proj-tag">POWER BI & DAX</span>
+        </div>
+        <ul class="proj-bullets">
+            <li>Designed an interactive Power BI Desktop dashboard with category slicers, DAX KPI measures, and clustered column charts.</li>
+            <li>Implemented dynamic DAX conditional matrix formatting (#1ADE37 green / #D64550 red) for real-time favorable/unfavorable variance tracking.</li>
+        </ul>
+    </div>
+
+    <div class="proj-item">
+        <div class="proj-header">
+            <span class="proj-title">FP&A Budget Variance Model</span>
+            <span class="proj-tag">FP&A & AUDITING</span>
+        </div>
+        <ul class="proj-bullets">
+            <li>Audited quarterly expenses across 10 line items in 5 departments, calculating absolute variance ($\Delta$) and percentage variance ($\%$) against target budgets.</li>
+        </ul>
+    </div>
+
+    <!-- TRAININGS & CERTIFICATIONS -->
+    <div class="section-title">Trainings & Certifications</div>
+    <div class="cert-item">
+        <div class="cert-header">
+            <span>Corporate Finance Certification</span>
+            <span>Jul 2025 – Sep 2025</span>
+        </div>
+        <div class="cert-desc">
+            NPTEL, Swayam, Virtual &bull; Comprehensive certification covering Corporate Finance, Equity Management, Discounting & Compounding (TVM), NPV/IRR, and Valuation.
+        </div>
+    </div>
+
+    <!-- SKILLS MATRIX (RANKED IN DECREASING FINANCE RELEVANCE) -->
+    <div class="section-title">Skills & Proficiencies</div>
+    <div class="skills-grid">
+        <div><span class="skill-group-title">Valuation & DCF:</span> <span class="skill-list">DCF Modeling, WACC, Terminal Growth ($g$), Two-Way Sensitivity</span></div>
+        <div><span class="skill-group-title">Financial Modeling:</span> <span class="skill-list">3-Statement Pro Forma Projections, Debt & CapEx Schedules</span></div>
+        <div><span class="skill-group-title">Corporate Finance:</span> <span class="skill-list">Discounting & Compounding (TVM), Equity Capital Structure</span></div>
+        <div><span class="skill-group-title">FP&A & Auditing:</span> <span class="skill-list">Budget vs. Actual Variance Analysis, Departmental Cost Allocation</span></div>
+        <div><span class="skill-group-title">Analytics & Tools:</span> <span class="skill-list">Power BI Desktop, DAX Measures, Advanced Excel (XLOOKUP)</span></div>
+        <div><span class="skill-group-title">Accounting & Decks:</span> <span class="skill-list">Accounting Principles, Executive PowerPoint Decks, Google Forms</span></div>
+    </div>
+
+    <!-- EXTRA CURRICULAR ACTIVITIES -->
+    <div class="section-title">Extra Curricular Activities</div>
+    <ul class="act-bullets">
+        <li><strong>College Fest Registration Operations:</strong> Managed delegate registration workflows, Google Forms data integration, and event logistics for Mount Carmel College Fest.</li>
+    </ul>
+
+</body>
+</html>
