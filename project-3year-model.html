@@ -94,13 +94,13 @@
                 </div>
                 <div class="kpi-card">
                     <span class="kpi-label mono-text">IMPLIED DCF ENTERPRISE VALUE</span>
-                    <h3 class="kpi-value mono-text text-gold" id="kpiDcfVal">₹2,14,50,000</h3>
-                    <span class="kpi-sub" id="kpiWaccLbl">WACC: 10.0% | Terminal Growth: 2.5%</span>
+                    <h3 class="kpi-value mono-text text-gold" id="kpiDcfVal">₹2,29,50,000</h3>
+                    <span class="kpi-sub" id="kpiWaccLbl">WACC: 10.0% | Terminal Growth: 3.0%</span>
                 </div>
             </div>
         </div>
 
-        <!-- 3-Year Forecast Chart with Corrected Lakhs / Crores Currency Y-Axis -->
+        <!-- 3-Year Forecast Chart with Lakhs / Crores Currency Y-Axis -->
         <div class="chart-card tilt-card" style="margin-bottom: 35px;">
             <div class="chart-header-row">
                 <h4><i class="fa-solid fa-chart-area text-gold"></i> Pro Forma Revenue, EBITDA & Operating Cash Flow Trajectory</h4>
@@ -127,12 +127,12 @@
                 <table class="matrix-table">
                     <thead>
                         <tr>
-                            <th rowspan="2" style="vertical-align: middle;">WACC (Y-Axis) \ Terminal Growth (g)</th>
-                            <th>1.5%</th>
+                            <th style="vertical-align: middle;">WACC \ Terminal Growth (g)</th>
                             <th>2.0%</th>
-                            <th style="color: var(--accent-gold);">2.5% (Base)</th>
-                            <th>3.0%</th>
+                            <th>2.5%</th>
+                            <th style="color: var(--accent-gold);">3.0%</th>
                             <th>3.5%</th>
+                            <th>4.0%</th>
                         </tr>
                     </thead>
                     <tbody id="matrixBody">
@@ -354,7 +354,7 @@
             const data = calculateModel(sc);
             const terminalFcf = data.ebitda[3] * 0.75;
             const waccList = [0.08, 0.09, 0.10, 0.11, 0.12];
-            const gList = [0.015, 0.020, 0.025, 0.030, 0.035];
+            const gList = [0.020, 0.025, 0.030, 0.035, 0.040];
 
             const matrix = [];
             for (let w of waccList) {
@@ -437,7 +437,7 @@
                 const isBaseRow = rIdx === 2;
                 return `
                     <tr>
-                        <td style="font-weight:700; ${isBaseRow ? 'color:var(--accent-gold);' : ''}">${waccPct} ${isBaseRow ? '(Base WACC)' : ''}</td>
+                        <td style="font-weight:700; ${isBaseRow ? 'color:var(--accent-gold);' : ''}">${waccPct}</td>
                         ${row.map((cell, cIdx) => {
                             const isBaseCell = (rIdx === 2 && cIdx === 2);
                             const cls = isBaseCell ? 'matrix-cell-base' : (cell.ev > baseEv ? 'matrix-cell-bull' : 'matrix-cell-bear');
@@ -447,7 +447,7 @@
                 `;
             }).join('');
 
-            // Render Chart with Corrected Currency Labels on Y-Axis
+            // Render Chart with Currency Labels on Y-Axis
             const ctx = document.getElementById('modelChartCanvas').getContext('2d');
             if (chartObj) chartObj.destroy();
 
