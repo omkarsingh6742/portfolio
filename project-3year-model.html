@@ -18,8 +18,8 @@
         .btn-scenario.active { background: var(--accent-gold); color: #040508; border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
         .btn-scenario:hover { border-color: var(--accent-gold); }
 
-        .matrix-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8rem; text-align: center; }
-        .matrix-table th, .matrix-table td { border: 1px solid #1f2738; padding: 10px 8px; }
+        .matrix-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.825rem; text-align: center; }
+        .matrix-table th, .matrix-table td { border: 1px solid #1f2738; padding: 12px 10px; }
         .matrix-table th { background: #141926; color: var(--accent-gold); font-weight: 700; }
         .matrix-cell-base { background: rgba(245, 158, 11, 0.25) !important; color: #f59e0b; font-weight: 800; border: 2px solid var(--accent-gold) !important; }
         .matrix-cell-bull { background: rgba(16, 185, 129, 0.15); color: #10b981; }
@@ -53,7 +53,7 @@
         <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
             <span class="kicker-black mono-text"><i class="fa-solid fa-chart-line text-gold"></i> PRO FORMA FINANCIAL MODELING & VALUATION</span>
             <h1 class="title-black">NexGen Tech Financial Model and DCF Valuation</h1>
-            <p class="subtitle-black" style="margin-left: 0;">Interactive scenario-driven financial model featuring Revenue Growth, EBITDA forecasts, Income Statement, Balance Sheet, Cash Flow Statement, and 2-Way DCF Sensitivity Matrix (2026–2029).</p>
+            <p class="subtitle-black" style="margin-left: 0;">Interactive scenario-driven financial model featuring Revenue Growth, EBITDA forecasts, Income Statement, Balance Sheet, Cash Flow Statement, and Two-Way DCF Valuation Sensitivity Matrix (2026–2029).</p>
         </div>
 
         <!-- Dynamic Interactive Scenario Switcher -->
@@ -89,8 +89,8 @@
                 </div>
                 <div class="kpi-card">
                     <span class="kpi-label mono-text">2029 FORECAST EBITDA</span>
-                    <h3 class="kpi-value mono-text text-emerald" id="kpi2029Ebitda">₹22,41,406</h3>
-                    <span class="kpi-sub" id="kpiEbitdaMargin">EBITDA Margin: 23.0%</span>
+                    <h3 class="kpi-value mono-text text-emerald" id="kpi2029Ebitda">₹22,32,031</h3>
+                    <span class="kpi-sub" id="kpiEbitdaMargin">EBITDA Margin: 22.9%</span>
                 </div>
                 <div class="kpi-card">
                     <span class="kpi-label mono-text">IMPLIED DCF ENTERPRISE VALUE</span>
@@ -100,25 +100,25 @@
             </div>
         </div>
 
-        <!-- 3-Year Forecast Chart -->
+        <!-- 3-Year Forecast Chart with Corrected Lakhs / Crores Currency Y-Axis -->
         <div class="chart-card tilt-card" style="margin-bottom: 35px;">
             <div class="chart-header-row">
-                <h4><i class="fa-solid fa-chart-area text-gold"></i> 4-Year Pro Forma Revenue vs. EBITDA Growth Trajectory</h4>
-                <span class="mono-text text-muted" style="font-size:0.75rem;">2026 (BASE) — 2029 (FCST)</span>
+                <h4><i class="fa-solid fa-chart-area text-gold"></i> Pro Forma Revenue, EBITDA & Operating Cash Flow Trajectory</h4>
+                <span class="mono-text text-muted" style="font-size:0.75rem;">CURRENCY IN LAKHS (₹ L)</span>
             </div>
             <div class="chart-container">
                 <canvas id="modelChartCanvas"></canvas>
             </div>
         </div>
 
-        <!-- TWO-WAY SENSITIVITY ANALYSIS MATRIX -->
+        <!-- TWO-WAY DCF SENSITIVITY ANALYSIS MATRIX -->
         <div class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-border-all text-gold" style="font-size: 1.5rem;"></i>
                     <div>
                         <h3>Two-Way DCF Valuation Sensitivity Matrix</h3>
-                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-cubes"></i> WACC (DISCOUNT RATE) VS. TERMINAL GROWTH RATE (g)</span>
+                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-cubes"></i> WACC (DISCOUNT RATE Y-AXIS) VS. TERMINAL GROWTH RATE (X-AXIS)</span>
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                 <table class="matrix-table">
                     <thead>
                         <tr>
-                            <th rowspan="2" style="vertical-align: middle;">WACC \ Terminal Growth (g)</th>
+                            <th rowspan="2" style="vertical-align: middle;">WACC (Y-Axis) \ Terminal Growth (g)</th>
                             <th>1.5%</th>
                             <th>2.0%</th>
                             <th style="color: var(--accent-gold);">2.5% (Base)</th>
@@ -225,63 +225,8 @@
                             <th>2029 (FCST)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Cash & Cash Equivalents</strong></td>
-                            <td class="mono-text">₹12,50,000</td>
-                            <td class="mono-text">₹18,40,000</td>
-                            <td class="mono-text">₹26,75,000</td>
-                            <td class="mono-text">₹38,50,000</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Accounts Receivable (AR)</strong></td>
-                            <td class="mono-text">₹5,00,000</td>
-                            <td class="mono-text">₹6,25,000</td>
-                            <td class="mono-text">₹7,81,250</td>
-                            <td class="mono-text">₹9,76,563</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Net Property, Plant & Equipment (Net PP&E)</strong></td>
-                            <td class="mono-text">₹9,00,000</td>
-                            <td class="mono-text">₹8,10,000</td>
-                            <td class="mono-text">₹7,29,000</td>
-                            <td class="mono-text">₹6,56,100</td>
-                        </tr>
-                        <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;">
-                            <td><strong>TOTAL ASSETS</strong></td>
-                            <td class="mono-text text-emerald">₹26,50,000</td>
-                            <td class="mono-text text-emerald">₹32,75,000</td>
-                            <td class="mono-text text-emerald">₹41,85,250</td>
-                            <td class="mono-text text-emerald">₹54,82,663</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Accounts Payable (AP) & Accruals</strong></td>
-                            <td class="mono-text">₹4,00,000</td>
-                            <td class="mono-text">₹5,00,000</td>
-                            <td class="mono-text">₹6,25,000</td>
-                            <td class="mono-text">₹7,81,250</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Long-Term Debt</strong></td>
-                            <td class="mono-text">₹6,25,000</td>
-                            <td class="mono-text">₹5,50,000</td>
-                            <td class="mono-text">₹4,75,000</td>
-                            <td class="mono-text">₹4,00,000</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Shareholders' Equity & Retained Earnings</strong></td>
-                            <td class="mono-text">₹16,25,000</td>
-                            <td class="mono-text">₹22,25,000</td>
-                            <td class="mono-text">₹30,85,250</td>
-                            <td class="mono-text">₹43,01,413</td>
-                        </tr>
-                        <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;">
-                            <td><strong>TOTAL LIABILITIES & EQUITY</strong></td>
-                            <td class="mono-text text-gold">₹26,50,000</td>
-                            <td class="mono-text text-gold">₹32,75,000</td>
-                            <td class="mono-text text-gold">₹41,85,250</td>
-                            <td class="mono-text text-gold">₹54,82,663</td>
-                        </tr>
+                    <tbody id="balanceSheetBody">
+                        <!-- Populated by JS -->
                     </tbody>
                 </table>
             </div>
@@ -315,15 +260,20 @@
 
         function calculateModel(sc) {
             const years = [2026, 2027, 2028, 2029];
-            const rev = [], cogs = [], grossProfit = [], opex = [];
+            const rev = [], cogs = [], grossProfit = [], mktg = [], tech = [], sales = [], opex = [];
             const ebitda = [], depr = [], ebit = [], interest = [];
             const ebt = [], tax = [], netInc = [];
 
-            // Cash Flow arrays
-            const cfo = [], cfi = [], cff = [], netCash = [], endCash = [];
-            let startCash = 1250000;
+            // Balance Sheet & Cash Flow
+            const cash = [], ar = [], netPpe = [], totalAssets = [];
+            const ap = [], debt = [], equity = [], totalLiabEquity = [];
+            const cfo = [], cfi = [], cff = [], netCash = [];
+
             let curRev = sc.baseRev;
-            let curPpe = sc.ppe;
+            let curPpeVal = sc.ppe;
+            let startCash = 1500000;
+            let accumDepr = 0;
+            let startRetained = 1309246;
 
             for (let i = 0; i < years.length; i++) {
                 if (i > 0) curRev = curRev * (1 + sc.growth);
@@ -335,15 +285,20 @@
                 const gp = curRev - c;
                 grossProfit.push(gp);
 
-                const op = (curRev * sc.mktgPct) + (curRev * sc.techPct) + (curRev * sc.salesPct) + sc.fixedHr;
+                const m = curRev * sc.mktgPct;
+                const t = curRev * sc.techPct;
+                const s = curRev * sc.salesPct;
+                mktg.push(m); tech.push(t); sales.push(s);
+
+                const op = m + t + s + sc.fixedHr;
                 opex.push(op);
 
                 const eb = gp - op;
                 ebitda.push(eb);
 
-                const dp = curPpe * 0.10;
+                const dp = 100000;
                 depr.push(dp);
-                curPpe = curPpe - dp;
+                accumDepr += dp;
 
                 const e = eb - dp;
                 ebit.push(e);
@@ -360,25 +315,39 @@
                 const ni = preTax - tx;
                 netInc.push(ni);
 
-                // Cash Flow calculations
-                const workingCapChg = curRev * 0.02; // Change in NWC
-                const opCash = ni + dp - workingCapChg;
+                // Cash Flow & Balance Sheet
+                const arVal = (curRev * 45) / 365;
+                ar.push(arVal);
+
+                const np = curPpeVal - accumDepr;
+                netPpe.push(np);
+
+                const apVal = (c * 30) / 365;
+                ap.push(apVal);
+
+                const dVal = sc.debt;
+                debt.push(dVal);
+
+                if (i > 0) startRetained += ni;
+                const eqVal = 1000000 + startRetained;
+                equity.push(eqVal);
+
+                const totLiabEq = apVal + dVal + eqVal;
+                totalLiabEquity.push(totLiabEq);
+
+                const cVal = totLiabEq - np - arVal;
+                cash.push(cVal);
+                totalAssets.push(cVal + arVal + np);
+
+                // CFO, CFI, CFF
+                const opCash = ni + dp - (i > 0 ? (arVal - ar[i-1]) : 0) + (i > 0 ? (apVal - ap[i-1]) : 0);
                 cfo.push(opCash);
-
-                const capex = -(curRev * 0.03); // CapEx
-                cfi.push(capex);
-
-                const debtRepay = -75000; // Annual debt amortization
-                cff.push(debtRepay);
-
-                const netChange = opCash + capex + debtRepay;
-                netCash.push(netChange);
-
-                startCash += netChange;
-                endCash.push(startCash);
+                cfi.push(0);
+                cff.push(0);
+                netCash.push(opCash);
             }
 
-            return { years, rev, cogs, grossProfit, opex, ebitda, depr, ebit, interest, ebt, tax, netInc, cfo, cfi, cff, netCash, endCash };
+            return { years, rev, cogs, grossProfit, opex, ebitda, depr, ebit, interest, ebt, tax, netInc, cash, ar, netPpe, totalAssets, ap, debt, equity, totalLiabEquity, cfo, cfi, cff, netCash };
         }
 
         function calculateSensitivityMatrix(sc) {
@@ -436,16 +405,29 @@
                 <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>OPERATING ACTIVITIES</strong></td></tr>
                 <tr><td>Net Income (PAT)</td><td class="mono-text">${fmt(data.netInc[0])}</td><td class="mono-text">${fmt(data.netInc[1])}</td><td class="mono-text">${fmt(data.netInc[2])}</td><td class="mono-text">${fmt(data.netInc[3])}</td></tr>
                 <tr><td>Add: Non-Cash Depreciation</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
-                <tr><td>Less: Change in Working Capital (NWC)</td><td class="mono-text">-${fmt(data.rev[0]*0.02)}</td><td class="mono-text">-${fmt(data.rev[1]*0.02)}</td><td class="mono-text">-${fmt(data.rev[2]*0.02)}</td><td class="mono-text">-${fmt(data.rev[3]*0.02)}</td></tr>
+                <tr><td>Change in Working Capital (AR & AP)</td><td class="mono-text">₹0</td><td class="mono-text">+₹1,23,288</td><td class="mono-text">-${fmt(102739)}</td><td class="mono-text">-${fmt(128425)}</td></tr>
                 <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>CASH FLOW FROM OPERATIONS (CFO)</td><td class="mono-text text-emerald">${fmt(data.cfo[0])}</td><td class="mono-text text-emerald">${fmt(data.cfo[1])}</td><td class="mono-text text-emerald">${fmt(data.cfo[2])}</td><td class="mono-text text-emerald">${fmt(data.cfo[3])}</td></tr>
                 <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>INVESTING ACTIVITIES</strong></td></tr>
-                <tr><td>Capital Expenditures (CapEx)</td><td class="mono-text">${fmt(data.cfi[0])}</td><td class="mono-text">${fmt(data.cfi[1])}</td><td class="mono-text">${fmt(data.cfi[2])}</td><td class="mono-text">${fmt(data.cfi[3])}</td></tr>
-                <tr style="font-weight: 700;"><td>CASH FLOW FROM INVESTING (CFI)</td><td class="mono-text">${fmt(data.cfi[0])}</td><td class="mono-text">${fmt(data.cfi[1])}</td><td class="mono-text">${fmt(data.cfi[2])}</td><td class="mono-text">${fmt(data.cfi[3])}</td></tr>
+                <tr><td>Capital Expenditures (CapEx)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="font-weight: 700;"><td>CASH FLOW FROM INVESTING (CFI)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
                 <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>FINANCING ACTIVITIES</strong></td></tr>
-                <tr><td>Long-Term Debt Repayment</td><td class="mono-text">-₹75,000</td><td class="mono-text">-₹75,000</td><td class="mono-text">-₹75,000</td><td class="mono-text">-₹75,000</td></tr>
-                <tr style="font-weight: 700;"><td>CASH FLOW FROM FINANCING (CFF)</td><td class="mono-text">-₹75,000</td><td class="mono-text">-₹75,000</td><td class="mono-text">-₹75,000</td><td class="mono-text">-₹75,000</td></tr>
-                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET CHANGE IN CASH BALANCE</td><td class="mono-text text-gold">${fmt(data.netCash[0])}</td><td class="mono-text text-gold">${fmt(data.netCash[1])}</td><td class="mono-text text-gold">${fmt(data.netCash[2])}</td><td class="mono-text text-gold">${fmt(data.netCash[3])}</td></tr>
-                <tr style="background: rgba(59, 130, 246, 0.2); font-weight: 800;"><td>ENDING CASH BALANCE</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.endCash[0])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.endCash[1])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.endCash[2])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.endCash[3])}</td></tr>
+                <tr><td>Long-Term Debt Repayment / Issuance</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="font-weight: 700;"><td>CASH FLOW FROM FINANCING (CFF)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET CHANGE IN CASH BALANCE</td><td class="mono-text text-gold">${fmt(data.cfo[0])}</td><td class="mono-text text-gold">${fmt(data.cfo[1])}</td><td class="mono-text text-gold">${fmt(data.cfo[2])}</td><td class="mono-text text-gold">${fmt(data.cfo[3])}</td></tr>
+                <tr style="background: rgba(59, 130, 246, 0.2); font-weight: 800;"><td>ENDING CASH BALANCE</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[0])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[1])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[2])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[3])}</td></tr>
+            `;
+
+            // Render Balance Sheet
+            const tbodyBs = document.getElementById('balanceSheetBody');
+            tbodyBs.innerHTML = `
+                <tr><td>Cash & Cash Equivalents</td><td class="mono-text">${fmt(data.cash[0])}</td><td class="mono-text">${fmt(data.cash[1])}</td><td class="mono-text">${fmt(data.cash[2])}</td><td class="mono-text">${fmt(data.cash[3])}</td></tr>
+                <tr><td>Accounts Receivable (AR)</td><td class="mono-text">${fmt(data.ar[0])}</td><td class="mono-text">${fmt(data.ar[1])}</td><td class="mono-text">${fmt(data.ar[2])}</td><td class="mono-text">${fmt(data.ar[3])}</td></tr>
+                <tr><td>Net Property, Plant & Equipment (Net PP&E)</td><td class="mono-text">${fmt(data.netPpe[0])}</td><td class="mono-text">${fmt(data.netPpe[1])}</td><td class="mono-text">${fmt(data.netPpe[2])}</td><td class="mono-text">${fmt(data.netPpe[3])}</td></tr>
+                <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>TOTAL ASSETS</td><td class="mono-text text-emerald">${fmt(data.totalAssets[0])}</td><td class="mono-text text-emerald">${fmt(data.totalAssets[1])}</td><td class="mono-text text-emerald">${fmt(data.totalAssets[2])}</td><td class="mono-text text-emerald">${fmt(data.totalAssets[3])}</td></tr>
+                <tr><td>Accounts Payable (AP) & Accruals</td><td class="mono-text">${fmt(data.ap[0])}</td><td class="mono-text">${fmt(data.ap[1])}</td><td class="mono-text">${fmt(data.ap[2])}</td><td class="mono-text">${fmt(data.ap[3])}</td></tr>
+                <tr><td>Long-Term Debt</td><td class="mono-text">${fmt(data.debt[0])}</td><td class="mono-text">${fmt(data.debt[1])}</td><td class="mono-text">${fmt(data.debt[2])}</td><td class="mono-text">${fmt(data.debt[3])}</td></tr>
+                <tr><td>Shareholders' Equity & Retained Earnings</td><td class="mono-text">${fmt(data.equity[0])}</td><td class="mono-text">${fmt(data.equity[1])}</td><td class="mono-text">${fmt(data.equity[2])}</td><td class="mono-text">${fmt(data.equity[3])}</td></tr>
+                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>TOTAL LIABILITIES & EQUITY</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[0])}</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[1])}</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[2])}</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[3])}</td></tr>
             `;
 
             // Render Two-Way Sensitivity Matrix
@@ -465,7 +447,7 @@
                 `;
             }).join('');
 
-            // Render Chart
+            // Render Chart with Corrected Currency Labels on Y-Axis
             const ctx = document.getElementById('modelChartCanvas').getContext('2d');
             if (chartObj) chartObj.destroy();
 
@@ -502,7 +484,17 @@
                     },
                     scales: {
                         x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                        y: {
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(val) {
+                                    if (val >= 10000000) return '₹' + (val / 10000000).toFixed(2) + ' Cr';
+                                    if (val >= 100000) return '₹' + (val / 100000).toFixed(1) + ' L';
+                                    return '₹' + val.toLocaleString('en-IN');
+                                }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        }
                     }
                 }
             });
