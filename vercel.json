@@ -13,6 +13,24 @@
       ]
     },
     {
+      "source": "/NexGen_Tech_3_Year_Financial_Model.xlsx",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        }
+      ]
+    },
+    {
+      "source": "/Q3_Budget_vs_Actual_Variance_Model.pbix",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        }
+      ]
+    },
+    {
       "source": "/Omkar_Singh_Resume.pdf",
       "headers": [
         {

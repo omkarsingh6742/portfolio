@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Q3 Budget vs. Actual Variance Dashboard Preview | Omkar Singh Portfolio</title>
+    <meta name="description" content="Interactive Online Power BI Dashboard Preview of Q3 Budget vs. Actual Variance Model by Omkar Singh.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pbi-canvas {
+            background: #11141a;
+            border: 2px solid #2d3748;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+        }
+        .pbi-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a202c;
+            border-bottom: 2px solid #d69e2e;
+            padding: 14px 20px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+        }
+        .pbi-slicer-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #2d3748;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        .pbi-slicer-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid #4a5568;
+            color: #e2e8f0;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pbi-slicer-btn.active {
+            background: #d69e2e;
+            color: #040508;
+            font-weight: 700;
+            border-color: #d69e2e;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <header class="executive-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo-black">
+                <div class="black-logo-icon"><i class="fa-solid fa-arrow-left text-gold"></i></div>
+                <div class="black-logo-meta">
+                    <span class="brand-name">OMKAR SINGH</span>
+                    <span class="brand-sub mono-text"><i class="fa-solid fa-chart-column text-gold"></i> POWER BI DASHBOARD PREVIEW</span>
+                </div>
+            </a>
+
+            <div class="header-right" style="display: flex; gap: 12px; align-items: center;">
+                <a href="Q3_Budget_vs_Actual_Variance_Model.pbix" download="Q3_Budget_vs_Actual_Variance_Model.pbix" class="btn-black btn-gold glow-btn">
+                    <i class="fa-solid fa-download"></i> Download Power BI (.pbix)
+                </a>
+                <a href="index.html#projects" class="btn-black btn-outline">
+                    <i class="fa-solid fa-house"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
+            <span class="kicker-black mono-text"><i class="fa-solid fa-chart-line text-gold"></i> BUSINESS INTELLIGENCE & ANALYTICS</span>
+            <h1 class="title-black">Power BI — Q3 Budget vs. Actual Variance Dashboard</h1>
+            <p class="subtitle-black" style="margin-left: 0;">Interactive Power BI Desktop layout replica featuring dynamic slicers, DAX measures, clustered column charts, donut breakdowns, and DAX conditional formatting (#1ADE37 / #D64550).</p>
+        </div>
+
+        <!-- Power BI Canvas Viewport -->
+        <div class="pbi-canvas">
+            <!-- Power BI Header & Interactive Slicers -->
+            <div class="pbi-topbar">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-chart-column text-gold" style="font-size: 1.6rem;"></i>
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">NEXGEN TECH PVT LTD — Q3 BI DASHBOARD</h3>
+                        <span class="mono-text text-muted" style="font-size: 0.725rem;">POWER BI DESKTOP INTERACTIVE CANVAS</span>
+                    </div>
+                </div>
+
+                <div class="pbi-slicer-box">
+                    <span class="mono-text text-gold" style="font-size: 0.78rem;"><i class="fa-solid fa-filter"></i> Category Slicer:</span>
+                    <button class="pbi-slicer-btn active" id="btnAllCat" onclick="filterCategory('All')">All</button>
+                    <button class="pbi-slicer-btn" id="btnMktg" onclick="filterCategory('Marketing')">Marketing</button>
+                    <button class="pbi-slicer-btn" id="btnTech" onclick="filterCategory('Technology')">Technology</button>
+                    <button class="pbi-slicer-btn" id="btnHr" onclick="filterCategory('HR & Admin')">HR & Admin</button>
+                    <button class="pbi-slicer-btn" id="btnOps" onclick="filterCategory('Operations')">Operations</button>
+                    <button class="pbi-slicer-btn" id="btnSales" onclick="filterCategory('Sales')">Sales</button>
+                </div>
+            </div>
+
+            <!-- Power BI KPI Cards -->
+            <div class="fpa-kpi-grid">
+                <div class="kpi-card" style="background: #1a202c; border-color: #4a5568;">
+                    <span class="kpi-label mono-text"><i class="fa-solid fa-calculator text-gold"></i> TOTAL BUDGETED AMOUNT</span>
+                    <h3 class="kpi-value mono-text text-gold" id="pbiBudgeted">₹7,05,000</h3>
+                    <span class="kpi-sub">DAX Measure: Sum(Budgeted)</span>
+                </div>
+                <div class="kpi-card" style="background: #1a202c; border-color: #4a5568;">
+                    <span class="kpi-label mono-text"><i class="fa-solid fa-receipt text-emerald"></i> TOTAL ACTUAL SPENT</span>
+                    <h3 class="kpi-value mono-text text-emerald" id="pbiSpent">₹7,45,000</h3>
+                    <span class="kpi-sub">DAX Measure: Sum(Actual)</span>
+                </div>
+                <div class="kpi-card" style="background: #1a202c; border-color: #4a5568;">
+                    <span class="kpi-label mono-text"><i class="fa-solid fa-scale-balanced text-gold"></i> NET VARIANCE %</span>
+                    <h3 class="kpi-value mono-text" style="color: #D64550;" id="pbiVariance">+5.67%</h3>
+                    <span class="kpi-sub" id="pbiVarAmt">Variance: +₹40,000 (Unfavorable)</span>
+                </div>
+            </div>
+
+            <!-- Power BI Charts Row -->
+            <div class="fpa-charts-grid">
+                <div class="chart-card" style="background: #1a202c; border-color: #4a5568;">
+                    <div class="chart-header-row">
+                        <h4><i class="fa-solid fa-chart-column text-gold"></i> Clustered Column Chart — Actual vs. Budgeted</h4>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="pbiBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card" style="background: #1a202c; border-color: #4a5568;">
+                    <div class="chart-header-row">
+                        <h4><i class="fa-solid fa-chart-pie text-emerald"></i> Donut Visual — Actual Share</h4>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="pbiDonutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Power BI Data Matrix Visual with Conditional Formatting -->
+            <div class="excel-preload-card" style="background: #1a202c; border-color: #4a5568; margin-top: 24px;">
+                <div class="excel-card-header" style="border-bottom-color: #2d3748;">
+                    <div class="excel-header-title">
+                        <i class="fa-solid fa-table text-emerald" style="font-size: 1.4rem;"></i>
+                        <div>
+                            <h3>Power BI Matrix Visual — Conditional Formatting Applied</h3>
+                            <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-paint-roller"></i> GREEN (#1ADE37) FAVORABLE / RED (#D64550) UNFAVORABLE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive-box" style="margin-top: 20px;">
+                    <table class="excel-rendered-table">
+                        <thead>
+                            <tr style="background: #2d3748;">
+                                <th>CATEGORY</th>
+                                <th>DESCRIPTION</th>
+                                <th>BUDGETED (₹)</th>
+                                <th>ACTUAL SPENT (₹)</th>
+                                <th>VARIANCE (₹)</th>
+                                <th>VARIANCE %</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pbiMatrixBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const rawData = [
+            { category: 'Marketing', desc: 'Instagram & Google Ads', budgeted: 150000, actual: 185000, variance: 35000, pct: 23.33 },
+            { category: 'Marketing', desc: 'Influencer Outreach', budgeted: 80000, actual: 72000, variance: -8000, pct: -10.00 },
+            { category: 'Technology', desc: 'Cloud Server (AWS)', budgeted: 60000, actual: 65000, variance: 5000, pct: 8.33 },
+            { category: 'Technology', desc: 'Software Subscriptions', budgeted: 35000, actual: 35000, variance: 0, pct: 0.00 },
+            { category: 'HR & Admin', desc: 'Office Rent', budgeted: 120000, actual: 120000, variance: 0, pct: 0.00 },
+            { category: 'HR & Admin', desc: 'Team Snacks & Coffee', budgeted: 15000, actual: 22000, variance: 7000, pct: 46.67 },
+            { category: 'Operations', desc: 'Courier & Logistics', budgeted: 45000, actual: 38000, variance: -7000, pct: -15.56 },
+            { category: 'Operations', desc: 'Vendor Payments', budgeted: 90000, actual: 95000, variance: 5000, pct: 5.56 },
+            { category: 'Sales', desc: 'Client Meetings & Travel', budgeted: 40000, actual: 48000, variance: 8000, pct: 20.00 },
+            { category: 'Sales', desc: 'Sales Commission', budgeted: 70000, actual: 65000, variance: -5000, pct: -7.14 }
+        ];
+
+        let pbiBar = null;
+        let pbiDonut = null;
+
+        function fmt(n) { return "₹" + Math.round(n).toLocaleString('en-IN'); }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.pbi-slicer-btn').forEach(b => b.classList.remove('active'));
+            if (cat === 'All') document.getElementById('btnAllCat').classList.add('active');
+            if (cat === 'Marketing') document.getElementById('btnMktg').classList.add('active');
+            if (cat === 'Technology') document.getElementById('btnTech').classList.add('active');
+            if (cat === 'HR & Admin') document.getElementById('btnHr').classList.add('active');
+            if (cat === 'Operations') document.getElementById('btnOps').classList.add('active');
+            if (cat === 'Sales') document.getElementById('btnSales').classList.add('active');
+
+            const filtered = cat === 'All' ? rawData : rawData.filter(d => d.category === cat);
+
+            let totalB = 0, totalA = 0;
+            filtered.forEach(d => { totalB += d.budgeted; totalA += d.actual; });
+            const totalV = totalA - totalB;
+            const totalVpct = (totalV / totalB) * 100;
+
+            document.getElementById('pbiBudgeted').textContent = fmt(totalB);
+            document.getElementById('pbiSpent').textContent = fmt(totalA);
+            const varEl = document.getElementById('pbiVariance');
+            varEl.textContent = (totalVpct > 0 ? "+" : "") + totalVpct.toFixed(2) + "%";
+            varEl.style.color = totalVpct > 0 ? "#D64550" : "#1ADE37";
+            document.getElementById('pbiVarAmt').textContent = `Variance: ${totalV > 0 ? "+" : ""}${fmt(totalV)}`;
+
+            // Render Matrix Body
+            const tbody = document.getElementById('pbiMatrixBody');
+            tbody.innerHTML = filtered.map(d => {
+                const color = d.pct > 0 ? "#D64550" : (d.pct < 0 ? "#1ADE37" : "#e2e8f0");
+                const bg = d.pct > 0 ? "rgba(214, 69, 80, 0.2)" : (d.pct < 0 ? "rgba(26, 222, 55, 0.2)" : "transparent");
+                return `
+                    <tr>
+                        <td><span class="black-tag">${d.category}</span></td>
+                        <td>${d.desc}</td>
+                        <td class="mono-text">${fmt(d.budgeted)}</td>
+                        <td class="mono-text">${fmt(d.actual)}</td>
+                        <td class="mono-text" style="color:${color}">${d.variance > 0 ? "+" : ""}${fmt(d.variance)}</td>
+                        <td class="mono-text font-bold" style="color:${color}; background:${bg}">${d.pct > 0 ? "+" : ""}${d.pct.toFixed(2)}%</td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Render Charts
+            const cats = ['Marketing', 'Technology', 'HR & Admin', 'Operations', 'Sales'];
+            const bData = [], aData = [];
+            cats.forEach(c => {
+                let b = 0, a = 0;
+                rawData.filter(x => x.category === c).forEach(x => { b += x.budgeted; a += x.actual; });
+                bData.push(b); aData.push(a);
+            });
+
+            const barCtx = document.getElementById('pbiBarChart').getContext('2d');
+            if (pbiBar) pbiBar.destroy();
+            pbiBar = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: cats,
+                    datasets: [
+                        { label: 'Budgeted (₹)', data: bData, backgroundColor: '#d69e2e', borderRadius: 4 },
+                        { label: 'Actual Spent (₹)', data: aData, backgroundColor: '#38a169', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#e2e8f0', font: { family: 'JetBrains Mono' } } } },
+                    scales: { x: { ticks: { color: '#e2e8f0' } }, y: { ticks: { color: '#e2e8f0' } } }
+                }
+            });
+
+            const donutCtx = document.getElementById('pbiDonutChart').getContext('2d');
+            if (pbiDonut) pbiDonut.destroy();
+            pbiDonut = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: cats,
+                    datasets: [{
+                        data: aData,
+                        backgroundColor: ['#d69e2e', '#319795', '#3182ce', '#805ad5', '#dd6b20']
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { color: '#e2e8f0', font: { family: 'JetBrains Mono' } } } }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            filterCategory('All');
+        });
+    </script>
+</body>
+</html>

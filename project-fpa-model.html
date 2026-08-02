@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FP&A Q3 Budget Variance Model Preview | Omkar Singh Portfolio</title>
+    <meta name="description" content="Interactive Online Preview of NEXGEN TECH Q3 Budget vs. Actual FP&A Model by Omkar Singh.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+
+    <header class="executive-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo-black">
+                <div class="black-logo-icon"><i class="fa-solid fa-arrow-left text-gold"></i></div>
+                <div class="black-logo-meta">
+                    <span class="brand-name">OMKAR SINGH</span>
+                    <span class="brand-sub mono-text"><i class="fa-solid fa-file-excel text-emerald"></i> FP&A MODEL PREVIEW</span>
+                </div>
+            </a>
+
+            <div class="header-right" style="display: flex; gap: 12px; align-items: center;">
+                <a href="FPA_Budget_Variance_Model.xlsx" download="FPA_Budget_Variance_Model.xlsx" class="btn-black btn-gold glow-btn">
+                    <i class="fa-solid fa-download"></i> Download Excel (.xlsx)
+                </a>
+                <a href="index.html#projects" class="btn-black btn-outline">
+                    <i class="fa-solid fa-house"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
+            <span class="kicker-black mono-text"><i class="fa-solid fa-file-excel text-gold"></i> FINANCIAL PLANNING & ANALYSIS PREVIEW</span>
+            <h1 class="title-black">NEXGEN TECH PVT LTD — Q3 Budget vs. Actual Report</h1>
+            <p class="subtitle-black" style="margin-left: 0;">Interactive online model displaying all 10 audited line items, KPI cards, and departmental variance analytics.</p>
+        </div>
+
+        <!-- Verified Exact Excel KPI Cards -->
+        <div class="fpa-kpi-grid">
+            <div class="kpi-card tilt-card">
+                <span class="kpi-label mono-text"><i class="fa-solid fa-wallet text-gold"></i> TOTAL BUDGETED</span>
+                <h3 class="kpi-value mono-text">₹7,05,000</h3>
+                <span class="kpi-sub">Q3 Target Budget</span>
+            </div>
+            <div class="kpi-card tilt-card">
+                <span class="kpi-label mono-text"><i class="fa-solid fa-receipt text-emerald"></i> TOTAL SPENT</span>
+                <h3 class="kpi-value mono-text text-emerald">₹7,45,000</h3>
+                <span class="kpi-sub">Q3 Actual Expenditure</span>
+            </div>
+            <div class="kpi-card tilt-card">
+                <span class="kpi-label mono-text"><i class="fa-solid fa-scale-balanced text-gold"></i> NET VARIANCE</span>
+                <h3 class="kpi-value mono-text text-gold">+₹40,000 (+5.67%)</h3>
+                <span class="kpi-sub">Over Budget (+5.67%)</span>
+            </div>
+        </div>
+
+        <!-- Dynamic Chart Visualizations -->
+        <div class="fpa-charts-grid">
+            <div class="chart-card tilt-card">
+                <div class="chart-header-row">
+                    <h4><i class="fa-solid fa-chart-column text-gold"></i> Budgeted vs. Actual Spending by Category</h4>
+                    <span class="mono-text text-muted" style="font-size:0.75rem;">INR (₹)</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="barChartSpending"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card tilt-card">
+                <div class="chart-header-row">
+                    <h4><i class="fa-solid fa-chart-pie text-emerald"></i> Expense Breakdown (% Share)</h4>
+                    <span class="mono-text text-muted" style="font-size:0.75rem;">DEPARTMENT SHARE</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="doughnutChartBreakdown"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="excel-preload-card tilt-card">
+            <div class="excel-card-header">
+                <div class="excel-header-title">
+                    <i class="fa-solid fa-table-cells text-emerald" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <h3>Complete Line Item Audit Table</h3>
+                        <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> ALL 10 LINE ITEMS PREVIEW</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive-box" style="margin-top: 20px;">
+                <table class="excel-rendered-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>EXPENSE CATEGORY</th>
+                            <th>EXPENSE DESCRIPTION</th>
+                            <th>BUDGETED AMOUNT (₹)</th>
+                            <th>ACTUAL SPENT (₹)</th>
+                            <th>VARIANCE (₹)</th>
+                            <th>% VARIANCE</th>
+                            <th>STATUS FLAG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-bullhorn text-gold"></i> Marketing</span></td>
+                            <td>Instagram & Google Ads</td>
+                            <td class="mono-text">1,50,000</td>
+                            <td class="mono-text">1,85,000</td>
+                            <td class="mono-text text-gold">+35,000</td>
+                            <td class="mono-text text-gold">+23.33%</td>
+                            <td><span class="status-pill unfav">Unfavorable (+23.3%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-bullhorn text-gold"></i> Marketing</span></td>
+                            <td>Influencer Outreach</td>
+                            <td class="mono-text">80,000</td>
+                            <td class="mono-text">72,000</td>
+                            <td class="mono-text text-emerald">-8,000</td>
+                            <td class="mono-text text-emerald">-10.00%</td>
+                            <td><span class="status-pill fav">Favorable (-10.0%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-server text-emerald"></i> Technology</span></td>
+                            <td>Cloud Server (AWS)</td>
+                            <td class="mono-text">60,000</td>
+                            <td class="mono-text">65,000</td>
+                            <td class="mono-text text-gold">+5,000</td>
+                            <td class="mono-text text-gold">+8.33%</td>
+                            <td><span class="status-pill unfav">Unfavorable (+8.3%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-server text-emerald"></i> Technology</span></td>
+                            <td>Software Subscriptions</td>
+                            <td class="mono-text">35,000</td>
+                            <td class="mono-text">35,000</td>
+                            <td class="mono-text">0</td>
+                            <td class="mono-text">0.00%</td>
+                            <td><span class="status-pill fav">On Target (0.0%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-users text-gold"></i> HR & Admin</span></td>
+                            <td>Office Rent</td>
+                            <td class="mono-text">1,20,000</td>
+                            <td class="mono-text">1,20,000</td>
+                            <td class="mono-text">0</td>
+                            <td class="mono-text">0.00%</td>
+                            <td><span class="status-pill fav">On Target (0.0%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-users text-gold"></i> HR & Admin</span></td>
+                            <td>Team Snacks & Coffee</td>
+                            <td class="mono-text">15,000</td>
+                            <td class="mono-text">22,000</td>
+                            <td class="mono-text text-gold">+7,000</td>
+                            <td class="mono-text text-gold">+46.67%</td>
+                            <td><span class="status-pill unfav">Unfavorable (+46.7%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-truck text-emerald"></i> Operations</span></td>
+                            <td>Courier & Logistics</td>
+                            <td class="mono-text">45,000</td>
+                            <td class="mono-text">38,000</td>
+                            <td class="mono-text text-emerald">-7,000</td>
+                            <td class="mono-text text-emerald">-15.56%</td>
+                            <td><span class="status-pill fav">Favorable (-15.6%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-truck text-emerald"></i> Operations</span></td>
+                            <td>Vendor Payments</td>
+                            <td class="mono-text">90,000</td>
+                            <td class="mono-text">95,000</td>
+                            <td class="mono-text text-gold">+5,000</td>
+                            <td class="mono-text text-gold">+5.56%</td>
+                            <td><span class="status-pill unfav">Unfavorable (+5.6%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-handshake text-gold"></i> Sales</span></td>
+                            <td>Client Meetings & Travel</td>
+                            <td class="mono-text">40,000</td>
+                            <td class="mono-text">48,000</td>
+                            <td class="mono-text text-gold">+8,000</td>
+                            <td class="mono-text text-gold">+20.00%</td>
+                            <td><span class="status-pill unfav">Unfavorable (+20.0%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><span class="black-tag"><i class="fa-solid fa-handshake text-gold"></i> Sales</span></td>
+                            <td>Sales Commission</td>
+                            <td class="mono-text">70,000</td>
+                            <td class="mono-text">65,000</td>
+                            <td class="mono-text text-emerald">-5,000</td>
+                            <td class="mono-text text-emerald">-7.14%</td>
+                            <td><span class="status-pill fav">Favorable (-7.1%)</span></td>
+                        </tr>
+                        <tr class="grandtotal-row" style="background: rgba(245, 158, 11, 0.15); font-weight: 800;">
+                            <td>Σ</td>
+                            <td colspan="2">TOTAL EXPENSES (GRAND TOTAL)</td>
+                            <td class="mono-text">7,05,000</td>
+                            <td class="mono-text">7,45,000</td>
+                            <td class="mono-text text-gold">+40,000</td>
+                            <td class="mono-text text-gold">+5.67%</td>
+                            <td><span class="status-pill unfav">Net Variance (+5.67%)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

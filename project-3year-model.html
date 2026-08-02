@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Year Pro Forma Financial Model Preview | Omkar Singh Portfolio</title>
+    <meta name="description" content="Interactive Online Preview of NexGen Tech 3-Year Pro Forma Financial Model & Scenario Switcher by Omkar Singh.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .scenario-btn-group { display: flex; gap: 12px; margin-bottom: 24px; }
+        .btn-scenario { padding: 10px 20px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-secondary); transition: all 0.3s ease; }
+        .btn-scenario.active { background: var(--accent-gold); color: #040508; border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+        .btn-scenario:hover { border-color: var(--accent-gold); }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <header class="executive-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo-black">
+                <div class="black-logo-icon"><i class="fa-solid fa-arrow-left text-gold"></i></div>
+                <div class="black-logo-meta">
+                    <span class="brand-name">OMKAR SINGH</span>
+                    <span class="brand-sub mono-text"><i class="fa-solid fa-calculator text-gold"></i> 3-YEAR FINANCIAL MODEL</span>
+                </div>
+            </a>
+
+            <div class="header-right" style="display: flex; gap: 12px; align-items: center;">
+                <a href="NexGen_Tech_3_Year_Financial_Model.xlsx" download="NexGen_Tech_3_Year_Financial_Model.xlsx" class="btn-black btn-gold glow-btn">
+                    <i class="fa-solid fa-download"></i> Download Model (.xlsx)
+                </a>
+                <a href="index.html#projects" class="btn-black btn-outline">
+                    <i class="fa-solid fa-house"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
+            <span class="kicker-black mono-text"><i class="fa-solid fa-chart-line text-gold"></i> PRO FORMA FINANCIAL MODELING & VALUATION</span>
+            <h1 class="title-black">NexGen Tech Pvt Ltd — 3-Year Pro Forma Financial Model</h1>
+            <p class="subtitle-black" style="margin-left: 0;">Interactive scenario-driven financial model featuring dynamic Revenue Growth, EBITDA forecasts, Balance Sheet projections, and Debt schedules (2026–2029).</p>
+        </div>
+
+        <!-- Dynamic Interactive Scenario Switcher -->
+        <div class="excel-preload-card tilt-card" style="margin-bottom: 30px;">
+            <div class="excel-card-header" style="border-bottom: none; padding-bottom: 0;">
+                <div class="excel-header-title">
+                    <i class="fa-solid fa-sliders text-gold" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <h3>Dynamic Active Scenario Switcher</h3>
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">SELECT MODEL SCENARIO TO RECALCULATE PROJECTIONS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-btn-group" style="margin-top: 20px;">
+                <button class="btn-scenario active" id="btnBase" onclick="switchScenario('base')">
+                    <i class="fa-solid fa-chart-line"></i> Base Case (25% Growth, 20% COGS)
+                </button>
+                <button class="btn-scenario" id="btnBull" onclick="switchScenario('bull')">
+                    <i class="fa-solid fa-arrow-trend-up text-emerald"></i> Bull Case (35% Growth, 16% COGS)
+                </button>
+                <button class="btn-scenario" id="btnBear" onclick="switchScenario('bear')">
+                    <i class="fa-solid fa-arrow-trend-down text-gold"></i> Bear Case (10% Growth, 25% COGS)
+                </button>
+            </div>
+
+            <!-- KPI Cards for Active Scenario -->
+            <div class="fpa-kpi-grid" style="margin-bottom: 0;">
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">2029 FORECAST REVENUE</span>
+                    <h3 class="kpi-value mono-text text-gold" id="kpi2029Rev">₹97,65,625</h3>
+                    <span class="kpi-sub" id="kpiGrowthLbl">Growth Rate: 25.0%</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">2029 FORECAST EBITDA</span>
+                    <h3 class="kpi-value mono-text text-emerald" id="kpi2029Ebitda">₹22,41,406</h3>
+                    <span class="kpi-sub" id="kpiEbitdaMargin">EBITDA Margin: 23.0%</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">2029 NET INCOME</span>
+                    <h3 class="kpi-value mono-text" id="kpi2029NetInc">₹12,68,555</h3>
+                    <span class="kpi-sub" id="kpiTaxLbl">After 25.0% Tax & Interest</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3-Year Forecast Chart -->
+        <div class="chart-card tilt-card" style="margin-bottom: 35px;">
+            <div class="chart-header-row">
+                <h4><i class="fa-solid fa-chart-area text-gold"></i> 4-Year Pro Forma Revenue vs. EBITDA Growth Trajectory</h4>
+                <span class="mono-text text-muted" style="font-size:0.75rem;">2026 (BASE) — 2029 (FCST)</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="modelChartCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Pro Forma Income Statement Table -->
+        <div class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+            <div class="excel-card-header">
+                <div class="excel-header-title">
+                    <i class="fa-solid fa-file-invoice-dollar text-emerald" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <h3>Pro Forma Income Statement (2026 – 2029)</h3>
+                        <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> AUDITED MODEL FORMULAS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive-box" style="margin-top: 20px;">
+                <table class="excel-rendered-table" id="incomeStatementTable">
+                    <thead>
+                        <tr>
+                            <th>LINE ITEM</th>
+                            <th>2026 (BASE)</th>
+                            <th>2027 (FCST)</th>
+                            <th>2028 (FCST)</th>
+                            <th>2029 (FCST)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="incomeBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pro Forma Balance Sheet Table -->
+        <div class="excel-preload-card tilt-card">
+            <div class="excel-card-header">
+                <div class="excel-header-title">
+                    <i class="fa-solid fa-scale-balanced text-gold" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <h3>Pro Forma Balance Sheet Summary</h3>
+                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> ASSETS = LIABILITIES + EQUITY</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive-box" style="margin-top: 20px;">
+                <table class="excel-rendered-table">
+                    <thead>
+                        <tr>
+                            <th>BALANCE SHEET LINE ITEM</th>
+                            <th>2026 (BASE)</th>
+                            <th>2027 (FCST)</th>
+                            <th>2028 (FCST)</th>
+                            <th>2029 (FCST)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cash & Cash Equivalents</strong></td>
+                            <td class="mono-text">₹12,50,000</td>
+                            <td class="mono-text">₹18,40,000</td>
+                            <td class="mono-text">₹26,75,000</td>
+                            <td class="mono-text">₹38,50,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accounts Receivable (AR)</strong></td>
+                            <td class="mono-text">₹5,00,000</td>
+                            <td class="mono-text">₹6,25,000</td>
+                            <td class="mono-text">₹7,81,250</td>
+                            <td class="mono-text">₹9,76,563</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net Property, Plant & Equipment (Net PP&E)</strong></td>
+                            <td class="mono-text">₹9,00,000</td>
+                            <td class="mono-text">₹8,10,000</td>
+                            <td class="mono-text">₹7,29,000</td>
+                            <td class="mono-text">₹6,56,100</td>
+                        </tr>
+                        <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;">
+                            <td><strong>TOTAL ASSETS</strong></td>
+                            <td class="mono-text text-emerald">₹26,50,000</td>
+                            <td class="mono-text text-emerald">₹32,75,000</td>
+                            <td class="mono-text text-emerald">₹41,85,250</td>
+                            <td class="mono-text text-emerald">₹54,82,663</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accounts Payable (AP) & Accruals</strong></td>
+                            <td class="mono-text">₹4,00,000</td>
+                            <td class="mono-text">₹5,00,000</td>
+                            <td class="mono-text">₹6,25,000</td>
+                            <td class="mono-text">₹7,81,250</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Long-Term Debt</strong></td>
+                            <td class="mono-text">₹6,25,000</td>
+                            <td class="mono-text">₹5,50,000</td>
+                            <td class="mono-text">₹4,75,000</td>
+                            <td class="mono-text">₹4,00,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shareholders' Equity & Retained Earnings</strong></td>
+                            <td class="mono-text">₹16,25,000</td>
+                            <td class="mono-text">₹22,25,000</td>
+                            <td class="mono-text">₹30,85,250</td>
+                            <td class="mono-text">₹43,01,413</td>
+                        </tr>
+                        <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;">
+                            <td><strong>TOTAL LIABILITIES & EQUITY</strong></td>
+                            <td class="mono-text text-gold">₹26,50,000</td>
+                            <td class="mono-text text-gold">₹32,75,000</td>
+                            <td class="mono-text text-gold">₹41,85,250</td>
+                            <td class="mono-text text-gold">₹54,82,663</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const scenarios = {
+            base: {
+                name: "Base Case",
+                growth: 0.25, cogsPct: 0.20, mktgPct: 0.25, techPct: 0.18, salesPct: 0.08, fixedHr: 600000,
+                baseRev: 5000000, ppe: 1000000, debt: 625000, interestRate: 0.08, taxRate: 0.25
+            },
+            bull: {
+                name: "Bull Case",
+                growth: 0.35, cogsPct: 0.16, mktgPct: 0.20, techPct: 0.15, salesPct: 0.07, fixedHr: 600000,
+                baseRev: 5000000, ppe: 1000000, debt: 625000, interestRate: 0.08, taxRate: 0.25
+            },
+            bear: {
+                name: "Bear Case",
+                growth: 0.10, cogsPct: 0.25, mktgPct: 0.30, techPct: 0.22, salesPct: 0.10, fixedHr: 650000,
+                baseRev: 5000000, ppe: 1000000, debt: 625000, interestRate: 0.08, taxRate: 0.25
+            }
+        };
+
+        let chartObj = null;
+
+        function fmt(num) {
+            return "₹" + Math.round(num).toLocaleString('en-IN');
+        }
+
+        function calculateModel(sc) {
+            const years = [2026, 2027, 2028, 2029];
+            const rev = [];
+            const cogs = [];
+            const grossProfit = [];
+            const opex = [];
+            const ebitda = [];
+            const depr = [];
+            const ebit = [];
+            const interest = [];
+            const ebt = [];
+            const tax = [];
+            const netInc = [];
+
+            let curRev = sc.baseRev;
+            let curPpe = sc.ppe;
+
+            for (let i = 0; i < years.length; i++) {
+                if (i > 0) curRev = curRev * (1 + sc.growth);
+                rev.push(curRev);
+
+                const c = curRev * sc.cogsPct;
+                cogs.push(c);
+
+                const gp = curRev - c;
+                grossProfit.push(gp);
+
+                const op = (curRev * sc.mktgPct) + (curRev * sc.techPct) + (curRev * sc.salesPct) + sc.fixedHr;
+                opex.push(op);
+
+                const eb = gp - op;
+                ebitda.push(eb);
+
+                const dp = curPpe * 0.10;
+                depr.push(dp);
+                curPpe = curPpe - dp;
+
+                const e = eb - dp;
+                ebit.push(e);
+
+                const intr = sc.debt * sc.interestRate;
+                interest.push(intr);
+
+                const preTax = e - intr;
+                ebt.push(preTax);
+
+                const tx = preTax > 0 ? preTax * sc.taxRate : 0;
+                tax.push(tx);
+
+                const ni = preTax - tx;
+                netInc.push(ni);
+            }
+
+            return { years, rev, cogs, grossProfit, opex, ebitda, depr, ebit, interest, ebt, tax, netInc };
+        }
+
+        function renderTableAndChart(scKey) {
+            const sc = scenarios[scKey];
+            const data = calculateModel(sc);
+
+            document.getElementById('kpi2029Rev').textContent = fmt(data.rev[3]);
+            document.getElementById('kpiGrowthLbl').textContent = `Growth Rate: ${(sc.growth * 100).toFixed(1)}%`;
+            document.getElementById('kpi2029Ebitda').textContent = fmt(data.ebitda[3]);
+            document.getElementById('kpiEbitdaMargin').textContent = `EBITDA Margin: ${((data.ebitda[3] / data.rev[3]) * 100).toFixed(1)}%`;
+            document.getElementById('kpi2029NetInc').textContent = fmt(data.netInc[3]);
+
+            const tbody = document.getElementById('incomeBody');
+            tbody.innerHTML = `
+                <tr><td>Gross Revenue</td><td class="mono-text">${fmt(data.rev[0])}</td><td class="mono-text">${fmt(data.rev[1])}</td><td class="mono-text">${fmt(data.rev[2])}</td><td class="mono-text font-bold text-gold">${fmt(data.rev[3])}</td></tr>
+                <tr><td>Cost of Goods Sold (COGS)</td><td class="mono-text">${fmt(data.cogs[0])}</td><td class="mono-text">${fmt(data.cogs[1])}</td><td class="mono-text">${fmt(data.cogs[2])}</td><td class="mono-text">${fmt(data.cogs[3])}</td></tr>
+                <tr style="font-weight: 700;"><td>Gross Profit</td><td class="mono-text">${fmt(data.grossProfit[0])}</td><td class="mono-text">${fmt(data.grossProfit[1])}</td><td class="mono-text">${fmt(data.grossProfit[2])}</td><td class="mono-text">${fmt(data.grossProfit[3])}</td></tr>
+                <tr><td>Total Operating Expenses (OpEx)</td><td class="mono-text">${fmt(data.opex[0])}</td><td class="mono-text">${fmt(data.opex[1])}</td><td class="mono-text">${fmt(data.opex[2])}</td><td class="mono-text">${fmt(data.opex[3])}</td></tr>
+                <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>EBITDA</td><td class="mono-text text-emerald">${fmt(data.ebitda[0])}</td><td class="mono-text text-emerald">${fmt(data.ebitda[1])}</td><td class="mono-text text-emerald">${fmt(data.ebitda[2])}</td><td class="mono-text text-emerald font-bold">${fmt(data.ebitda[3])}</td></tr>
+                <tr><td>Depreciation</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
+                <tr><td>EBIT (Operating Profit)</td><td class="mono-text">${fmt(data.ebit[0])}</td><td class="mono-text">${fmt(data.ebit[1])}</td><td class="mono-text">${fmt(data.ebit[2])}</td><td class="mono-text">${fmt(data.ebit[3])}</td></tr>
+                <tr><td>Interest Expense</td><td class="mono-text">${fmt(data.interest[0])}</td><td class="mono-text">${fmt(data.interest[1])}</td><td class="mono-text">${fmt(data.interest[2])}</td><td class="mono-text">${fmt(data.interest[3])}</td></tr>
+                <tr><td>EBT (Pre-Tax Profit)</td><td class="mono-text">${fmt(data.ebt[0])}</td><td class="mono-text">${fmt(data.ebt[1])}</td><td class="mono-text">${fmt(data.ebt[2])}</td><td class="mono-text">${fmt(data.ebt[3])}</td></tr>
+                <tr><td>Income Tax (25%)</td><td class="mono-text">${fmt(data.tax[0])}</td><td class="mono-text">${fmt(data.tax[1])}</td><td class="mono-text">${fmt(data.tax[2])}</td><td class="mono-text">${fmt(data.tax[3])}</td></tr>
+                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET INCOME (PAT)</td><td class="mono-text text-gold">${fmt(data.netInc[0])}</td><td class="mono-text text-gold">${fmt(data.netInc[1])}</td><td class="mono-text text-gold">${fmt(data.netInc[2])}</td><td class="mono-text text-gold font-bold">${fmt(data.netInc[3])}</td></tr>
+            `;
+
+            const ctx = document.getElementById('modelChartCanvas').getContext('2d');
+            if (chartObj) chartObj.destroy();
+
+            chartObj = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2026 (Base)', '2027 (Fcst)', '2028 (Fcst)', '2029 (Fcst)'],
+                    datasets: [
+                        {
+                            label: 'Gross Revenue (₹)',
+                            data: data.rev,
+                            backgroundColor: 'rgba(245, 158, 11, 0.85)',
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'EBITDA (₹)',
+                            data: data.ebitda,
+                            backgroundColor: 'rgba(16, 185, 129, 0.85)',
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Net Income (₹)',
+                            data: data.netInc,
+                            backgroundColor: 'rgba(59, 130, 246, 0.85)',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', weight: '600' } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                    }
+                }
+            });
+        }
+
+        function switchScenario(key) {
+            document.querySelectorAll('.btn-scenario').forEach(b => b.classList.remove('active'));
+            if (key === 'base') document.getElementById('btnBase').classList.add('active');
+            if (key === 'bull') document.getElementById('btnBull').classList.add('active');
+            if (key === 'bear') document.getElementById('btnBear').classList.add('active');
+            renderTableAndChart(key);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTableAndChart('base');
+        });
+    </script>
+</body>
+</html>
