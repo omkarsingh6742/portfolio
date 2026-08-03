@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -27,14 +27,13 @@
         .matrix-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.825rem; text-align: center; }
         .matrix-table th, .matrix-table td { border: 1px solid #1f2738; padding: 12px 10px; }
         .matrix-table th { background: #141926; color: var(--accent-gold); font-weight: 700; }
-        .matrix-cell-base { background: #ffff00 !important; color: #000000 !important; font-weight: 900 !important; border: 2px solid #eab308 !important; box-shadow: 0 0 12px rgba(255, 255, 0, 0.5); }
-        .matrix-cell-bull { background: rgba(16, 185, 129, 0.15); color: #10b981; }
-        .matrix-cell-bear { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
-        .matrix-top-left-yellow { background: #ffff00; color: #000000; font-weight: 900; font-family: var(--font-mono); padding: 8px 12px; border-radius: 4px; display: inline-block; }
+        .matrix-cell-yellow { background: #ffff00 !important; color: #000000 !important; font-weight: 900 !important; border: 2px solid #eab308 !important; box-shadow: 0 0 12px rgba(255, 255, 0, 0.5); }
         
         .val-summary-box { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; margin-top: 20px; }
         .val-summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 12px; }
         .val-summary-card { background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; }
+        .row-yellow-highlight { background: #ffff00 !important; color: #000000 !important; font-weight: 900 !important; }
+        .row-yellow-highlight td { color: #000000 !important; font-weight: 900 !important; }
     </style>
 </head>
 <body class="dark-theme">
@@ -64,7 +63,7 @@
         <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
             <span class="kicker-black mono-text"><i class="fa-solid fa-chart-line text-gold"></i> PRO FORMA FINANCIAL MODELING & VALUATION</span>
             <h1 class="title-black">NexGen Tech Financial Model and DCF Valuation</h1>
-            <p class="subtitle-black" style="margin-left: 0;">Interactive Excel sheet viewer. Select any individual sheet tab below to view Driver Assumptions, Income Statement, Balance Sheet, Statement of Cash Flows, or DCF Valuation & Two-Way Sensitivity Matrix.</p>
+            <p class="subtitle-black" style="margin-left: 0;">Interactive 5-sheet financial model replica matching the master Excel workbook: Driver Assumptions, Income Statement, Balance Sheet, Statement of Cash Flows, DCF Unlevered Free Cash Flow (FCFF) Bridge, and Two-Way Sensitivity Matrix.</p>
         </div>
 
         <!-- Dynamic Interactive Scenario Switcher & High-Level KPIs -->
@@ -127,7 +126,7 @@
             </div>
         </div>
 
-        <!-- INDIVIDUAL EXCEL SHEET TAB BUTTONS (NO MASTER VIEW / NO EXTRA SCROLL) -->
+        <!-- INDIVIDUAL EXCEL SHEET TAB BUTTONS -->
         <div class="excel-sheet-tabs">
             <button class="sheet-tab-btn active" id="tabSheet1" onclick="switchSheetTab('s1')">
                 <i class="fa-solid fa-sliders text-gold"></i> Sheet 1: Assumptions
@@ -146,7 +145,7 @@
             </button>
         </div>
 
-        <!-- SHEET 1: MODEL ASSUMPTIONS & DRIVERS TABLE (DEFAULT VISIBLE) -->
+        <!-- SHEET 1: MODEL ASSUMPTIONS & DRIVERS TABLE -->
         <div id="secSheet1" class="excel-preload-card tilt-card" style="display: block;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
@@ -176,7 +175,7 @@
             </div>
         </div>
 
-        <!-- SHEET 2: PRO FORMA INCOME STATEMENT TABLE (HIDDEN UNTIL CLICKED) -->
+        <!-- SHEET 2: PRO FORMA INCOME STATEMENT TABLE -->
         <div id="secSheet2" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
@@ -206,7 +205,7 @@
             </div>
         </div>
 
-        <!-- SHEET 3: PRO FORMA BALANCE SHEET TABLE (HIDDEN UNTIL CLICKED) -->
+        <!-- SHEET 3: PRO FORMA BALANCE SHEET TABLE -->
         <div id="secSheet3" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
@@ -236,7 +235,7 @@
             </div>
         </div>
 
-        <!-- SHEET 4: PRO FORMA CASH FLOW STATEMENT TABLE (HIDDEN UNTIL CLICKED) -->
+        <!-- SHEET 4: PRO FORMA CASH FLOW STATEMENT TABLE -->
         <div id="secSheet4" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
@@ -266,24 +265,37 @@
             </div>
         </div>
 
-        <!-- SHEET 5: DCF VALUATION, FCFF BRIDGE & TWO-WAY SENSITIVITY MATRIX (HIDDEN UNTIL CLICKED) -->
+        <!-- SHEET 5: DCF VALUATION & TWO-WAY SENSITIVITY MATRIX (IDENTICAL TO EXCEL SCREENSHOT) -->
         <div id="secSheet5" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-border-all text-gold" style="font-size: 1.5rem;"></i>
                     <div>
-                        <h3>Sheet 5: Discounted Cash Flow (DCF) Valuation & Sensitivity Analysis</h3>
-                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-cubes"></i> UNLEVERED FREE CASH FLOW (FCFF) & TWO-WAY SENSITIVITY MATRIX</span>
+                        <h3>Sheet 5: Discounted Cash Flow (DCF) Valuation & Sensitivity Matrix</h3>
+                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-cubes"></i> NEXGEN TECH PVT LTD — DISCOUNTED CASH FLOW (DCF) VALUATION</span>
                     </div>
-                </div>
-                <div>
-                    <span class="matrix-top-left-yellow" id="badgeMatrixEv">IMPLIED ENTERPRISE VALUE: ₹ 1,92,38,543</span>
                 </div>
             </div>
 
-            <!-- FCFF Bridge Table -->
+            <!-- Parameters Block -->
+            <div style="margin-top: 20px; margin-bottom: 20px; max-width: 450px;">
+                <table class="excel-rendered-table">
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:700;">Weighted Average Cost of Capital (WACC)</td>
+                            <td class="mono-text font-bold text-gold" style="text-align:right;">10.00%</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:700;">Perpetual Terminal Growth Rate (g)</td>
+                            <td class="mono-text font-bold text-emerald" style="text-align:right;">3.00%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- FCFF Bridge Table matching Excel screenshot -->
             <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
-                <i class="fa-solid fa-calculator"></i> Unlevered Free Cash Flow (FCFF) Build-Up
+                <i class="fa-solid fa-calculator"></i> FCFF Line Items & Present Value Build-Up
             </h4>
             <div class="table-responsive-box">
                 <table class="excel-rendered-table">
@@ -301,58 +313,45 @@
                 </table>
             </div>
 
-            <!-- DCF Valuation Summary Block -->
-            <div class="val-summary-box">
-                <h4 class="mono-text text-gold"><i class="fa-solid fa-vault"></i> Valuation Summary & Enterprise Bridge</h4>
-                <div class="val-summary-grid">
-                    <div class="val-summary-card">
-                        <span class="mono-text text-muted" style="font-size:0.75rem;">CUMULATIVE PV OF 3-YR CASH FLOWS</span>
-                        <h4 class="mono-text text-gold" id="valSumPvCash">₹27,62,818</h4>
-                    </div>
-                    <div class="val-summary-card">
-                        <span class="mono-text text-muted" style="font-size:0.75rem;">TERMINAL VALUE (GORDON GROWTH)</span>
-                        <h4 class="mono-text" id="valSumTv">₹2,19,29,191</h4>
-                    </div>
-                    <div class="val-summary-card">
-                        <span class="mono-text text-muted" style="font-size:0.75rem;">PRESENT VALUE OF TERMINAL VALUE</span>
-                        <h4 class="mono-text text-emerald" id="valSumPvTv">₹1,64,75,726</h4>
-                    </div>
-                    <div class="val-summary-card" style="background: rgba(255,255,0,0.15); border-color: #eab308;">
-                        <span class="mono-text text-gold" style="font-size:0.75rem; font-weight:800;">IMPLIED ENTERPRISE VALUE (EV)</span>
-                        <h4 class="mono-text text-gold font-bold" id="valSumEv">₹1,92,38,543</h4>
-                    </div>
-                    <div class="val-summary-card">
-                        <span class="mono-text text-muted" style="font-size:0.75rem;">(+) CASH & CASH EQUIVALENTS</span>
-                        <h4 class="mono-text text-emerald" id="valSumCash">₹15,00,000</h4>
-                    </div>
-                    <div class="val-summary-card">
-                        <span class="mono-text text-muted" style="font-size:0.75rem;">(-) TOTAL DEBT</span>
-                        <h4 class="mono-text text-gold" id="valSumDebt">-₹6,25,000</h4>
-                    </div>
-                    <div class="val-summary-card" style="background: rgba(16,185,129,0.15); border-color: #10b981;">
-                        <span class="mono-text text-emerald" style="font-size:0.75rem; font-weight:800;">IMPLIED EQUITY VALUE</span>
-                        <h4 class="mono-text text-emerald font-bold" id="valSumEqVal">₹2,01,13,543</h4>
-                    </div>
-                </div>
+            <!-- Valuation Summary Block matching Excel screenshot -->
+            <h4 style="margin-top: 30px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
+                <i class="fa-solid fa-vault"></i> Valuation Summary & Enterprise Bridge
+            </h4>
+            <div class="table-responsive-box" style="margin-bottom: 30px;">
+                <table class="excel-rendered-table">
+                    <thead>
+                        <tr>
+                            <th>VALUATION SUMMARY:</th>
+                            <th>AMOUNT (Rs.)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="valSummaryTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Two-Way Sensitivity Analysis Matrix Table -->
+            <!-- Two-Way Sensitivity Analysis Matrix Table matching Excel heatmap -->
             <h4 style="margin-top: 30px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
-                <i class="fa-solid fa-border-all"></i> Two-Way DCF Valuation Sensitivity Analysis Matrix
+                <i class="fa-solid fa-border-all"></i> 2-Way Enterprise Value Sensitivity Matrix
             </h4>
             <div class="table-responsive-box">
                 <table class="matrix-table">
                     <thead>
                         <tr>
-                            <th style="vertical-align: middle; background: rgba(245, 158, 11, 0.15); color: var(--accent-gold);">
-                                <span style="background: #ffff00; color: #000; padding: 4px 8px; border-radius: 4px; font-weight: 900; display: inline-block;" id="headerMatrixEvBox">IMPLIED ENTERPRISE VALUE<br>₹ 1,92,38,543</span><br>
-                                <span style="font-size: 0.725rem; font-weight: 500; margin-top: 4px; display: inline-block;">WACC \ Terminal Growth (g)</span>
+                            <th colspan="7" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); font-size: 0.9rem;">
+                                Perpetual Terminal Growth Rate (g)
                             </th>
-                            <th>2.0%</th>
-                            <th>2.5%</th>
-                            <th style="color: var(--accent-gold);">3.0%</th>
-                            <th>3.5%</th>
-                            <th>4.0%</th>
+                        </tr>
+                        <tr>
+                            <th style="background: #ffff00; color: #000000; font-weight: 900;" id="headerMatrixEvBox">
+                                ₹ 1,92,38,543
+                            </th>
+                            <th>2%</th>
+                            <th>2.50%</th>
+                            <th style="color: var(--accent-gold);">3%</th>
+                            <th>3.50%</th>
+                            <th>4%</th>
                         </tr>
                     </thead>
                     <tbody id="matrixBody">
@@ -389,7 +388,7 @@
             if (num === null || num === undefined) return "₹0";
             const isNeg = num < 0;
             const absVal = Math.abs(Math.round(num));
-            return (isNeg ? "-" : "") + "₹" + absVal.toLocaleString('en-IN');
+            return (isNeg ? "-₹" : "₹ ") + absVal.toLocaleString('en-IN');
         }
 
         function calculateModel(sc) {
@@ -523,6 +522,15 @@
             const waccList = [0.08, 0.09, 0.10, 0.11, 0.12];
             const gList = [0.020, 0.025, 0.030, 0.035, 0.040];
 
+            // Custom Heatmap Colors matching Excel Screenshot exactly
+            const customColors = [
+                ["#22c55e", "#4ade80", "#86efac", "#bbf7d0", "#dcfce7"],
+                ["#4ade80", "#86efac", "#a7f3d0", "#cbd5e1", "#f1f5f9"],
+                ["#fef08a", "#fef08a", "#ffff00", "#fed7aa", "#fbcfe8"],
+                ["#fed7aa", "#fbcfe8", "#f43f5e", "#e11d48", "#be123c"],
+                ["#f43f5e", "#e11d48", "#be123c", "#9f1239", "#881337"]
+            ];
+
             const matrix = [];
             for (let r = 0; r < waccList.length; r++) {
                 const w = waccList[r];
@@ -553,16 +561,7 @@
             document.getElementById('kpiDcfVal').textContent = activeEvStr;
             document.getElementById('kpiEquityVal').textContent = fmt(data.scenarioEquityVal);
             document.getElementById('badgeMatrixEv').textContent = `IMPLIED ENTERPRISE VALUE: ${activeEvStr}`;
-            document.getElementById('headerMatrixEvBox').innerHTML = `IMPLIED ENTERPRISE VALUE<br>${activeEvStr}`;
-
-            // Update Valuation Summary Block
-            document.getElementById('valSumPvCash').textContent = fmt(data.cumPvCash);
-            document.getElementById('valSumTv').textContent = fmt(data.terminalValue);
-            document.getElementById('valSumPvTv').textContent = fmt(data.pvTerminalValue);
-            document.getElementById('valSumEv').textContent = activeEvStr;
-            document.getElementById('valSumCash').textContent = fmt(1500000);
-            document.getElementById('valSumDebt').textContent = fmt(-625000);
-            document.getElementById('valSumEqVal').textContent = fmt(data.scenarioEquityVal);
+            document.getElementById('headerMatrixEvBox').innerHTML = activeEvStr;
 
             // Render Sheet 1: Assumptions
             const tbodyAssump = document.getElementById('assumptionsBody');
@@ -572,11 +571,11 @@
                 <tr><td>Marketing Expense (% of Rev)</td><td class="mono-text">25.0%</td><td class="mono-text text-emerald">20.0%</td><td class="mono-text text-gold">30.0%</td><td class="mono-text font-bold">${(sc.mktgPct * 100).toFixed(1)}%</td></tr>
                 <tr><td>Tech & Ops Expense (% of Rev)</td><td class="mono-text">18.0%</td><td class="mono-text text-emerald">15.0%</td><td class="mono-text text-gold">22.0%</td><td class="mono-text font-bold">${(sc.techPct * 100).toFixed(1)}%</td></tr>
                 <tr><td>Sales Expense (% of Rev)</td><td class="mono-text">8.0%</td><td class="mono-text text-emerald">7.0%</td><td class="mono-text text-gold">10.0%</td><td class="mono-text font-bold">${(sc.salesPct * 100).toFixed(1)}%</td></tr>
-                <tr><td>HR & Admin Fixed Cost</td><td class="mono-text">₹6,00,000</td><td class="mono-text text-emerald">₹6,00,000</td><td class="mono-text text-gold">₹6,50,000</td><td class="mono-text font-bold">${fmt(sc.fixedHr)}</td></tr>
+                <tr><td>HR & Admin Fixed Cost</td><td class="mono-text">₹ 6,00,000</td><td class="mono-text text-emerald">₹ 6,00,000</td><td class="mono-text text-gold">₹ 6,50,000</td><td class="mono-text font-bold">${fmt(sc.fixedHr)}</td></tr>
                 <tr><td>Effective Income Tax Rate</td><td class="mono-text">25.0%</td><td class="mono-text">25.0%</td><td class="mono-text">25.0%</td><td class="mono-text font-bold">25.0%</td></tr>
                 <tr><td>Depreciation Rate (% of PP&E)</td><td class="mono-text">10.0%</td><td class="mono-text">10.0%</td><td class="mono-text">10.0%</td><td class="mono-text font-bold">10.0%</td></tr>
-                <tr><td>Starting PP&E</td><td class="mono-text">₹10,00,000</td><td class="mono-text">₹10,00,000</td><td class="mono-text">₹10,00,000</td><td class="mono-text font-bold">₹10,00,000</td></tr>
-                <tr><td>Starting Long-Term Debt</td><td class="mono-text">₹6,25,000</td><td class="mono-text">₹6,25,000</td><td class="mono-text">₹6,25,000</td><td class="mono-text font-bold">₹6,25,000</td></tr>
+                <tr><td>Starting PP&E</td><td class="mono-text">₹ 10,00,000</td><td class="mono-text">₹ 10,00,000</td><td class="mono-text">₹ 10,00,000</td><td class="mono-text font-bold">₹ 10,00,000</td></tr>
+                <tr><td>Starting Long-Term Debt</td><td class="mono-text">₹ 6,25,000</td><td class="mono-text">₹ 6,25,000</td><td class="mono-text">₹ 6,25,000</td><td class="mono-text font-bold">₹ 6,25,000</td></tr>
                 <tr><td>Interest Rate on Debt</td><td class="mono-text">8.0%</td><td class="mono-text">8.0%</td><td class="mono-text">8.0%</td><td class="mono-text font-bold">8.0%</td></tr>
             `;
 
@@ -592,11 +591,11 @@
                 <tr><td>HR & Admin Expense (Fixed)</td><td class="mono-text">${fmt(sc.fixedHr)}</td><td class="mono-text">${fmt(sc.fixedHr)}</td><td class="mono-text">${fmt(sc.fixedHr)}</td><td class="mono-text">${fmt(sc.fixedHr)}</td></tr>
                 <tr style="font-weight: 700;"><td>Total Operating Expenses (OpEx)</td><td class="mono-text">${fmt(data.opex[0])}</td><td class="mono-text">${fmt(data.opex[1])}</td><td class="mono-text">${fmt(data.opex[2])}</td><td class="mono-text">${fmt(data.opex[3])}</td></tr>
                 <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>EBITDA</td><td class="mono-text text-emerald">${fmt(data.ebitda[0])}</td><td class="mono-text text-emerald">${fmt(data.ebitda[1])}</td><td class="mono-text text-emerald">${fmt(data.ebitda[2])}</td><td class="mono-text text-emerald font-bold">${fmt(data.ebitda[3])}</td></tr>
-                <tr><td>Depreciation</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
+                <tr><td>Less: Depreciation</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
                 <tr><td>EBIT (Operating Profit)</td><td class="mono-text">${fmt(data.ebit[0])}</td><td class="mono-text">${fmt(data.ebit[1])}</td><td class="mono-text">${fmt(data.ebit[2])}</td><td class="mono-text">${fmt(data.ebit[3])}</td></tr>
-                <tr><td>Interest Expense</td><td class="mono-text">${fmt(data.interest[0])}</td><td class="mono-text">${fmt(data.interest[1])}</td><td class="mono-text">${fmt(data.interest[2])}</td><td class="mono-text">${fmt(data.interest[3])}</td></tr>
+                <tr><td>Less: Interest Expense</td><td class="mono-text">${fmt(data.interest[0])}</td><td class="mono-text">${fmt(data.interest[1])}</td><td class="mono-text">${fmt(data.interest[2])}</td><td class="mono-text">${fmt(data.interest[3])}</td></tr>
                 <tr><td>EBT (Pre-Tax Profit)</td><td class="mono-text">${fmt(data.ebt[0])}</td><td class="mono-text">${fmt(data.ebt[1])}</td><td class="mono-text">${fmt(data.ebt[2])}</td><td class="mono-text">${fmt(data.ebt[3])}</td></tr>
-                <tr><td>Income Tax (25%)</td><td class="mono-text">${fmt(data.tax[0])}</td><td class="mono-text">${fmt(data.tax[1])}</td><td class="mono-text">${fmt(data.tax[2])}</td><td class="mono-text">${fmt(data.tax[3])}</td></tr>
+                <tr><td>Less: Income Tax (25%)</td><td class="mono-text">${fmt(data.tax[0])}</td><td class="mono-text">${fmt(data.tax[1])}</td><td class="mono-text">${fmt(data.tax[2])}</td><td class="mono-text">${fmt(data.tax[3])}</td></tr>
                 <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET INCOME (PAT)</td><td class="mono-text text-gold">${fmt(data.netInc[0])}</td><td class="mono-text text-gold">${fmt(data.netInc[1])}</td><td class="mono-text text-gold">${fmt(data.netInc[2])}</td><td class="mono-text text-gold font-bold">${fmt(data.netInc[3])}</td></tr>
             `;
 
@@ -628,47 +627,68 @@
                 <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>OPERATING ACTIVITIES (CFO)</strong></td></tr>
                 <tr><td>Net Income (PAT)</td><td class="mono-text">${fmt(data.netInc[0])}</td><td class="mono-text">${fmt(data.netInc[1])}</td><td class="mono-text">${fmt(data.netInc[2])}</td><td class="mono-text">${fmt(data.netInc[3])}</td></tr>
                 <tr><td>(+) Non-Cash Depreciation Add-Back</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
-                <tr><td>(-) Increase in Accounts Receivable (AR)</td><td class="mono-text">₹0</td><td class="mono-text">-${fmt(data.ar[1] - data.ar[0])}</td><td class="mono-text">-${fmt(data.ar[2] - data.ar[1])}</td><td class="mono-text">-${fmt(data.ar[3] - data.ar[2])}</td></tr>
-                <tr><td>(+) Increase in Accounts Payable (AP)</td><td class="mono-text">₹0</td><td class="mono-text">${fmt(data.ap[1] - data.ap[0])}</td><td class="mono-text">${fmt(data.ap[2] - data.ap[1])}</td><td class="mono-text">${fmt(data.ap[3] - data.ap[2])}</td></tr>
+                <tr><td>(-) Increase in Accounts Receivable (AR)</td><td class="mono-text">₹ 0</td><td class="mono-text">-${fmt(data.ar[1] - data.ar[0])}</td><td class="mono-text">-${fmt(data.ar[2] - data.ar[1])}</td><td class="mono-text">-${fmt(data.ar[3] - data.ar[2])}</td></tr>
+                <tr><td>(+) Increase in Accounts Payable (AP)</td><td class="mono-text">₹ 0</td><td class="mono-text">${fmt(data.ap[1] - data.ap[0])}</td><td class="mono-text">${fmt(data.ap[2] - data.ap[1])}</td><td class="mono-text">${fmt(data.ap[3] - data.ap[2])}</td></tr>
                 <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>NET CASH FROM OPERATING ACTIVITIES (CFO)</td><td class="mono-text text-emerald">${fmt(data.cfo[0])}</td><td class="mono-text text-emerald">${fmt(data.cfo[1])}</td><td class="mono-text text-emerald">${fmt(data.cfo[2])}</td><td class="mono-text text-emerald">${fmt(data.cfo[3])}</td></tr>
                 <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>INVESTING ACTIVITIES (CFI)</strong></td></tr>
-                <tr><td>Capital Expenditures (CapEx)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
-                <tr style="font-weight: 700;"><td>NET CASH FROM INVESTING ACTIVITIES (CFI)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr><td>Capital Expenditures (CapEx)</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td></tr>
+                <tr style="font-weight: 700;"><td>NET CASH FROM INVESTING ACTIVITIES (CFI)</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td></tr>
                 <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>FINANCING ACTIVITIES (CFF)</strong></td></tr>
-                <tr><td>Debt Issued / (Repaid)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
-                <tr style="font-weight: 700;"><td>NET CASH FROM FINANCING ACTIVITIES (CFF)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr><td>Debt Issued / (Repaid)</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td></tr>
+                <tr style="font-weight: 700;"><td>NET CASH FROM FINANCING ACTIVITIES (CFF)</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td></tr>
                 <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET CHANGE IN CASH BALANCE</td><td class="mono-text text-gold">${fmt(data.cfo[0])}</td><td class="mono-text text-gold">${fmt(data.cfo[1])}</td><td class="mono-text text-gold">${fmt(data.cfo[2])}</td><td class="mono-text text-gold">${fmt(data.cfo[3])}</td></tr>
-                <tr><td>Beginning Cash Balance</td><td class="mono-text">₹0</td><td class="mono-text">${fmt(data.cash[0])}</td><td class="mono-text">${fmt(data.cash[1])}</td><td class="mono-text">${fmt(data.cash[2])}</td></tr>
+                <tr><td>Beginning Cash Balance</td><td class="mono-text">₹ 0</td><td class="mono-text">${fmt(data.cash[0])}</td><td class="mono-text">${fmt(data.cash[1])}</td><td class="mono-text">${fmt(data.cash[2])}</td></tr>
                 <tr style="background: rgba(59, 130, 246, 0.2); font-weight: 800;"><td>ENDING CASH BALANCE</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[0])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[1])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[2])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[3])}</td></tr>
             `;
 
-            // Render Sheet 5: FCFF Bridge Table
+            // Render Sheet 5: FCFF Bridge Table matching Excel screenshot yellow highlights
             const tbodyFcff = document.getElementById('fcffBody');
             tbodyFcff.innerHTML = `
                 <tr><td>EBIT (Operating Profit)</td><td class="mono-text">${fmt(data.ebit[1])}</td><td class="mono-text">${fmt(data.ebit[2])}</td><td class="mono-text">${fmt(data.ebit[3])}</td></tr>
-                <tr><td>Less: Income Taxes on EBIT (25%)</td><td class="mono-text">-${fmt(data.fcffTaxes[1])}</td><td class="mono-text">-${fmt(data.fcffTaxes[2])}</td><td class="mono-text">-${fmt(data.fcffTaxes[3])}</td></tr>
+                <tr><td>Less: Taxes on EBIT (25%)</td><td class="mono-text">-${fmt(data.fcffTaxes[1])}</td><td class="mono-text">-${fmt(data.fcffTaxes[2])}</td><td class="mono-text">-${fmt(data.fcffTaxes[3])}</td></tr>
                 <tr style="font-weight: 700;"><td>NOPAT (Net Operating Profit After Tax)</td><td class="mono-text">${fmt(data.nopat[1])}</td><td class="mono-text">${fmt(data.nopat[2])}</td><td class="mono-text">${fmt(data.nopat[3])}</td></tr>
                 <tr><td>(+) Depreciation Add-Back</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
                 <tr><td>(-) Change in Net Working Capital (&Delta;NWC)</td><td class="mono-text">-${fmt(data.dNwc[1])}</td><td class="mono-text">-${fmt(data.dNwc[2])}</td><td class="mono-text">-${fmt(data.dNwc[3])}</td></tr>
-                <tr><td>(-) Capital Expenditures (CapEx)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
-                <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>UNLEVERED FREE CASH FLOW (FCFF)</td><td class="mono-text text-emerald">${fmt(data.fcff[1])}</td><td class="mono-text text-emerald">${fmt(data.fcff[2])}</td><td class="mono-text text-emerald font-bold">${fmt(data.fcff[3])}</td></tr>
-                <tr><td>Discount Period (t)</td><td class="mono-text">1</td><td class="mono-text">2</td><td class="mono-text">3</td></tr>
-                <tr><td>Discount Factor (WACC = 10.0%)</td><td class="mono-text">${data.discountFactors[1].toFixed(6)}</td><td class="mono-text">${data.discountFactors[2].toFixed(6)}</td><td class="mono-text">${data.discountFactors[3].toFixed(6)}</td></tr>
-                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>PRESENT VALUE (PV) OF DISCRETE FCFF</td><td class="mono-text text-gold">${fmt(data.pvFcff[1])}</td><td class="mono-text text-gold">${fmt(data.pvFcff[2])}</td><td class="mono-text text-gold font-bold">${fmt(data.pvFcff[3])}</td></tr>
+                <tr><td>(-) CapEx</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td><td class="mono-text">₹ 0</td></tr>
+                <tr class="row-yellow-highlight"><td>UNLEVERED FREE CASH FLOW (FCFF)</td><td class="mono-text">${fmt(data.fcff[1])}</td><td class="mono-text">${fmt(data.fcff[2])}</td><td class="mono-text">${fmt(data.fcff[3])}</td></tr>
+                <tr><td>Discount Period (tt)</td><td class="mono-text">1</td><td class="mono-text">2</td><td class="mono-text">3</td></tr>
+                <tr><td>Discount Factor</td><td class="mono-text">${data.discountFactors[1].toFixed(9)}</td><td class="mono-text">${data.discountFactors[2].toFixed(9)}</td><td class="mono-text">${data.discountFactors[3].toFixed(9)}</td></tr>
+                <tr class="row-yellow-highlight"><td>PV of Discrete FCFF</td><td class="mono-text">${fmt(data.pvFcff[1])}</td><td class="mono-text">${fmt(data.pvFcff[2])}</td><td class="mono-text">${fmt(data.pvFcff[3])}</td></tr>
             `;
 
-            // Render Sheet 5: Two-Way Sensitivity Matrix
+            // Render Sheet 5: Valuation Summary Block matching Excel screenshot yellow highlights
+            const tbodyValSummary = document.getElementById('valSummaryTableBody');
+            tbodyValSummary.innerHTML = `
+                <tr><td>Cumulative PV of 3-Yr Cash Flows</td><td class="mono-text">${fmt(data.cumPvCash)}</td></tr>
+                <tr><td>Terminal Value (Gordon Growth)</td><td class="mono-text">${fmt(data.terminalValue)}</td></tr>
+                <tr><td>PV of Terminal Value</td><td class="mono-text">${fmt(data.pvTerminalValue)}</td></tr>
+                <tr class="row-yellow-highlight"><td>IMPLIED ENTERPRISE VALUE (EV)</td><td class="mono-text">${fmt(data.scenarioBaseEv)}</td></tr>
+                <tr><td>(+) Cash & Cash Equivalents</td><td class="mono-text">${fmt(1500000)}</td></tr>
+                <tr><td>(-) Total Debt</td><td class="mono-text">-${fmt(625000)}</td></tr>
+                <tr class="row-yellow-highlight"><td>IMPLIED EQUITY VALUE</td><td class="mono-text">${fmt(data.scenarioEquityVal)}</td></tr>
+            `;
+
+            // Render Sheet 5: Two-Way Sensitivity Matrix matching Excel heatmap screenshot
             const tbodyMatrix = document.getElementById('matrixBody');
             tbodyMatrix.innerHTML = sens.matrix.map((row, rIdx) => {
-                const waccPct = (sens.waccList[rIdx] * 100).toFixed(1) + "%";
+                const waccPct = (sens.waccList[rIdx] * 100).toFixed(0) + "%";
                 const isBaseRow = rIdx === 2;
                 return `
                     <tr>
                         <td style="font-weight:700; ${isBaseRow ? 'color:var(--accent-gold);' : ''}">${waccPct}</td>
                         ${row.map((cell, cIdx) => {
                             const isBaseCell = (rIdx === 2 && cIdx === 2);
-                            const cls = isBaseCell ? 'matrix-cell-base' : (cell.ev > sens.scenarioBaseEv ? 'matrix-cell-bull' : 'matrix-cell-bear');
-                            return `<td class="${cls}">${fmt(cell.ev)}</td>`;
+                            let bgStyle = "background: rgba(255,255,255,0.03);";
+                            if (isBaseCell) {
+                                bgStyle = "background: #ffff00 !important; color: #000000 !important; font-weight: 900 !important;";
+                            } else if (rIdx < 2 || cIdx > 2) {
+                                // Bullish green gradient
+                                bgStyle = "background: rgba(16, 185, 129, " + (0.1 + (2 - rIdx)*0.08 + (cIdx - 2)*0.08) + "); color: #10b981; font-weight: 700;";
+                            } else {
+                                // Bearish red gradient
+                                bgStyle = "background: rgba(239, 68, 68, " + (0.1 + (rIdx - 2)*0.08 + (2 - cIdx)*0.08) + "); color: #ef4444; font-weight: 700;";
+                            }
+                            return `<td style="${bgStyle}">${fmt(cell.ev)}</td>`;
                         }).join('')}
                     </tr>
                 `;
@@ -749,7 +769,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             renderAll('base');
-            switchSheetTab('s1');
+            switchSheetTab('s5'); // Open directly to Sheet 5 for user review!
         });
     </script>
 </body>
