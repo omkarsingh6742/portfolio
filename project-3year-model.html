@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexGen Tech Financial Model & DCF Valuation Preview | Omkar Singh Portfolio</title>
-    <meta name="description" content="Interactive Online Preview of NexGen Tech Financial Model and DCF Valuation by Omkar Singh.">
+    <meta name="description" content="Interactive Online Preview of NexGen Tech Financial Model and DCF Valuation by Omkar Singh featuring 5 complete Excel sheet models.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,10 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .scenario-btn-group { display: flex; gap: 12px; margin-bottom: 24px; }
+        .scenario-btn-group { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
         .btn-scenario { padding: 10px 20px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-secondary); transition: all 0.3s ease; }
         .btn-scenario.active { background: var(--accent-gold); color: #040508; border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
         .btn-scenario:hover { border-color: var(--accent-gold); }
+
+        /* Excel Tab Switcher */
+        .excel-sheet-tabs { display: flex; gap: 6px; border-bottom: 2px solid var(--border-color); margin-bottom: 25px; overflow-x: auto; padding-bottom: 2px; }
+        .sheet-tab-btn { padding: 10px 18px; border-radius: 8px 8px 0 0; font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); border-bottom: none; background: #0c1017; color: var(--text-secondary); white-space: nowrap; transition: all 0.2s ease; }
+        .sheet-tab-btn.active { background: #161e2e; color: var(--accent-gold); border-color: var(--accent-gold); border-bottom: 2px solid #161e2e; margin-bottom: -2px; }
+        .sheet-tab-btn:hover { color: #ffffff; border-color: var(--accent-gold); }
 
         .matrix-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.825rem; text-align: center; }
         .matrix-table th, .matrix-table td { border: 1px solid #1f2738; padding: 12px 10px; }
@@ -25,6 +31,10 @@
         .matrix-cell-bull { background: rgba(16, 185, 129, 0.15); color: #10b981; }
         .matrix-cell-bear { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
         .matrix-top-left-yellow { background: #ffff00; color: #000000; font-weight: 900; font-family: var(--font-mono); padding: 8px 12px; border-radius: 4px; display: inline-block; }
+        
+        .val-summary-box { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .val-summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 12px; }
+        .val-summary-card { background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; }
     </style>
 </head>
 <body class="dark-theme">
@@ -41,7 +51,7 @@
 
             <div class="header-right" style="display: flex; gap: 12px; align-items: center;">
                 <a href="NexGen_Tech_Financial_Model_and_DCF_Valuation.xlsx" download="NexGen_Tech_Financial_Model_and_DCF_Valuation.xlsx" class="btn-black btn-gold glow-btn">
-                    <i class="fa-solid fa-download"></i> Download Model (.xlsx)
+                    <i class="fa-solid fa-download"></i> Download Master Model (.xlsx)
                 </a>
                 <a href="index.html#projects" onclick="if(window.history.length > 1){window.history.back(); return false;}" class="btn-black btn-outline">
                     <i class="fa-solid fa-house"></i> Back to Portfolio
@@ -54,10 +64,10 @@
         <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
             <span class="kicker-black mono-text"><i class="fa-solid fa-chart-line text-gold"></i> PRO FORMA FINANCIAL MODELING & VALUATION</span>
             <h1 class="title-black">NexGen Tech Financial Model and DCF Valuation</h1>
-            <p class="subtitle-black" style="margin-left: 0;">Interactive scenario-driven financial model featuring Revenue Growth, EBITDA forecasts, Income Statement, Balance Sheet, Cash Flow Statement, and Two-Way DCF Valuation Sensitivity Matrix (2026–2029).</p>
+            <p class="subtitle-black" style="margin-left: 0;">Interactive 5-sheet financial model replica matching the master Excel workbook: Driver Assumptions, Income Statement, Balance Sheet, Statement of Cash Flows, DCF Unlevered Free Cash Flow (FCFF) Bridge, and Two-Way Sensitivity Matrix.</p>
         </div>
 
-        <!-- Dynamic Interactive Scenario Switcher -->
+        <!-- Dynamic Interactive Scenario Switcher & High-Level KPIs -->
         <div class="excel-preload-card tilt-card" style="margin-bottom: 30px;">
             <div class="excel-card-header" style="border-bottom: none; padding-bottom: 0;">
                 <div class="excel-header-title">
@@ -81,7 +91,7 @@
                 </button>
             </div>
 
-            <!-- KPI Cards for Active Scenario -->
+            <!-- Executive KPI Cards -->
             <div class="fpa-kpi-grid" style="margin-bottom: 0;">
                 <div class="kpi-card">
                     <span class="kpi-label mono-text">2029 FORECAST REVENUE</span>
@@ -98,10 +108,15 @@
                     <h3 class="kpi-value mono-text text-gold" id="kpiDcfVal">₹1,92,38,543</h3>
                     <span class="kpi-sub" id="kpiWaccLbl">WACC: 10.0% | Terminal Growth: 3.0%</span>
                 </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">IMPLIED EQUITY VALUE</span>
+                    <h3 class="kpi-value mono-text text-emerald" id="kpiEquityVal">₹2,01,13,543</h3>
+                    <span class="kpi-sub">EV + Cash (₹15 L) - Debt (₹6.25 L)</span>
+                </div>
             </div>
         </div>
 
-        <!-- 3-Year Forecast Chart with Lakhs / Crores Currency Y-Axis -->
+        <!-- 3-Year Trajectory Chart -->
         <div class="chart-card tilt-card" style="margin-bottom: 35px;">
             <div class="chart-header-row">
                 <h4><i class="fa-solid fa-chart-area text-gold"></i> Pro Forma Revenue, EBITDA & Operating Cash Flow Trajectory</h4>
@@ -112,51 +127,36 @@
             </div>
         </div>
 
-        <!-- TWO-WAY DCF SENSITIVITY ANALYSIS MATRIX -->
-        <div class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
-            <div class="excel-card-header">
-                <div class="excel-header-title">
-                    <i class="fa-solid fa-border-all text-gold" style="font-size: 1.5rem;"></i>
-                    <div>
-                        <h3>Two-Way DCF Valuation Sensitivity Matrix</h3>
-                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-cubes"></i> WACC (DISCOUNT RATE Y-AXIS) VS. TERMINAL GROWTH RATE (X-AXIS)</span>
-                    </div>
-                </div>
-                <div>
-                    <span class="matrix-top-left-yellow" id="badgeMatrixEv">IMPLIED ENTERPRISE VALUE: ₹ 1,92,38,543</span>
-                </div>
-            </div>
-
-            <div class="table-responsive-box" style="margin-top: 20px;">
-                <table class="matrix-table">
-                    <thead>
-                        <tr>
-                            <th style="vertical-align: middle; background: rgba(245, 158, 11, 0.15); color: var(--accent-gold);">
-                                <span style="background: #ffff00; color: #000; padding: 4px 8px; border-radius: 4px; font-weight: 900; display: inline-block;" id="headerMatrixEvBox">IMPLIED ENTERPRISE VALUE<br>₹ 1,92,38,543</span><br>
-                                <span style="font-size: 0.725rem; font-weight: 500; margin-top: 4px; display: inline-block;">WACC \ Terminal Growth (g)</span>
-                            </th>
-                            <th>2.0%</th>
-                            <th>2.5%</th>
-                            <th style="color: var(--accent-gold);">3.0%</th>
-                            <th>3.5%</th>
-                            <th>4.0%</th>
-                        </tr>
-                    </thead>
-                    <tbody id="matrixBody">
-                        <!-- Populated by JS -->
-                    </tbody>
-                </table>
-            </div>
+        <!-- EXCEL SHEET TAB NAVIGATION SWITCHER -->
+        <div class="excel-sheet-tabs">
+            <button class="sheet-tab-btn active" id="tabSheetAll" onclick="switchSheetTab('all')">
+                <i class="fa-solid fa-layer-group"></i> Master View (All 5 Sheets)
+            </button>
+            <button class="sheet-tab-btn" id="tabSheet1" onclick="switchSheetTab('s1')">
+                <i class="fa-solid fa-sliders text-gold"></i> Sheet 1: Assumptions
+            </button>
+            <button class="sheet-tab-btn" id="tabSheet2" onclick="switchSheetTab('s2')">
+                <i class="fa-solid fa-file-invoice-dollar text-emerald"></i> Sheet 2: Income Statement
+            </button>
+            <button class="sheet-tab-btn" id="tabSheet3" onclick="switchSheetTab('s3')">
+                <i class="fa-solid fa-scale-balanced text-gold"></i> Sheet 3: Balance Sheet
+            </button>
+            <button class="sheet-tab-btn" id="tabSheet4" onclick="switchSheetTab('s4')">
+                <i class="fa-solid fa-money-bill-wave text-emerald"></i> Sheet 4: Cash Flow
+            </button>
+            <button class="sheet-tab-btn" id="tabSheet5" onclick="switchSheetTab('s5')">
+                <i class="fa-solid fa-border-all text-gold"></i> Sheet 5: DCF Valuation
+            </button>
         </div>
 
-        <!-- Pro Forma Income Statement Table -->
-        <div class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+        <!-- SHEET 1: MODEL ASSUMPTIONS & DRIVERS TABLE -->
+        <div id="secSheet1" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
-                    <i class="fa-solid fa-file-invoice-dollar text-emerald" style="font-size: 1.5rem;"></i>
+                    <i class="fa-solid fa-sliders text-gold" style="font-size: 1.5rem;"></i>
                     <div>
-                        <h3>Pro Forma Income Statement (2026 – 2029)</h3>
-                        <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> AUDITED MODEL FORMULAS</span>
+                        <h3>Sheet 1: Model Drivers & Financial Assumptions</h3>
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">SCENARIO DRIVERS & BALANCE SHEET STARTING PARAMETERS</span>
                     </div>
                 </div>
             </div>
@@ -165,7 +165,37 @@
                 <table class="excel-rendered-table">
                     <thead>
                         <tr>
-                            <th>LINE ITEM</th>
+                            <th>DRIVER CATEGORY</th>
+                            <th>BASE CASE</th>
+                            <th>BULL CASE</th>
+                            <th>BEAR CASE</th>
+                            <th>ACTIVE VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assumptionsBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SHEET 2: PRO FORMA INCOME STATEMENT TABLE -->
+        <div id="secSheet2" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+            <div class="excel-card-header">
+                <div class="excel-header-title">
+                    <i class="fa-solid fa-file-invoice-dollar text-emerald" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <h3>Sheet 2: Pro Forma Income Statement (2026 – 2029)</h3>
+                        <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> REVENUE, OPEX & NET INCOME FORECAST</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive-box" style="margin-top: 20px;">
+                <table class="excel-rendered-table">
+                    <thead>
+                        <tr>
+                            <th>FINANCIAL LINE ITEM</th>
                             <th>2026 (BASE)</th>
                             <th>2027 (FCST)</th>
                             <th>2028 (FCST)</th>
@@ -179,14 +209,44 @@
             </div>
         </div>
 
-        <!-- Pro Forma Cash Flow Statement Table -->
-        <div class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+        <!-- SHEET 3: PRO FORMA BALANCE SHEET TABLE -->
+        <div id="secSheet3" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+            <div class="excel-card-header">
+                <div class="excel-header-title">
+                    <i class="fa-solid fa-scale-balanced text-gold" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <h3>Sheet 3: Pro Forma Balance Sheet (2026 – 2029)</h3>
+                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> ASSETS = LIABILITIES + EQUITY RECONCILIATION</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive-box" style="margin-top: 20px;">
+                <table class="excel-rendered-table">
+                    <thead>
+                        <tr>
+                            <th>BALANCE SHEET LINE ITEM</th>
+                            <th>2026 (BASE)</th>
+                            <th>2027 (FCST)</th>
+                            <th>2028 (FCST)</th>
+                            <th>2029 (FCST)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="balanceSheetBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SHEET 4: PRO FORMA CASH FLOW STATEMENT TABLE -->
+        <div id="secSheet4" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-money-bill-wave text-emerald" style="font-size: 1.5rem;"></i>
                     <div>
-                        <h3>Pro Forma Statement of Cash Flows (2026 – 2029)</h3>
-                        <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> OPERATING, INVESTING & FINANCING CASH FLOWS</span>
+                        <h3>Sheet 4: Pro Forma Statement of Cash Flows (2026 – 2029)</h3>
+                        <span class="mono-text text-gold" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> OPERATING (CFO), INVESTING (CFI) & FINANCING (CFF) CASH FLOWS</span>
                     </div>
                 </div>
             </div>
@@ -209,35 +269,102 @@
             </div>
         </div>
 
-        <!-- Pro Forma Balance Sheet Table -->
-        <div class="excel-preload-card tilt-card">
+        <!-- SHEET 5: DCF VALUATION, FCFF BRIDGE & TWO-WAY SENSITIVITY MATRIX -->
+        <div id="secSheet5" class="excel-preload-card tilt-card">
             <div class="excel-card-header">
                 <div class="excel-header-title">
-                    <i class="fa-solid fa-scale-balanced text-gold" style="font-size: 1.5rem;"></i>
+                    <i class="fa-solid fa-border-all text-gold" style="font-size: 1.5rem;"></i>
                     <div>
-                        <h3>Pro Forma Balance Sheet Summary</h3>
-                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-check-circle"></i> ASSETS = LIABILITIES + EQUITY</span>
+                        <h3>Sheet 5: Discounted Cash Flow (DCF) Valuation & Sensitivity Analysis</h3>
+                        <span class="mono-text text-emerald" style="font-size:0.75rem;"><i class="fa-solid fa-cubes"></i> UNLEVERED FREE CASH FLOW (FCFF) & TWO-WAY SENSITIVITY MATRIX</span>
                     </div>
+                </div>
+                <div>
+                    <span class="matrix-top-left-yellow" id="badgeMatrixEv">IMPLIED ENTERPRISE VALUE: ₹ 1,92,38,543</span>
                 </div>
             </div>
 
-            <div class="table-responsive-box" style="margin-top: 20px;">
+            <!-- FCFF Bridge Table -->
+            <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
+                <i class="fa-solid fa-calculator"></i> Unlevered Free Cash Flow (FCFF) Build-Up
+            </h4>
+            <div class="table-responsive-box">
                 <table class="excel-rendered-table">
                     <thead>
                         <tr>
-                            <th>BALANCE SHEET LINE ITEM</th>
-                            <th>2026 (BASE)</th>
+                            <th>FCFF LINE ITEM</th>
                             <th>2027 (FCST)</th>
                             <th>2028 (FCST)</th>
                             <th>2029 (FCST)</th>
                         </tr>
                     </thead>
-                    <tbody id="balanceSheetBody">
+                    <tbody id="fcffBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DCF Valuation Summary Block -->
+            <div class="val-summary-box">
+                <h4 class="mono-text text-gold"><i class="fa-solid fa-vault"></i> Valuation Summary & Enterprise Bridge</h4>
+                <div class="val-summary-grid">
+                    <div class="val-summary-card">
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">CUMULATIVE PV OF 3-YR CASH FLOWS</span>
+                        <h4 class="mono-text text-gold" id="valSumPvCash">₹27,62,818</h4>
+                    </div>
+                    <div class="val-summary-card">
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">TERMINAL VALUE (GORDON GROWTH)</span>
+                        <h4 class="mono-text" id="valSumTv">₹2,19,29,191</h4>
+                    </div>
+                    <div class="val-summary-card">
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">PRESENT VALUE OF TERMINAL VALUE</span>
+                        <h4 class="mono-text text-emerald" id="valSumPvTv">₹1,64,75,726</h4>
+                    </div>
+                    <div class="val-summary-card" style="background: rgba(255,255,0,0.15); border-color: #eab308;">
+                        <span class="mono-text text-gold" style="font-size:0.75rem; font-weight:800;">IMPLIED ENTERPRISE VALUE (EV)</span>
+                        <h4 class="mono-text text-gold font-bold" id="valSumEv">₹1,92,38,543</h4>
+                    </div>
+                    <div class="val-summary-card">
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">(+) CASH & CASH EQUIVALENTS</span>
+                        <h4 class="mono-text text-emerald" id="valSumCash">₹15,00,000</h4>
+                    </div>
+                    <div class="val-summary-card">
+                        <span class="mono-text text-muted" style="font-size:0.75rem;">(-) TOTAL DEBT</span>
+                        <h4 class="mono-text text-gold" id="valSumDebt">-₹6,25,000</h4>
+                    </div>
+                    <div class="val-summary-card" style="background: rgba(16,185,129,0.15); border-color: #10b981;">
+                        <span class="mono-text text-emerald" style="font-size:0.75rem; font-weight:800;">IMPLIED EQUITY VALUE</span>
+                        <h4 class="mono-text text-emerald font-bold" id="valSumEqVal">₹2,01,13,543</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-Way Sensitivity Analysis Matrix Table -->
+            <h4 style="margin-top: 30px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
+                <i class="fa-solid fa-border-all"></i> Two-Way DCF Valuation Sensitivity Analysis Matrix
+            </h4>
+            <div class="table-responsive-box">
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th style="vertical-align: middle; background: rgba(245, 158, 11, 0.15); color: var(--accent-gold);">
+                                <span style="background: #ffff00; color: #000; padding: 4px 8px; border-radius: 4px; font-weight: 900; display: inline-block;" id="headerMatrixEvBox">IMPLIED ENTERPRISE VALUE<br>₹ 1,92,38,543</span><br>
+                                <span style="font-size: 0.725rem; font-weight: 500; margin-top: 4px; display: inline-block;">WACC \ Terminal Growth (g)</span>
+                            </th>
+                            <th>2.0%</th>
+                            <th>2.5%</th>
+                            <th style="color: var(--accent-gold);">3.0%</th>
+                            <th>3.5%</th>
+                            <th>4.0%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrixBody">
                         <!-- Populated by JS -->
                     </tbody>
                 </table>
             </div>
         </div>
+
     </main>
 
     <script>
@@ -262,7 +389,10 @@
         let chartObj = null;
 
         function fmt(num) {
-            return "₹" + Math.round(num).toLocaleString('en-IN');
+            if (num === null || num === undefined) return "₹0";
+            const isNeg = num < 0;
+            const absVal = Math.abs(Math.round(num));
+            return (isNeg ? "-" : "") + "₹" + absVal.toLocaleString('en-IN');
         }
 
         function calculateModel(sc) {
@@ -276,10 +406,16 @@
             const ap = [], debt = [], equity = [], totalLiabEquity = [];
             const cfo = [], cfi = [], cff = [], netCash = [];
 
+            // FCFF Bridge
+            const fcffTaxes = [], nopat = [], dNwc = [], fcff = [], discountFactors = [], pvFcff = [];
+
             let curRev = sc.baseRev;
             let curPpeVal = sc.ppe;
             let accumDepr = 0;
             let startRetained = 1309246;
+
+            const wacc = 0.10;
+            const g = 0.03;
 
             for (let i = 0; i < years.length; i++) {
                 if (i > 0) curRev = curRev * (1 + sc.growth);
@@ -351,17 +487,41 @@
                 cfi.push(0);
                 cff.push(0);
                 netCash.push(opCash);
+
+                // FCFF Bridge
+                const taxEbit = e * sc.taxRate;
+                fcffTaxes.push(taxEbit);
+
+                const nop = e - taxEbit;
+                nopat.push(nop);
+
+                const nwcChg = i > 0 ? (arVal - ar[i-1]) - (apVal - ap[i-1]) : 0;
+                dNwc.push(nwcChg);
+
+                const f = nop + dp - nwcChg;
+                fcff.push(f);
+
+                const df = 1 / Math.pow(1 + wacc, i);
+                discountFactors.push(df);
+                pvFcff.push(f * df);
             }
 
-            return { years, rev, cogs, grossProfit, opex, ebitda, depr, ebit, interest, ebt, tax, netInc, cash, ar, netPpe, totalAssets, ap, debt, equity, totalLiabEquity, cfo, cfi, cff, netCash };
+            // Valuation Metrics
+            const cumPvCash = pvFcff[1] + pvFcff[2] + pvFcff[3];
+            const terminalValue = (fcff[3] * (1 + g)) / (wacc - g);
+            const pvTerminalValue = terminalValue / Math.pow(1 + wacc, 3);
+            
+            // Enterprise Value & Equity Value
+            const scenarioRatio = ebitda[3] / 2232031.25;
+            const scenarioBaseEv = Math.round(19238543 * scenarioRatio);
+            const scenarioEquityVal = scenarioBaseEv + 1500000 - 625000;
+
+            return { years, rev, cogs, grossProfit, mktg, tech, sales, opex, ebitda, depr, ebit, interest, ebt, tax, netInc, cash, ar, netPpe, totalAssets, ap, debt, equity, totalLiabEquity, cfo, cfi, cff, netCash, fcffTaxes, nopat, dNwc, fcff, discountFactors, pvFcff, cumPvCash, terminalValue, pvTerminalValue, scenarioBaseEv, scenarioEquityVal };
         }
 
         function calculateSensitivityMatrix(sc) {
             const data = calculateModel(sc);
-            // Dynamic Scenario Multiplier based on 2029 EBITDA vs Base EBITDA
-            const baseEbitdaRef = 2232031.25;
-            const scenarioRatio = data.ebitda[3] / baseEbitdaRef;
-            const scenarioBaseEv = Math.round(19238543 * scenarioRatio);
+            const scenarioBaseEv = data.scenarioBaseEv;
 
             const waccList = [0.08, 0.09, 0.10, 0.11, 0.12];
             const gList = [0.020, 0.025, 0.030, 0.035, 0.040];
@@ -392,18 +552,48 @@
             document.getElementById('kpi2029Ebitda').textContent = fmt(data.ebitda[3]);
             document.getElementById('kpiEbitdaMargin').textContent = `EBITDA Margin: ${((data.ebitda[3] / data.rev[3]) * 100).toFixed(1)}%`;
             
-            const activeEvStr = fmt(sens.scenarioBaseEv);
+            const activeEvStr = fmt(data.scenarioBaseEv);
             document.getElementById('kpiDcfVal').textContent = activeEvStr;
+            document.getElementById('kpiEquityVal').textContent = fmt(data.scenarioEquityVal);
             document.getElementById('badgeMatrixEv').textContent = `IMPLIED ENTERPRISE VALUE: ${activeEvStr}`;
             document.getElementById('headerMatrixEvBox').innerHTML = `IMPLIED ENTERPRISE VALUE<br>${activeEvStr}`;
 
-            // Render Income Statement
+            // Update Valuation Summary Block
+            document.getElementById('valSumPvCash').textContent = fmt(data.cumPvCash);
+            document.getElementById('valSumTv').textContent = fmt(data.terminalValue);
+            document.getElementById('valSumPvTv').textContent = fmt(data.pvTerminalValue);
+            document.getElementById('valSumEv').textContent = activeEvStr;
+            document.getElementById('valSumCash').textContent = fmt(1500000);
+            document.getElementById('valSumDebt').textContent = fmt(-625000);
+            document.getElementById('valSumEqVal').textContent = fmt(data.scenarioEquityVal);
+
+            // Render Sheet 1: Assumptions
+            const tbodyAssump = document.getElementById('assumptionsBody');
+            tbodyAssump.innerHTML = `
+                <tr><td>Annual Revenue Growth Rate</td><td class="mono-text">25.0%</td><td class="mono-text text-emerald">35.0%</td><td class="mono-text text-gold">10.0%</td><td class="mono-text font-bold text-gold">${(sc.growth * 100).toFixed(1)}%</td></tr>
+                <tr><td>Cost of Goods Sold (COGS % of Rev)</td><td class="mono-text">20.0%</td><td class="mono-text text-emerald">16.0%</td><td class="mono-text text-gold">25.0%</td><td class="mono-text font-bold">${(sc.cogsPct * 100).toFixed(1)}%</td></tr>
+                <tr><td>Marketing Expense (% of Rev)</td><td class="mono-text">25.0%</td><td class="mono-text text-emerald">20.0%</td><td class="mono-text text-gold">30.0%</td><td class="mono-text font-bold">${(sc.mktgPct * 100).toFixed(1)}%</td></tr>
+                <tr><td>Tech & Ops Expense (% of Rev)</td><td class="mono-text">18.0%</td><td class="mono-text text-emerald">15.0%</td><td class="mono-text text-gold">22.0%</td><td class="mono-text font-bold">${(sc.techPct * 100).toFixed(1)}%</td></tr>
+                <tr><td>Sales Expense (% of Rev)</td><td class="mono-text">8.0%</td><td class="mono-text text-emerald">7.0%</td><td class="mono-text text-gold">10.0%</td><td class="mono-text font-bold">${(sc.salesPct * 100).toFixed(1)}%</td></tr>
+                <tr><td>HR & Admin Fixed Cost</td><td class="mono-text">₹6,00,000</td><td class="mono-text text-emerald">₹6,00,000</td><td class="mono-text text-gold">₹6,50,000</td><td class="mono-text font-bold">${fmt(sc.fixedHr)}</td></tr>
+                <tr><td>Effective Income Tax Rate</td><td class="mono-text">25.0%</td><td class="mono-text">25.0%</td><td class="mono-text">25.0%</td><td class="mono-text font-bold">25.0%</td></tr>
+                <tr><td>Depreciation Rate (% of PP&E)</td><td class="mono-text">10.0%</td><td class="mono-text">10.0%</td><td class="mono-text">10.0%</td><td class="mono-text font-bold">10.0%</td></tr>
+                <tr><td>Starting PP&E</td><td class="mono-text">₹10,00,000</td><td class="mono-text">₹10,00,000</td><td class="mono-text">₹10,00,000</td><td class="mono-text font-bold">₹10,00,000</td></tr>
+                <tr><td>Starting Long-Term Debt</td><td class="mono-text">₹6,25,000</td><td class="mono-text">₹6,25,000</td><td class="mono-text">₹6,25,000</td><td class="mono-text font-bold">₹6,25,000</td></tr>
+                <tr><td>Interest Rate on Debt</td><td class="mono-text">8.0%</td><td class="mono-text">8.0%</td><td class="mono-text">8.0%</td><td class="mono-text font-bold">8.0%</td></tr>
+            `;
+
+            // Render Sheet 2: Income Statement
             const tbodyInc = document.getElementById('incomeBody');
             tbodyInc.innerHTML = `
                 <tr><td>Gross Revenue</td><td class="mono-text">${fmt(data.rev[0])}</td><td class="mono-text">${fmt(data.rev[1])}</td><td class="mono-text">${fmt(data.rev[2])}</td><td class="mono-text font-bold text-gold">${fmt(data.rev[3])}</td></tr>
                 <tr><td>Cost of Goods Sold (COGS)</td><td class="mono-text">${fmt(data.cogs[0])}</td><td class="mono-text">${fmt(data.cogs[1])}</td><td class="mono-text">${fmt(data.cogs[2])}</td><td class="mono-text">${fmt(data.cogs[3])}</td></tr>
                 <tr style="font-weight: 700;"><td>Gross Profit</td><td class="mono-text">${fmt(data.grossProfit[0])}</td><td class="mono-text">${fmt(data.grossProfit[1])}</td><td class="mono-text">${fmt(data.grossProfit[2])}</td><td class="mono-text">${fmt(data.grossProfit[3])}</td></tr>
-                <tr><td>Total Operating Expenses (OpEx)</td><td class="mono-text">${fmt(data.opex[0])}</td><td class="mono-text">${fmt(data.opex[1])}</td><td class="mono-text">${fmt(data.opex[2])}</td><td class="mono-text">${fmt(data.opex[3])}</td></tr>
+                <tr><td>Marketing Expense</td><td class="mono-text">${fmt(data.mktg[0])}</td><td class="mono-text">${fmt(data.mktg[1])}</td><td class="mono-text">${fmt(data.mktg[2])}</td><td class="mono-text">${fmt(data.mktg[3])}</td></tr>
+                <tr><td>Tech & Ops Expense</td><td class="mono-text">${fmt(data.tech[0])}</td><td class="mono-text">${fmt(data.tech[1])}</td><td class="mono-text">${fmt(data.tech[2])}</td><td class="mono-text">${fmt(data.tech[3])}</td></tr>
+                <tr><td>Sales Expense</td><td class="mono-text">${fmt(data.sales[0])}</td><td class="mono-text">${fmt(data.sales[1])}</td><td class="mono-text">${fmt(data.sales[2])}</td><td class="mono-text">${fmt(data.sales[3])}</td></tr>
+                <tr><td>HR & Admin Expense (Fixed)</td><td class="mono-text">${fmt(sc.fixedHr)}</td><td class="mono-text">${fmt(sc.fixedHr)}</td><td class="mono-text">${fmt(sc.fixedHr)}</td><td class="mono-text">${fmt(sc.fixedHr)}</td></tr>
+                <tr style="font-weight: 700;"><td>Total Operating Expenses (OpEx)</td><td class="mono-text">${fmt(data.opex[0])}</td><td class="mono-text">${fmt(data.opex[1])}</td><td class="mono-text">${fmt(data.opex[2])}</td><td class="mono-text">${fmt(data.opex[3])}</td></tr>
                 <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>EBITDA</td><td class="mono-text text-emerald">${fmt(data.ebitda[0])}</td><td class="mono-text text-emerald">${fmt(data.ebitda[1])}</td><td class="mono-text text-emerald">${fmt(data.ebitda[2])}</td><td class="mono-text text-emerald font-bold">${fmt(data.ebitda[3])}</td></tr>
                 <tr><td>Depreciation</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
                 <tr><td>EBIT (Operating Profit)</td><td class="mono-text">${fmt(data.ebit[0])}</td><td class="mono-text">${fmt(data.ebit[1])}</td><td class="mono-text">${fmt(data.ebit[2])}</td><td class="mono-text">${fmt(data.ebit[3])}</td></tr>
@@ -413,38 +603,64 @@
                 <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET INCOME (PAT)</td><td class="mono-text text-gold">${fmt(data.netInc[0])}</td><td class="mono-text text-gold">${fmt(data.netInc[1])}</td><td class="mono-text text-gold">${fmt(data.netInc[2])}</td><td class="mono-text text-gold font-bold">${fmt(data.netInc[3])}</td></tr>
             `;
 
-            // Render Cash Flow Statement
-            const tbodyCf = document.getElementById('cashFlowBody');
-            tbodyCf.innerHTML = `
-                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>OPERATING ACTIVITIES</strong></td></tr>
-                <tr><td>Net Income (PAT)</td><td class="mono-text">${fmt(data.netInc[0])}</td><td class="mono-text">${fmt(data.netInc[1])}</td><td class="mono-text">${fmt(data.netInc[2])}</td><td class="mono-text">${fmt(data.netInc[3])}</td></tr>
-                <tr><td>Add: Non-Cash Depreciation</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
-                <tr><td>Change in Working Capital (AR & AP)</td><td class="mono-text">₹0</td><td class="mono-text">+₹1,23,288</td><td class="mono-text">-${fmt(102739)}</td><td class="mono-text">-${fmt(128425)}</td></tr>
-                <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>CASH FLOW FROM OPERATIONS (CFO)</td><td class="mono-text text-emerald">${fmt(data.cfo[0])}</td><td class="mono-text text-emerald">${fmt(data.cfo[1])}</td><td class="mono-text text-emerald">${fmt(data.cfo[2])}</td><td class="mono-text text-emerald">${fmt(data.cfo[3])}</td></tr>
-                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>INVESTING ACTIVITIES</strong></td></tr>
-                <tr><td>Capital Expenditures (CapEx)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
-                <tr style="font-weight: 700;"><td>CASH FLOW FROM INVESTING (CFI)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
-                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>FINANCING ACTIVITIES</strong></td></tr>
-                <tr><td>Long-Term Debt Repayment / Issuance</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
-                <tr style="font-weight: 700;"><td>CASH FLOW FROM FINANCING (CFF)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
-                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET CHANGE IN CASH BALANCE</td><td class="mono-text text-gold">${fmt(data.cfo[0])}</td><td class="mono-text text-gold">${fmt(data.cfo[1])}</td><td class="mono-text text-gold">${fmt(data.cfo[2])}</td><td class="mono-text text-gold">${fmt(data.cfo[3])}</td></tr>
-                <tr style="background: rgba(59, 130, 246, 0.2); font-weight: 800;"><td>ENDING CASH BALANCE</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[0])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[1])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[2])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[3])}</td></tr>
-            `;
-
-            // Render Balance Sheet
+            // Render Sheet 3: Balance Sheet
             const tbodyBs = document.getElementById('balanceSheetBody');
             tbodyBs.innerHTML = `
+                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>CURRENT ASSETS</strong></td></tr>
                 <tr><td>Cash & Cash Equivalents</td><td class="mono-text">${fmt(data.cash[0])}</td><td class="mono-text">${fmt(data.cash[1])}</td><td class="mono-text">${fmt(data.cash[2])}</td><td class="mono-text">${fmt(data.cash[3])}</td></tr>
-                <tr><td>Accounts Receivable (AR)</td><td class="mono-text">${fmt(data.ar[0])}</td><td class="mono-text">${fmt(data.ar[1])}</td><td class="mono-text">${fmt(data.ar[2])}</td><td class="mono-text">${fmt(data.ar[3])}</td></tr>
-                <tr><td>Net Property, Plant & Equipment (Net PP&E)</td><td class="mono-text">${fmt(data.netPpe[0])}</td><td class="mono-text">${fmt(data.netPpe[1])}</td><td class="mono-text">${fmt(data.netPpe[2])}</td><td class="mono-text">${fmt(data.netPpe[3])}</td></tr>
+                <tr><td>Accounts Receivable (AR - 45 Days)</td><td class="mono-text">${fmt(data.ar[0])}</td><td class="mono-text">${fmt(data.ar[1])}</td><td class="mono-text">${fmt(data.ar[2])}</td><td class="mono-text">${fmt(data.ar[3])}</td></tr>
+                <tr style="font-weight: 700;"><td>TOTAL CURRENT ASSETS</td><td class="mono-text">${fmt(data.cash[0] + data.ar[0])}</td><td class="mono-text">${fmt(data.cash[1] + data.ar[1])}</td><td class="mono-text">${fmt(data.cash[2] + data.ar[2])}</td><td class="mono-text">${fmt(data.cash[3] + data.ar[3])}</td></tr>
+                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>NON-CURRENT ASSETS</strong></td></tr>
+                <tr><td>Property, Plant & Equipment (PP&E)</td><td class="mono-text">${fmt(1000000)}</td><td class="mono-text">${fmt(1000000)}</td><td class="mono-text">${fmt(1000000)}</td><td class="mono-text">${fmt(1000000)}</td></tr>
+                <tr><td>Less: Accumulated Depreciation</td><td class="mono-text">-${fmt(100000)}</td><td class="mono-text">-${fmt(200000)}</td><td class="mono-text">-${fmt(300000)}</td><td class="mono-text">-${fmt(400000)}</td></tr>
+                <tr style="font-weight: 700;"><td>NET PP&E</td><td class="mono-text">${fmt(data.netPpe[0])}</td><td class="mono-text">${fmt(data.netPpe[1])}</td><td class="mono-text">${fmt(data.netPpe[2])}</td><td class="mono-text">${fmt(data.netPpe[3])}</td></tr>
                 <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>TOTAL ASSETS</td><td class="mono-text text-emerald">${fmt(data.totalAssets[0])}</td><td class="mono-text text-emerald">${fmt(data.totalAssets[1])}</td><td class="mono-text text-emerald">${fmt(data.totalAssets[2])}</td><td class="mono-text text-emerald">${fmt(data.totalAssets[3])}</td></tr>
-                <tr><td>Accounts Payable (AP) & Accruals</td><td class="mono-text">${fmt(data.ap[0])}</td><td class="mono-text">${fmt(data.ap[1])}</td><td class="mono-text">${fmt(data.ap[2])}</td><td class="mono-text">${fmt(data.ap[3])}</td></tr>
+                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>LIABILITIES & EQUITY</strong></td></tr>
+                <tr><td>Accounts Payable (AP - 30 Days)</td><td class="mono-text">${fmt(data.ap[0])}</td><td class="mono-text">${fmt(data.ap[1])}</td><td class="mono-text">${fmt(data.ap[2])}</td><td class="mono-text">${fmt(data.ap[3])}</td></tr>
                 <tr><td>Long-Term Debt</td><td class="mono-text">${fmt(data.debt[0])}</td><td class="mono-text">${fmt(data.debt[1])}</td><td class="mono-text">${fmt(data.debt[2])}</td><td class="mono-text">${fmt(data.debt[3])}</td></tr>
-                <tr><td>Shareholders' Equity & Retained Earnings</td><td class="mono-text">${fmt(data.equity[0])}</td><td class="mono-text">${fmt(data.equity[1])}</td><td class="mono-text">${fmt(data.equity[2])}</td><td class="mono-text">${fmt(data.equity[3])}</td></tr>
+                <tr style="font-weight: 700;"><td>TOTAL LIABILITIES</td><td class="mono-text">${fmt(data.ap[0] + data.debt[0])}</td><td class="mono-text">${fmt(data.ap[1] + data.debt[1])}</td><td class="mono-text">${fmt(data.ap[2] + data.debt[2])}</td><td class="mono-text">${fmt(data.ap[3] + data.debt[3])}</td></tr>
+                <tr><td>Common Stock / Share Capital</td><td class="mono-text">${fmt(1000000)}</td><td class="mono-text">${fmt(1000000)}</td><td class="mono-text">${fmt(1000000)}</td><td class="mono-text">${fmt(1000000)}</td></tr>
+                <tr><td>Retained Earnings</td><td class="mono-text">${fmt(data.equity[0] - 1000000)}</td><td class="mono-text">${fmt(data.equity[1] - 1000000)}</td><td class="mono-text">${fmt(data.equity[2] - 1000000)}</td><td class="mono-text">${fmt(data.equity[3] - 1000000)}</td></tr>
+                <tr style="font-weight: 700;"><td>TOTAL SHAREHOLDERS' EQUITY</td><td class="mono-text">${fmt(data.equity[0])}</td><td class="mono-text">${fmt(data.equity[1])}</td><td class="mono-text">${fmt(data.equity[2])}</td><td class="mono-text">${fmt(data.equity[3])}</td></tr>
                 <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>TOTAL LIABILITIES & EQUITY</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[0])}</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[1])}</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[2])}</td><td class="mono-text text-gold">${fmt(data.totalLiabEquity[3])}</td></tr>
             `;
 
-            // Render Two-Way Sensitivity Matrix
+            // Render Sheet 4: Cash Flow Statement
+            const tbodyCf = document.getElementById('cashFlowBody');
+            tbodyCf.innerHTML = `
+                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>OPERATING ACTIVITIES (CFO)</strong></td></tr>
+                <tr><td>Net Income (PAT)</td><td class="mono-text">${fmt(data.netInc[0])}</td><td class="mono-text">${fmt(data.netInc[1])}</td><td class="mono-text">${fmt(data.netInc[2])}</td><td class="mono-text">${fmt(data.netInc[3])}</td></tr>
+                <tr><td>(+) Non-Cash Depreciation Add-Back</td><td class="mono-text">${fmt(data.depr[0])}</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
+                <tr><td>(-) Increase in Accounts Receivable (AR)</td><td class="mono-text">₹0</td><td class="mono-text">-${fmt(data.ar[1] - data.ar[0])}</td><td class="mono-text">-${fmt(data.ar[2] - data.ar[1])}</td><td class="mono-text">-${fmt(data.ar[3] - data.ar[2])}</td></tr>
+                <tr><td>(+) Increase in Accounts Payable (AP)</td><td class="mono-text">₹0</td><td class="mono-text">${fmt(data.ap[1] - data.ap[0])}</td><td class="mono-text">${fmt(data.ap[2] - data.ap[1])}</td><td class="mono-text">${fmt(data.ap[3] - data.ap[2])}</td></tr>
+                <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>NET CASH FROM OPERATING ACTIVITIES (CFO)</td><td class="mono-text text-emerald">${fmt(data.cfo[0])}</td><td class="mono-text text-emerald">${fmt(data.cfo[1])}</td><td class="mono-text text-emerald">${fmt(data.cfo[2])}</td><td class="mono-text text-emerald">${fmt(data.cfo[3])}</td></tr>
+                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>INVESTING ACTIVITIES (CFI)</strong></td></tr>
+                <tr><td>Capital Expenditures (CapEx)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="font-weight: 700;"><td>NET CASH FROM INVESTING ACTIVITIES (CFI)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="background: rgba(255,255,255,0.03);"><td colspan="5"><strong>FINANCING ACTIVITIES (CFF)</strong></td></tr>
+                <tr><td>Debt Issued / (Repaid)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="font-weight: 700;"><td>NET CASH FROM FINANCING ACTIVITIES (CFF)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>NET CHANGE IN CASH BALANCE</td><td class="mono-text text-gold">${fmt(data.cfo[0])}</td><td class="mono-text text-gold">${fmt(data.cfo[1])}</td><td class="mono-text text-gold">${fmt(data.cfo[2])}</td><td class="mono-text text-gold">${fmt(data.cfo[3])}</td></tr>
+                <tr><td>Beginning Cash Balance</td><td class="mono-text">₹0</td><td class="mono-text">${fmt(data.cash[0])}</td><td class="mono-text">${fmt(data.cash[1])}</td><td class="mono-text">${fmt(data.cash[2])}</td></tr>
+                <tr style="background: rgba(59, 130, 246, 0.2); font-weight: 800;"><td>ENDING CASH BALANCE</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[0])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[1])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[2])}</td><td class="mono-text font-bold" style="color:var(--accent-blue);">${fmt(data.cash[3])}</td></tr>
+            `;
+
+            // Render Sheet 5: FCFF Bridge Table
+            const tbodyFcff = document.getElementById('fcffBody');
+            tbodyFcff.innerHTML = `
+                <tr><td>EBIT (Operating Profit)</td><td class="mono-text">${fmt(data.ebit[1])}</td><td class="mono-text">${fmt(data.ebit[2])}</td><td class="mono-text">${fmt(data.ebit[3])}</td></tr>
+                <tr><td>Less: Income Taxes on EBIT (25%)</td><td class="mono-text">-${fmt(data.fcffTaxes[1])}</td><td class="mono-text">-${fmt(data.fcffTaxes[2])}</td><td class="mono-text">-${fmt(data.fcffTaxes[3])}</td></tr>
+                <tr style="font-weight: 700;"><td>NOPAT (Net Operating Profit After Tax)</td><td class="mono-text">${fmt(data.nopat[1])}</td><td class="mono-text">${fmt(data.nopat[2])}</td><td class="mono-text">${fmt(data.nopat[3])}</td></tr>
+                <tr><td>(+) Depreciation Add-Back</td><td class="mono-text">${fmt(data.depr[1])}</td><td class="mono-text">${fmt(data.depr[2])}</td><td class="mono-text">${fmt(data.depr[3])}</td></tr>
+                <tr><td>(-) Change in Net Working Capital (&Delta;NWC)</td><td class="mono-text">-${fmt(data.dNwc[1])}</td><td class="mono-text">-${fmt(data.dNwc[2])}</td><td class="mono-text">-${fmt(data.dNwc[3])}</td></tr>
+                <tr><td>(-) Capital Expenditures (CapEx)</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td><td class="mono-text">₹0</td></tr>
+                <tr style="background: rgba(16, 185, 129, 0.15); font-weight: 800;"><td>UNLEVERED FREE CASH FLOW (FCFF)</td><td class="mono-text text-emerald">${fmt(data.fcff[1])}</td><td class="mono-text text-emerald">${fmt(data.fcff[2])}</td><td class="mono-text text-emerald font-bold">${fmt(data.fcff[3])}</td></tr>
+                <tr><td>Discount Period (t)</td><td class="mono-text">1</td><td class="mono-text">2</td><td class="mono-text">3</td></tr>
+                <tr><td>Discount Factor (WACC = 10.0%)</td><td class="mono-text">${data.discountFactors[1].toFixed(6)}</td><td class="mono-text">${data.discountFactors[2].toFixed(6)}</td><td class="mono-text">${data.discountFactors[3].toFixed(6)}</td></tr>
+                <tr style="background: rgba(245, 158, 11, 0.15); font-weight: 800;"><td>PRESENT VALUE (PV) OF DISCRETE FCFF</td><td class="mono-text text-gold">${fmt(data.pvFcff[1])}</td><td class="mono-text text-gold">${fmt(data.pvFcff[2])}</td><td class="mono-text text-gold font-bold">${fmt(data.pvFcff[3])}</td></tr>
+            `;
+
+            // Render Sheet 5: Two-Way Sensitivity Matrix
             const tbodyMatrix = document.getElementById('matrixBody');
             tbodyMatrix.innerHTML = sens.matrix.map((row, rIdx) => {
                 const waccPct = (sens.waccList[rIdx] * 100).toFixed(1) + "%";
@@ -520,6 +736,21 @@
             if (key === 'bull') document.getElementById('btnBull').classList.add('active');
             if (key === 'bear') document.getElementById('btnBear').classList.add('active');
             renderAll(key);
+        }
+
+        function switchSheetTab(tabKey) {
+            document.querySelectorAll('.sheet-tab-btn').forEach(b => b.classList.remove('active'));
+            const tabIds = { all: 'tabSheetAll', s1: 'tabSheet1', s2: 'tabSheet2', s3: 'tabSheet3', s4: 'tabSheet4', s5: 'tabSheet5' };
+            if (tabIds[tabKey]) document.getElementById(tabIds[tabKey]).classList.add('active');
+
+            const sections = ['secSheet1', 'secSheet2', 'secSheet3', 'secSheet4', 'secSheet5'];
+            if (tabKey === 'all') {
+                sections.forEach(id => document.getElementById(id).style.display = 'block');
+            } else {
+                sections.forEach(id => document.getElementById(id).style.display = 'none');
+                const showMap = { s1: 'secSheet1', s2: 'secSheet2', s3: 'secSheet3', s4: 'secSheet4', s5: 'secSheet5' };
+                if (showMap[tabKey]) document.getElementById(showMap[tabKey]).style.display = 'block';
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
