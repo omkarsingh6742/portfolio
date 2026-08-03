@@ -20,7 +20,7 @@
 
         /* Excel Tab Switcher */
         .excel-sheet-tabs { display: flex; gap: 6px; border-bottom: 2px solid var(--border-color); margin-bottom: 25px; overflow-x: auto; padding-bottom: 2px; }
-        .sheet-tab-btn { padding: 10px 18px; border-radius: 8px 8px 0 0; font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); border-bottom: none; background: #0c1017; color: var(--text-secondary); white-space: nowrap; transition: all 0.2s ease; }
+        .sheet-tab-btn { padding: 10px 18px; border-radius: 8px 8px 0 0; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); border-bottom: none; background: #0c1017; color: var(--text-secondary); white-space: nowrap; transition: all 0.2s ease; }
         .sheet-tab-btn.active { background: #161e2e; color: var(--accent-gold); border-color: var(--accent-gold); border-bottom: 2px solid #161e2e; margin-bottom: -2px; }
         .sheet-tab-btn:hover { color: #ffffff; border-color: var(--accent-gold); }
 
@@ -64,7 +64,7 @@
         <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
             <span class="kicker-black mono-text"><i class="fa-solid fa-chart-line text-gold"></i> PRO FORMA FINANCIAL MODELING & VALUATION</span>
             <h1 class="title-black">NexGen Tech Financial Model and DCF Valuation</h1>
-            <p class="subtitle-black" style="margin-left: 0;">Interactive 5-sheet financial model replica matching the master Excel workbook: Driver Assumptions, Income Statement, Balance Sheet, Statement of Cash Flows, DCF Unlevered Free Cash Flow (FCFF) Bridge, and Two-Way Sensitivity Matrix.</p>
+            <p class="subtitle-black" style="margin-left: 0;">Interactive Excel sheet viewer. Select any individual sheet tab below to view Driver Assumptions, Income Statement, Balance Sheet, Statement of Cash Flows, or DCF Valuation & Two-Way Sensitivity Matrix.</p>
         </div>
 
         <!-- Dynamic Interactive Scenario Switcher & High-Level KPIs -->
@@ -127,12 +127,9 @@
             </div>
         </div>
 
-        <!-- EXCEL SHEET TAB NAVIGATION SWITCHER -->
+        <!-- INDIVIDUAL EXCEL SHEET TAB BUTTONS (NO MASTER VIEW / NO EXTRA SCROLL) -->
         <div class="excel-sheet-tabs">
-            <button class="sheet-tab-btn active" id="tabSheetAll" onclick="switchSheetTab('all')">
-                <i class="fa-solid fa-layer-group"></i> Master View (All 5 Sheets)
-            </button>
-            <button class="sheet-tab-btn" id="tabSheet1" onclick="switchSheetTab('s1')">
+            <button class="sheet-tab-btn active" id="tabSheet1" onclick="switchSheetTab('s1')">
                 <i class="fa-solid fa-sliders text-gold"></i> Sheet 1: Assumptions
             </button>
             <button class="sheet-tab-btn" id="tabSheet2" onclick="switchSheetTab('s2')">
@@ -149,8 +146,8 @@
             </button>
         </div>
 
-        <!-- SHEET 1: MODEL ASSUMPTIONS & DRIVERS TABLE -->
-        <div id="secSheet1" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+        <!-- SHEET 1: MODEL ASSUMPTIONS & DRIVERS TABLE (DEFAULT VISIBLE) -->
+        <div id="secSheet1" class="excel-preload-card tilt-card" style="display: block;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-sliders text-gold" style="font-size: 1.5rem;"></i>
@@ -179,8 +176,8 @@
             </div>
         </div>
 
-        <!-- SHEET 2: PRO FORMA INCOME STATEMENT TABLE -->
-        <div id="secSheet2" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+        <!-- SHEET 2: PRO FORMA INCOME STATEMENT TABLE (HIDDEN UNTIL CLICKED) -->
+        <div id="secSheet2" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-file-invoice-dollar text-emerald" style="font-size: 1.5rem;"></i>
@@ -209,8 +206,8 @@
             </div>
         </div>
 
-        <!-- SHEET 3: PRO FORMA BALANCE SHEET TABLE -->
-        <div id="secSheet3" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+        <!-- SHEET 3: PRO FORMA BALANCE SHEET TABLE (HIDDEN UNTIL CLICKED) -->
+        <div id="secSheet3" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-scale-balanced text-gold" style="font-size: 1.5rem;"></i>
@@ -239,8 +236,8 @@
             </div>
         </div>
 
-        <!-- SHEET 4: PRO FORMA CASH FLOW STATEMENT TABLE -->
-        <div id="secSheet4" class="excel-preload-card tilt-card" style="margin-bottom: 35px;">
+        <!-- SHEET 4: PRO FORMA CASH FLOW STATEMENT TABLE (HIDDEN UNTIL CLICKED) -->
+        <div id="secSheet4" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-money-bill-wave text-emerald" style="font-size: 1.5rem;"></i>
@@ -269,8 +266,8 @@
             </div>
         </div>
 
-        <!-- SHEET 5: DCF VALUATION, FCFF BRIDGE & TWO-WAY SENSITIVITY MATRIX -->
-        <div id="secSheet5" class="excel-preload-card tilt-card">
+        <!-- SHEET 5: DCF VALUATION, FCFF BRIDGE & TWO-WAY SENSITIVITY MATRIX (HIDDEN UNTIL CLICKED) -->
+        <div id="secSheet5" class="excel-preload-card tilt-card" style="display: none;">
             <div class="excel-card-header">
                 <div class="excel-header-title">
                     <i class="fa-solid fa-border-all text-gold" style="font-size: 1.5rem;"></i>
@@ -740,21 +737,19 @@
 
         function switchSheetTab(tabKey) {
             document.querySelectorAll('.sheet-tab-btn').forEach(b => b.classList.remove('active'));
-            const tabIds = { all: 'tabSheetAll', s1: 'tabSheet1', s2: 'tabSheet2', s3: 'tabSheet3', s4: 'tabSheet4', s5: 'tabSheet5' };
+            const tabIds = { s1: 'tabSheet1', s2: 'tabSheet2', s3: 'tabSheet3', s4: 'tabSheet4', s5: 'tabSheet5' };
             if (tabIds[tabKey]) document.getElementById(tabIds[tabKey]).classList.add('active');
 
             const sections = ['secSheet1', 'secSheet2', 'secSheet3', 'secSheet4', 'secSheet5'];
-            if (tabKey === 'all') {
-                sections.forEach(id => document.getElementById(id).style.display = 'block');
-            } else {
-                sections.forEach(id => document.getElementById(id).style.display = 'none');
-                const showMap = { s1: 'secSheet1', s2: 'secSheet2', s3: 'secSheet3', s4: 'secSheet4', s5: 'secSheet5' };
-                if (showMap[tabKey]) document.getElementById(showMap[tabKey]).style.display = 'block';
-            }
+            sections.forEach(id => document.getElementById(id).style.display = 'none');
+            
+            const showMap = { s1: 'secSheet1', s2: 'secSheet2', s3: 'secSheet3', s4: 'secSheet4', s5: 'secSheet5' };
+            if (showMap[tabKey]) document.getElementById(showMap[tabKey]).style.display = 'block';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             renderAll('base');
+            switchSheetTab('s1');
         });
     </script>
 </body>
