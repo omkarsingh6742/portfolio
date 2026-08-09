@@ -816,13 +816,16 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
     background: #060911;
     border: 1px solid #1e293b;
     border-radius: 10px;
-    padding: 16px;
+    padding: 14px;
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     color: #38bdf8;
     overflow-x: auto;
-    white-space: pre;
-    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.5;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 /* Responsive Media Queries */
@@ -837,6 +840,13 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
     .black-hero-title { font-size: 2.5rem; }
     .footer-inner-black { flex-direction: column; gap: 12px; text-align: center; }
     .project-card-fullwidth > div { grid-template-columns: 1fr !important; }
+    .project-card-fullwidth {
+        padding: 16px 12px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
 }
+
 
 
