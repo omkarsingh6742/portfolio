@@ -10,6 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.black-nav-link');
     const sections = document.querySelectorAll('section');
 
+    // Handle initial hash scroll to specific project card (e.g. #project-4)
+    if (window.location.hash) {
+        setTimeout(() => {
+            const targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+                const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - 100;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 150);
+    }
+
     window.addEventListener('scroll', () => {
         let currentSection = '';
         sections.forEach(section => {
