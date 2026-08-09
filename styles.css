@@ -745,6 +745,86 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
 .toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
 .toast { background: var(--bg-card); border: 1px solid var(--accent-emerald); color: var(--text-primary); padding: 12px 20px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
 
+/* ==========================================================================
+   MODAL STYLES (PROJECT 4 INTERACTIVE MODALS)
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 5, 8, 0.88);
+    backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+    background: #0f172a;
+    border: 1px solid var(--accent-gold);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 850px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--border-color);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+}
+
+.sql-code-block {
+    background: #060911;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: #38bdf8;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.6;
+}
+
 /* Responsive Media Queries */
 @media (max-width: 900px) {
     .hero-black-grid { grid-template-columns: 1fr; }
@@ -757,3 +837,4 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
     .black-hero-title { font-size: 2.5rem; }
     .footer-inner-black { flex-direction: column; gap: 12px; text-align: center; }
 }
+

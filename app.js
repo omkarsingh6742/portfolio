@@ -369,3 +369,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 });
+
+/* Global Modal Controls for Project 4 */
+function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+}
+
+function closeModal(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+}
+
+function copySqlScript() {
+    const sqlText = `-- 1. PostgreSQL Table Architecture (tech_giants_financials)
+CREATE TABLE tech_giants_financials (
+    record_id INT PRIMARY KEY,
+    company_name VARCHAR(50),
+    ticker VARCHAR(10),
+    fiscal_year INT,
+    revenue_usd_m DECIMAL(12,2),
+    ebitda_usd_m DECIMAL(12,2),
+    net_income_usd_m DECIMAL(12,2),
+    operating_cash_flow_usd_m DECIMAL(12,2)
+);
+
+-- 2. Advanced SQL Window Function Query (Ranking 2024 Revenue)
+SELECT company_name, fiscal_year, revenue_usd_m, ebitda_usd_m,
+       RANK() OVER (ORDER BY revenue_usd_m DESC) AS revenue_rank
+FROM tech_giants_financials
+WHERE fiscal_year = 2024;
+
+-- 3. Multi-Year Sector Aggregations (2021-2024 Trend)
+SELECT fiscal_year,
+       SUM(revenue_usd_m) AS total_sector_revenue,
+       SUM(operating_cash_flow_usd_m) AS total_sector_cash_flow
+FROM tech_giants_financials
+GROUP BY fiscal_year
+ORDER BY fiscal_year ASC;`;
+
+    navigator.clipboard.writeText(sqlText).then(() => {
+        alert('✅ PostgreSQL SQL Script copied to clipboard!');
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+

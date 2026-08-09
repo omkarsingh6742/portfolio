@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Giants SEC Financial Database & Power BI Dashboard | Omkar Singh Portfolio</title>
+    <meta name="description" content="PostgreSQL 18 SEC 10-K Financial Database & Power BI Intelligence Dashboard by Omkar Singh analyzing Apple, Microsoft, Amazon, Alphabet, and Tesla.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pbi-canvas {
+            background: #0f172a;
+            border: 2px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+        }
+        .pbi-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            border-bottom: 2px solid var(--accent-gold);
+            padding: 14px 20px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .pbi-slicer-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #0f172a;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .pbi-slicer-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid #4a5568;
+            color: #e2e8f0;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pbi-slicer-btn.active {
+            background: var(--accent-gold);
+            color: #040508;
+            font-weight: 700;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+        }
+        
+        .sql-tab-bar {
+            display: flex;
+            gap: 8px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        .sql-tab-btn {
+            background: #080c14;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px 8px 0 0;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .sql-tab-btn.active {
+            background: #1e293b;
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            border-bottom: 2px solid #1e293b;
+            margin-bottom: -2px;
+        }
+
+        .sql-code-box {
+            background: #060911;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #38bdf8;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.6;
+        }
+
+        .badge-green-heat {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            border: 1px solid #10b981;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <header class="executive-header">
+        <div class="container header-inner">
+            <a href="index.html#projects" onclick="if(window.history.length > 1){window.history.back(); return false;}" class="brand-logo-black">
+                <div class="black-logo-icon"><i class="fa-solid fa-arrow-left text-gold"></i></div>
+                <div class="black-logo-meta">
+                    <span class="brand-name">OMKAR SINGH</span>
+                    <span class="brand-sub mono-text"><i class="fa-solid fa-database text-gold"></i> SEC DATABASE & POWER BI DASHBOARD</span>
+                </div>
+            </a>
+
+            <div class="header-right" style="display: flex; gap: 12px; align-items: center;">
+                <a href="Tech_Giants_BI_Dashboard.pbix" download="Tech_Giants_BI_Dashboard.pbix" class="btn-black btn-gold glow-btn">
+                    <i class="fa-solid fa-download"></i> Download Power BI (.pbix)
+                </a>
+                <a href="index.html#projects" onclick="if(window.history.length > 1){window.history.back(); return false;}" class="btn-black btn-outline">
+                    <i class="fa-solid fa-house"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
+            <span class="kicker-black mono-text"><i class="fa-solid fa-database text-gold"></i> POSTGRESQL 18 + POWER BI INTEGRATION</span>
+            <h1 class="title-black">Tech Giants SEC Financial Database & Power BI Dashboard</h1>
+            <p class="subtitle-black" style="margin-left: 0;">Relational PostgreSQL 18 database analyzing 20 SEC 10-K annual report filings (2021–2024) across 5 tech titans: Apple, Microsoft, Amazon, Tesla, and Alphabet. Integrated with Wall Street SQL analytical queries and an interactive Power BI Executive Dashboard.</p>
+        </div>
+
+        <!-- Power BI Canvas Viewport -->
+        <div class="pbi-canvas">
+            <!-- Power BI Header & Interactive Year Slicers -->
+            <div class="pbi-topbar">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-database text-gold" style="font-size: 1.6rem;"></i>
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">TECH GIANTS SEC FINANCIAL INTELLIGENCE DASHBOARD</h3>
+                        <span class="mono-text text-muted" style="font-size: 0.725rem;">POSTGRESQL 18 ARCHITECTURE + POWER BI DESKTOP DAX MEASURES</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Year Slicer -->
+                <div class="pbi-slicer-box">
+                    <span class="mono-text text-gold" style="font-size: 0.75rem;"><i class="fa-solid fa-filter"></i> FISCAL YEAR:</span>
+                    <button class="pbi-slicer-btn active" id="slicer2024" onclick="filterYear(2024)">2024</button>
+                    <button class="pbi-slicer-btn" id="slicer2023" onclick="filterYear(2023)">2023</button>
+                    <button class="pbi-slicer-btn" id="slicer2022" onclick="filterYear(2022)">2022</button>
+                    <button class="pbi-slicer-btn" id="slicer2021" onclick="filterYear(2021)">2021</button>
+                    <button class="pbi-slicer-btn" id="slicerAll" onclick="filterYear('all')">ALL (2021-24)</button>
+                </div>
+            </div>
+
+            <!-- Executive KPI Cards Grid -->
+            <div class="fpa-kpi-grid" style="margin-bottom: 25px;">
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">SECTOR REVENUE ANALYZED</span>
+                    <h3 class="kpi-value mono-text text-gold" id="kpiRevenue">$1,703,962 M</h3>
+                    <span class="kpi-sub" id="kpiRevSub">$1.70 Trillion Cumulative 2024</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">PEAK EBITDA MARGIN</span>
+                    <h3 class="kpi-value mono-text text-emerald" id="kpiPeakEbitda">50.36%</h3>
+                    <span class="kpi-sub" id="kpiEbitdaSub">Microsoft Corp (MSFT - 2024)</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">PEAK CASH CONVERSION RATIO</span>
+                    <h3 class="kpi-value mono-text text-gold" id="kpiPeakCash">2.18x</h3>
+                    <span class="kpi-sub" id="kpiCashSub">Amazon.com (OCF / Net Income)</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">DATABASE RECORDS ANALYZED</span>
+                    <h3 class="kpi-value mono-text text-emerald">20 Filings</h3>
+                    <span class="kpi-sub">5 Tech Titans (2021–2024 10-K)</span>
+                </div>
+            </div>
+
+            <!-- Company Rankings & SEC Financial Dataset Table -->
+            <h4 style="margin-top: 20px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
+                <i class="fa-solid fa-table-list"></i> SEC 10-K Financial Dataset & Window Function Rankings
+            </h4>
+            <div class="table-responsive-box" style="margin-bottom: 30px;">
+                <table class="excel-rendered-table">
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>COMPANY NAME</th>
+                            <th>TICKER</th>
+                            <th>FISCAL YEAR</th>
+                            <th>REVENUE ($M)</th>
+                            <th>EBITDA ($M)</th>
+                            <th>EBITDA MARGIN %</th>
+                            <th>NET INCOME ($M)</th>
+                            <th>OPERATING CASH FLOW ($M)</th>
+                            <th>CASH CONVERSION RATIO</th>
+                        </tr>
+                    </thead>
+                    <tbody id="secDatasetBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Multi-Year Chart Visualizations -->
+            <div class="chart-card tilt-card" style="margin-bottom: 30px;">
+                <div class="chart-header-row">
+                    <h4><i class="fa-solid fa-chart-column text-gold"></i> Multi-Year Revenue & EBITDA Comparison Across Tech Titans ($ Millions)</h4>
+                    <span class="mono-text text-muted" style="font-size: 0.75rem;">POSTGRESQL AGGREGATED DATASET</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="techGiantsChartCanvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Wall Street SQL Analytical Query Explorer -->
+            <h4 style="margin-top: 35px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
+                <i class="fa-solid fa-terminal"></i> Wall Street PostgreSQL 18 Query Explorer
+            </h4>
+            
+            <div class="sql-tab-bar">
+                <button class="sql-tab-btn active" id="tabSql1" onclick="switchSqlTab(1)">1. Table Schema Architecture</button>
+                <button class="sql-tab-btn" id="tabSql2" onclick="switchSqlTab(2)">2. RANK() OVER Revenue Window Query</button>
+                <button class="sql-tab-btn" id="tabSql3" onclick="switchSqlTab(3)">3. Multi-Year Sector Aggregations</button>
+                <button class="sql-tab-btn" id="tabSql4" onclick="switchSqlTab(4)">4. Financial Ratios & Margins</button>
+            </div>
+
+            <div id="sqlBox1" class="sql-code-box">-- 1. PostgreSQL Table Architecture (tech_giants_financials)
+CREATE TABLE tech_giants_financials (
+    record_id INT PRIMARY KEY,
+    company_name VARCHAR(50),
+    ticker VARCHAR(10),
+    fiscal_year INT,
+    revenue_usd_m DECIMAL(12,2),
+    ebitda_usd_m DECIMAL(12,2),
+    net_income_usd_m DECIMAL(12,2),
+    operating_cash_flow_usd_m DECIMAL(12,2)
+);</div>
+
+            <div id="sqlBox2" class="sql-code-box" style="display:none;">-- 2. Advanced SQL Window Function Query (Ranking 2024 Revenue)
+SELECT company_name, ticker, fiscal_year, revenue_usd_m, ebitda_usd_m,
+       RANK() OVER (ORDER BY revenue_usd_m DESC) AS revenue_rank
+FROM tech_giants_financials
+WHERE fiscal_year = 2024;</div>
+
+            <div id="sqlBox3" class="sql-code-box" style="display:none;">-- 3. Multi-Year Sector Aggregations (2021-2024 Trend)
+SELECT fiscal_year,
+       SUM(revenue_usd_m) AS total_sector_revenue,
+       SUM(ebitda_usd_m) AS total_sector_ebitda,
+       SUM(operating_cash_flow_usd_m) AS total_sector_cash_flow
+FROM tech_giants_financials
+GROUP BY fiscal_year
+ORDER BY fiscal_year ASC;</div>
+
+            <div id="sqlBox4" class="sql-code-box" style="display:none;">-- 4. EBITDA Margin % & Cash Conversion Ratio Queries
+SELECT company_name, fiscal_year, revenue_usd_m, ebitda_usd_m,
+       ROUND((ebitda_usd_m / revenue_usd_m) * 100, 2) AS ebitda_margin_pct,
+       ROUND(operating_cash_flow_usd_m / net_income_usd_m, 2) AS cash_conversion_ratio
+FROM tech_giants_financials
+ORDER BY fiscal_year DESC, ebitda_margin_pct DESC;</div>
+
+        </div>
+
+    </main>
+
+    <script>
+        const secData = [
+            // 2024
+            { rank: 1, name: "Amazon.com Inc", ticker: "AMZN", year: 2024, rev: 620130, ebitda: 109200, netInc: 54345, ocf: 118248 },
+            { rank: 2, name: "Apple Inc", ticker: "AAPL", year: 2024, rev: 391035, ebitda: 134668, netInc: 93736, ocf: 118264 },
+            { rank: 3, name: "Alphabet Inc (Google)", ticker: "GOOGL", year: 2024, rev: 350016, ebitda: 111700, netInc: 94260, ocf: 104262 },
+            { rank: 4, name: "Microsoft Corp", ticker: "MSFT", year: 2024, rev: 245122, ebitda: 123439, netInc: 88136, ocf: 118548 },
+            { rank: 5, name: "Tesla Inc", ticker: "TSLA", year: 2024, rev: 97659, ebitda: 14750, netInc: 7091, ocf: 14920 },
+
+            // 2023
+            { rank: 1, name: "Amazon.com Inc", ticker: "AMZN", year: 2023, rev: 574785, ebitda: 85500, netInc: 30425, ocf: 84946 },
+            { rank: 2, name: "Apple Inc", ticker: "AAPL", year: 2023, rev: 383285, ebitda: 125820, netInc: 96995, ocf: 110543 },
+            { rank: 3, name: "Alphabet Inc (Google)", ticker: "GOOGL", year: 2023, rev: 307394, ebitda: 96500, netInc: 73795, ocf: 101746 },
+            { rank: 4, name: "Microsoft Corp", ticker: "MSFT", year: 2023, rev: 211915, ebitda: 102384, netInc: 72361, ocf: 87582 },
+            { rank: 5, name: "Tesla Inc", ticker: "TSLA", year: 2023, rev: 96773, ebitda: 16600, netInc: 14997, ocf: 13256 },
+
+            // 2022
+            { rank: 1, name: "Amazon.com Inc", ticker: "AMZN", year: 2022, rev: 513983, ebitda: 54100, netInc: -2722, ocf: 46752 },
+            { rank: 2, name: "Apple Inc", ticker: "AAPL", year: 2022, rev: 394328, ebitda: 130541, netInc: 99803, ocf: 122151 },
+            { rank: 3, name: "Alphabet Inc (Google)", ticker: "GOOGL", year: 2022, rev: 282836, ebitda: 90700, netInc: 59972, ocf: 91495 },
+            { rank: 4, name: "Microsoft Corp", ticker: "MSFT", year: 2022, rev: 198270, ebitda: 97843, netInc: 72738, ocf: 89035 },
+            { rank: 5, name: "Tesla Inc", ticker: "TSLA", year: 2022, rev: 81462, ebitda: 17800, netInc: 12587, ocf: 14724 },
+
+            // 2021
+            { rank: 1, name: "Amazon.com Inc", ticker: "AMZN", year: 2021, rev: 469822, ebitda: 59100, netInc: 33364, ocf: 46327 },
+            { rank: 2, name: "Apple Inc", ticker: "AAPL", year: 2021, rev: 365817, ebitda: 120225, netInc: 94680, ocf: 104038 },
+            { rank: 3, name: "Alphabet Inc (Google)", ticker: "GOOGL", year: 2021, rev: 257637, ebitda: 85200, netInc: 76033, ocf: 91652 },
+            { rank: 4, name: "Microsoft Corp", ticker: "MSFT", year: 2021, rev: 168088, ebitda: 80816, netInc: 61271, ocf: 76740 },
+            { rank: 5, name: "Tesla Inc", ticker: "TSLA", year: 2021, rev: 53823, ebitda: 9600, netInc: 5519, ocf: 11497 }
+        ];
+
+        let chartObj = null;
+
+        function fmtNum(n) {
+            return "$" + n.toLocaleString('en-US') + " M";
+        }
+
+        function filterYear(yr) {
+            document.querySelectorAll('.pbi-slicer-btn').forEach(b => b.classList.remove('active'));
+            if (yr === 2024) document.getElementById('slicer2024').classList.add('active');
+            if (yr === 2023) document.getElementById('slicer2023').classList.add('active');
+            if (yr === 2022) document.getElementById('slicer2022').classList.add('active');
+            if (yr === 2021) document.getElementById('slicer2021').classList.add('active');
+            if (yr === 'all') document.getElementById('slicerAll').classList.add('active');
+
+            let filtered = secData;
+            if (yr !== 'all') {
+                filtered = secData.filter(d => d.year === yr);
+            }
+
+            // Update KPIs
+            const totalRev = filtered.reduce((acc, d) => acc + d.rev, 0);
+            document.getElementById('kpiRevenue').textContent = "$" + (totalRev / 1000).toFixed(2) + " B";
+            document.getElementById('kpiRevSub').textContent = yr === 'all' ? 'Cumulative (2021–2024 All)' : `Total ${yr} Sector Revenue`;
+
+            // Table rendering
+            const tbody = document.getElementById('secDatasetBody');
+            tbody.innerHTML = filtered.map((d, i) => {
+                const ebitdaMargin = ((d.ebitda / d.rev) * 100).toFixed(2);
+                const cashRatio = d.netInc > 0 ? (d.ocf / d.netInc).toFixed(2) : "N/A";
+                const isTopMargin = ebitdaMargin > 45;
+                const isTopCash = cashRatio > 2.0;
+
+                return `
+                    <tr>
+                        <td class="mono-text text-gold font-bold">${i + 1}</td>
+                        <td class="font-bold">${d.name}</td>
+                        <td class="mono-text text-muted">${d.ticker}</td>
+                        <td class="mono-text">${d.year}</td>
+                        <td class="mono-text font-bold text-gold">${fmtNum(d.rev)}</td>
+                        <td class="mono-text text-emerald">${fmtNum(d.ebitda)}</td>
+                        <td class="mono-text ${isTopMargin ? 'badge-green-heat' : ''}">${ebitdaMargin}%</td>
+                        <td class="mono-text">${fmtNum(d.netInc)}</td>
+                        <td class="mono-text">${fmtNum(d.ocf)}</td>
+                        <td class="mono-text ${isTopCash ? 'badge-green-heat' : ''}">${cashRatio}x</td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Render Chart
+            renderChart(filtered);
+        }
+
+        function renderChart(dataList) {
+            const ctx = document.getElementById('techGiantsChartCanvas').getContext('2d');
+            if (chartObj) chartObj.destroy();
+
+            // Group by company name
+            const compNames = ["Amazon.com Inc", "Apple Inc", "Alphabet Inc (Google)", "Microsoft Corp", "Tesla Inc"];
+            const revs = compNames.map(name => {
+                const item = dataList.find(d => d.name === name);
+                return item ? item.rev : 0;
+            });
+            const ebitdas = compNames.map(name => {
+                const item = dataList.find(d => d.name === name);
+                return item ? item.ebitda : 0;
+            });
+
+            chartObj = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Amazon', 'Apple', 'Alphabet (Google)', 'Microsoft', 'Tesla'],
+                    datasets: [
+                        {
+                            label: 'Revenue ($M)',
+                            data: revs,
+                            backgroundColor: 'rgba(245, 158, 11, 0.85)',
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'EBITDA ($M)',
+                            data: ebitdas,
+                            backgroundColor: 'rgba(16, 185, 129, 0.85)',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', weight: '600' } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: {
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(val) { return '$' + val.toLocaleString('en-US') + ' M'; }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function switchSqlTab(idx) {
+            document.querySelectorAll('.sql-tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`tabSql${idx}`).classList.add('active');
+
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`sqlBox${i}`).style.display = i === idx ? 'block' : 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            filterYear(2024);
+        });
+    </script>
+</body>
+</html>

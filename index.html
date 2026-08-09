@@ -418,6 +418,39 @@
                         </div>
                     </div>
 
+                    <!-- PROJECT CARD 4 (NEW) -->
+                    <div class="project-card-premium tilt-card" style="border: 1px solid var(--accent-gold);">
+                        <div>
+                            <div class="project-icon-badge" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-gold);">
+                                <i class="fa-solid fa-database text-gold"></i>
+                            </div>
+                            <div class="project-meta-tags">
+                                <span class="black-tag mono-text"><i class="fa-solid fa-server text-gold"></i> PostgreSQL 18 + SQL</span>
+                                <span class="black-tag mono-text text-emerald">Power BI (.pbix)</span>
+                            </div>
+                            <h3 class="project-title">Tech Giants SEC Financial Database & Power BI Dashboard</h3>
+                            <p class="project-desc" style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 12px;">
+                                Engineered a relational PostgreSQL database holding 20 real SEC 10-K annual report financial records (2021–2024) for 5 global tech titans: Apple Inc, Microsoft Corp, Amazon.com, Tesla Inc, and Alphabet (Google). Wrote Wall Street SQL analytical queries calculating EBITDA margins, Cash Conversion Ratios (Operating Cash Flow / Net Income), multi-year sector aggregations (GROUP BY), and advanced Window Functions (RANK() OVER). Built an interactive Power BI Executive Dashboard featuring custom DAX measures, dynamic year slicers, multi-year line charts, and a green conditional formatting heatmap table.
+                            </p>
+
+                            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px;">
+                                <span class="black-tag mono-text" style="font-size: 0.725rem; background: rgba(245, 158, 11, 0.12); color: var(--accent-gold);">$1.70 Trillion 2024 Sector Revenue Analyzed</span>
+                                <span class="black-tag mono-text" style="font-size: 0.725rem; background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald);">50.36% Peak EBITDA Margin (Microsoft)</span>
+                                <span class="black-tag mono-text" style="font-size: 0.725rem; background: rgba(59, 130, 246, 0.12); color: var(--accent-blue);">2.18x Peak Cash Conversion Ratio (Amazon)</span>
+                                <span class="black-tag mono-text" style="font-size: 0.725rem; background: rgba(245, 158, 11, 0.12); color: var(--text-primary);">PostgreSQL 18 + Power BI Integration</span>
+                            </div>
+                        </div>
+
+                        <div class="project-action-btns">
+                            <button onclick="openModal('modalPbiDetails')" class="btn-project-action btn-preview" style="cursor: pointer;">
+                                <i class="fa-solid fa-chart-column"></i> 📊 View BI Dashboard Details
+                            </button>
+                            <button onclick="openModal('modalSqlScript')" class="btn-project-action btn-download-proj" style="cursor: pointer; background: rgba(16, 185, 129, 0.15); border-color: var(--accent-emerald); color: var(--accent-emerald);">
+                                <i class="fa-solid fa-terminal"></i> 🗄️ View PostgreSQL Script (.sql)
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -709,6 +742,117 @@
     <!-- Toast Notifications -->
     <div id="toastContainer" class="toast-container"></div>
 
+    <!-- MODAL 1: POWER BI DASHBOARD DETAILS -->
+    <div id="modalPbiDetails" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="closeModal('modalPbiDetails')">&times;</button>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
+                <i class="fa-solid fa-chart-column text-gold" style="font-size:1.8rem;"></i>
+                <div>
+                    <h3 style="font-family: var(--font-heading); color: #fff; font-size:1.35rem;">Tech Giants SEC Power BI Intelligence Dashboard</h3>
+                    <span class="mono-text text-gold" style="font-size:0.8rem;">POSTGRESQL 18 + POWER BI DESKTOP DAX ARCHITECTURE</span>
+                </div>
+            </div>
+
+            <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;">
+                Engineered a comprehensive financial database and executive BI dashboard processing 20 SEC 10-K annual report filings (2021–2024) across 5 tech titans: Apple, Microsoft, Amazon, Alphabet, and Tesla.
+            </p>
+
+            <div class="fpa-kpi-grid" style="margin-bottom: 20px;">
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">2024 SECTOR REVENUE</span>
+                    <h4 class="kpi-value mono-text text-gold" style="font-size:1.2rem;">$1,703,962 M</h4>
+                    <span class="kpi-sub">$1.70 Trillion Analyzed</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">PEAK EBITDA MARGIN</span>
+                    <h4 class="kpi-value mono-text text-emerald" style="font-size:1.2rem;">50.36%</h4>
+                    <span class="kpi-sub">Microsoft Corp (2024)</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">CASH CONVERSION RATIO</span>
+                    <h4 class="kpi-value mono-text text-gold" style="font-size:1.2rem;">2.18x</h4>
+                    <span class="kpi-sub">Amazon.com (OCF/PAT)</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label mono-text">SEC 10-K FILINGS</span>
+                    <h4 class="kpi-value mono-text text-emerald" style="font-size:1.2rem;">20 Records</h4>
+                    <span class="kpi-sub">5 Titans (2021–2024)</span>
+                </div>
+            </div>
+
+            <h4 class="mono-text text-gold" style="margin-bottom: 10px;"><i class="fa-solid fa-code"></i> Key DAX Measures Formulated:</h4>
+            <div class="sql-code-block" style="font-size: 0.8rem; margin-bottom: 20px;">
+EBITDA Margin % = DIVIDE(SUM(tech_giants_financials[ebitda_usd_m]), SUM(tech_giants_financials[revenue_usd_m]), 0)
+
+Cash Conversion Ratio = DIVIDE(SUM(tech_giants_financials[operating_cash_flow_usd_m]), SUM(tech_giants_financials[net_income_usd_m]), 0)
+
+2024 Revenue Rank = RANKX(ALL(tech_giants_financials[company_name]), CALCULATE(SUM(tech_giants_financials[revenue_usd_m]), tech_giants_financials[fiscal_year] = 2024), , DESC)
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="project-techgiants-dashboard.html" class="btn-black btn-gold glow-btn">
+                    <i class="fa-solid fa-eye"></i> Full Screen Live Interactive Preview
+                </a>
+                <a href="Tech_Giants_BI_Dashboard.pbix" download="Tech_Giants_BI_Dashboard.pbix" class="btn-black btn-outline">
+                    <i class="fa-solid fa-download"></i> Download Power BI (.pbix)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: POSTGRESQL SCRIPT (.SQL) -->
+    <div id="modalSqlScript" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="closeModal('modalSqlScript')">&times;</button>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
+                <i class="fa-solid fa-terminal text-gold" style="font-size:1.8rem;"></i>
+                <div>
+                    <h3 style="font-family: var(--font-heading); color: #fff; font-size:1.35rem;">PostgreSQL 18 SEC Database Query Script (.sql)</h3>
+                    <span class="mono-text text-emerald" style="font-size:0.8rem;"><i class="fa-solid fa-check-circle"></i> VERIFIED WALL STREET SQL ANALYTICAL QUERIES</span>
+                </div>
+            </div>
+
+            <div class="sql-code-block" style="max-height: 400px; overflow-y: auto;">
+-- 1. PostgreSQL Table Architecture (tech_giants_financials)
+CREATE TABLE tech_giants_financials (
+    record_id INT PRIMARY KEY,
+    company_name VARCHAR(50),
+    ticker VARCHAR(10),
+    fiscal_year INT,
+    revenue_usd_m DECIMAL(12,2),
+    ebitda_usd_m DECIMAL(12,2),
+    net_income_usd_m DECIMAL(12,2),
+    operating_cash_flow_usd_m DECIMAL(12,2)
+);
+
+-- 2. Advanced SQL Window Function Query (Ranking 2024 Revenue)
+SELECT company_name, fiscal_year, revenue_usd_m, ebitda_usd_m,
+       RANK() OVER (ORDER BY revenue_usd_m DESC) AS revenue_rank
+FROM tech_giants_financials
+WHERE fiscal_year = 2024;
+
+-- 3. Multi-Year Sector Aggregations (2021-2024 Trend)
+SELECT fiscal_year,
+       SUM(revenue_usd_m) AS total_sector_revenue,
+       SUM(operating_cash_flow_usd_m) AS total_sector_cash_flow
+FROM tech_giants_financials
+GROUP BY fiscal_year
+ORDER BY fiscal_year ASC;
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 12px;">
+                <button class="btn-black btn-gold glow-btn" onclick="copySqlScript()">
+                    <i class="fa-solid fa-copy"></i> Copy SQL Queries to Clipboard
+                </button>
+                <a href="project-techgiants-dashboard.html" class="btn-black btn-outline">
+                    <i class="fa-solid fa-database"></i> Explore Full Database Preview
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
+
