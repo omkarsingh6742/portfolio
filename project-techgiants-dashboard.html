@@ -19,6 +19,9 @@
             border-radius: 16px;
             padding: 24px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         .pbi-topbar {
             display: flex;
@@ -60,6 +63,44 @@
             box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
         
+        .table-responsive-box {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: #0b0d13;
+            box-sizing: border-box;
+        }
+        .sec-dataset-table {
+            width: 100%;
+            min-width: 1050px;
+            border-collapse: collapse;
+            font-family: var(--font-mono);
+            font-size: 0.825rem;
+            color: var(--text-primary);
+        }
+        .sec-dataset-table th, .sec-dataset-table td {
+            border: 1px solid #1f2738;
+            padding: 12px 14px;
+            white-space: nowrap;
+            text-align: left;
+        }
+        .sec-dataset-table th {
+            background: #141926;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+        .sec-dataset-table tr:hover td {
+            background: rgba(245, 158, 11, 0.05);
+        }
+        .sec-dataset-table tr td:first-child {
+            text-align: center;
+            color: var(--accent-gold);
+            font-weight: 800;
+            width: 50px;
+            background: transparent;
+        }
+
         .sql-tab-bar {
             display: flex;
             gap: 8px;
@@ -114,7 +155,7 @@
 
     <header class="executive-header">
         <div class="container header-inner">
-            <a href="index.html#projects" onclick="if(window.history.length > 1){window.history.back(); return false;}" class="brand-logo-black">
+            <a href="index.html#projects" class="brand-logo-black">
                 <div class="black-logo-icon"><i class="fa-solid fa-arrow-left text-gold"></i></div>
                 <div class="black-logo-meta">
                     <span class="brand-name">OMKAR SINGH</span>
@@ -126,7 +167,7 @@
                 <a href="Tech_Giants_BI_Dashboard.pbix" download="Tech_Giants_BI_Dashboard.pbix" class="btn-black btn-gold glow-btn">
                     <i class="fa-solid fa-download"></i> Download Power BI (.pbix)
                 </a>
-                <a href="index.html#projects" onclick="if(window.history.length > 1){window.history.back(); return false;}" class="btn-black btn-outline">
+                <a href="index.html#projects" class="btn-black btn-outline">
                     <i class="fa-solid fa-house"></i> Back to Portfolio
                 </a>
             </div>
@@ -192,7 +233,7 @@
                 <i class="fa-solid fa-table-list"></i> SEC 10-K Financial Dataset & Window Function Rankings
             </h4>
             <div class="table-responsive-box" style="margin-bottom: 30px;">
-                <table class="excel-rendered-table">
+                <table class="sec-dataset-table">
                     <thead>
                         <tr>
                             <th>RANK</th>
@@ -339,7 +380,7 @@ ORDER BY fiscal_year DESC, ebitda_margin_pct DESC;</div>
 
                 return `
                     <tr>
-                        <td class="mono-text text-gold font-bold">${i + 1}</td>
+                        <td>${i + 1}</td>
                         <td class="font-bold">${d.name}</td>
                         <td class="mono-text text-muted">${d.ticker}</td>
                         <td class="mono-text">${d.year}</td>
