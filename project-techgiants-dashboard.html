@@ -106,8 +106,23 @@
             gap: 8px;
             border-bottom: 2px solid var(--border-color);
             margin-bottom: 15px;
-            overflow-x: auto;
+            flex-wrap: wrap;
+            overflow: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
+        .sql-tab-bar::-webkit-scrollbar,
+        .sql-code-box::-webkit-scrollbar,
+        .table-responsive-box::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .sql-code-box, .table-responsive-box {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .sql-tab-btn {
             background: #080c14;
             border: 1px solid var(--border-color);
@@ -178,7 +193,7 @@
         <div class="section-header-black" style="text-align: left; margin-bottom: 30px;">
             <span class="kicker-black mono-text"><i class="fa-solid fa-database text-gold"></i> POSTGRESQL 18 + POWER BI INTEGRATION</span>
             <h1 class="title-black">Tech Giants SEC Financial Database & Power BI Dashboard</h1>
-            <p class="subtitle-black" style="margin-left: 0;">Relational PostgreSQL 18 database analyzing 20 SEC 10-K annual report filings (2021–2024) across 5 tech titans: Apple, Microsoft, Amazon, Tesla, and Alphabet. Integrated with Wall Street SQL analytical queries and an interactive Power BI Executive Dashboard.</p>
+            <p class="subtitle-black" style="margin-left: 0;">Relational PostgreSQL 18 database analyzing 20 SEC 10-K annual report filings (2021–2024) across 5 tech titans: Apple, Microsoft, Amazon, Tesla, and Alphabet. Integrated with Institutional SEC Financial SQL Analytical Queries and an interactive Power BI Executive Dashboard.</p>
         </div>
 
         <!-- Power BI Canvas Viewport -->
@@ -265,9 +280,9 @@
                 </div>
             </div>
 
-            <!-- Wall Street SQL Analytical Query Explorer -->
+            <!-- Institutional Financial SQL Analytical Query Explorer -->
             <h4 style="margin-top: 35px; margin-bottom: 12px; color: var(--accent-gold);" class="mono-text">
-                <i class="fa-solid fa-terminal"></i> Wall Street PostgreSQL 18 Query Explorer
+                <i class="fa-solid fa-terminal"></i> Institutional Financial PostgreSQL 18 Query Explorer
             </h4>
             
             <div class="sql-tab-bar">
