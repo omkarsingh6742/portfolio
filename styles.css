@@ -836,5 +836,7 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
     .nav-links-black { display: none; }
     .black-hero-title { font-size: 2.5rem; }
     .footer-inner-black { flex-direction: column; gap: 12px; text-align: center; }
+    .project-card-fullwidth > div { grid-template-columns: 1fr !important; }
 }
+
 
