@@ -5,7 +5,7 @@
     <title>Omkar Singh - Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         @page {
             size: A4;
@@ -20,29 +20,30 @@
             font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
             color: #1e293b;
             background: #ffffff;
-            line-height: 1.45;
-            font-size: 9.5pt;
+            line-height: 1.35;
+            font-size: 8.8pt;
             width: 210mm;
             height: 297mm;
-            padding: 14mm 16mm;
+            padding: 10mm 14mm;
             margin: 0 auto;
         }
 
         /* HEADER */
         .header {
             border-bottom: 2px solid #0f172a;
-            padding-bottom: 10px;
-            margin-bottom: 12px;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
         }
         .name {
-            font-size: 22pt;
+            font-size: 20pt;
             font-weight: 800;
             color: #0f172a;
             letter-spacing: -0.5px;
             text-transform: uppercase;
+            line-height: 1.1;
         }
         .target-role {
-            font-size: 10.5pt;
+            font-size: 9.5pt;
             font-weight: 700;
             color: #d97706;
             margin-top: 2px;
@@ -51,256 +52,192 @@
         }
         .contact-row {
             display: flex;
-            gap: 16px;
-            margin-top: 6px;
-            font-size: 9pt;
+            flex-wrap: wrap;
+            gap: 4px 10px;
+            margin-top: 4px;
+            font-size: 8.5pt;
             color: #475569;
             font-weight: 500;
         }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .contact-item a {
+        .contact-row a {
             color: #0284c7;
             text-decoration: none;
         }
 
         /* SECTION HEADINGS */
         .section-title {
-            font-size: 10.5pt;
+            font-size: 9.5pt;
             font-weight: 800;
             color: #0f172a;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             border-bottom: 1.5px solid #cbd5e1;
-            padding-bottom: 3px;
-            margin-top: 11px;
-            margin-bottom: 7px;
+            padding-bottom: 2px;
+            margin-top: 8px;
+            margin-bottom: 5px;
         }
 
-        /* OBJECTIVE */
-        .objective-text {
-            font-size: 9pt;
+        /* SUMMARY */
+        .summary-text {
+            font-size: 8.5pt;
             color: #334155;
-            line-height: 1.4;
-        }
-
-        /* EDUCATION */
-        .edu-item {
-            margin-bottom: 6px;
-        }
-        .edu-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 9.5pt;
-            color: #0f172a;
-        }
-        .edu-sub {
-            display: flex;
-            justify-content: space-between;
-            font-size: 8.8pt;
-            color: #475569;
-            font-weight: 500;
-        }
-
-        /* PROJECTS / CASE STUDIES */
-        .proj-item {
-            margin-bottom: 7px;
-        }
-        .proj-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-        .proj-title {
-            font-weight: 700;
-            font-size: 9.5pt;
-            color: #0f172a;
-        }
-        .proj-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 7.5pt;
-            font-weight: 700;
-            color: #d97706;
-            background: #fffbeb;
-            border: 1px solid #fef3c7;
-            padding: 1px 6px;
-            border-radius: 4px;
-        }
-        .proj-bullets {
-            margin-top: 3px;
-            padding-left: 14px;
-            font-size: 8.8pt;
-            color: #334155;
-        }
-        .proj-bullets li {
-            margin-bottom: 2px;
             line-height: 1.35;
         }
 
-        /* CERTIFICATIONS */
-        .cert-item {
-            margin-bottom: 4px;
+        /* PROJECTS */
+        .proj-item {
+            margin-bottom: 5px;
         }
-        .cert-header {
-            display: flex;
-            justify-content: space-between;
+        .proj-title {
             font-weight: 700;
-            font-size: 9.2pt;
+            font-size: 8.8pt;
             color: #0f172a;
         }
-        .cert-desc {
-            font-size: 8.8pt;
-            color: #475569;
+        .proj-desc {
+            font-size: 8.4pt;
+            color: #334155;
+            line-height: 1.3;
         }
 
-        /* SKILLS MATRIX */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4px 16px;
-            font-size: 8.8pt;
+        /* SKILLS */
+        .skills-list {
+            font-size: 8.4pt;
+            line-height: 1.35;
+        }
+        .skill-item {
+            margin-bottom: 3px;
         }
         .skill-group-title {
             font-weight: 700;
             color: #0f172a;
         }
-        .skill-list {
-            color: #334155;
+
+        /* EDUCATION */
+        .edu-item {
+            margin-bottom: 3px;
+        }
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 8.8pt;
+            color: #0f172a;
         }
 
-        /* ACTIVITIES */
-        .act-bullets {
-            padding-left: 14px;
+        /* CERTIFICATIONS & ACTIVITIES */
+        .cert-header, .act-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
             font-size: 8.8pt;
+            color: #0f172a;
+        }
+        .cert-desc, .act-desc {
+            font-size: 8.4pt;
             color: #334155;
+            line-height: 1.3;
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- 1. HEADER -->
     <div class="header">
         <div class="name">Omkar Singh</div>
-        <div class="target-role">Aspiring Investment Banking & Private Equity Analyst</div>
+        <div class="target-role">Financial Analyst | Targeting Investment Banking & Private Equity</div>
         <div class="contact-row">
-            <div class="contact-item">📧 omkarsingh6742@gmail.com</div>
-            <div class="contact-item">📞 +91 7667300380</div>
-            <div class="contact-item">📍 Bengaluru, India</div>
-            <div class="contact-item">🌐 <a href="https://portfolio-steel-eta-t6jtivqtl7.vercel.app/">Portfolio</a></div>
-            <div class="contact-item">🔗 <a href="https://www.linkedin.com/in/omkarsng13/">LinkedIn</a></div>
+            <span>+91 7667300380</span>
+            <span>&middot;</span>
+            <span><a href="mailto:omkarsingh6742@gmail.com">omkarsingh6742@gmail.com</a></span>
+            <span>&middot;</span>
+            <span><a href="https://www.linkedin.com/in/omkarsng13/">linkedin.com/in/omkarsng13</a></span>
+            <span>&middot;</span>
+            <span><a href="https://portfolio-steel-eta-t6jtivqtl7.vercel.app/">portfolio-steel-eta-t6jtivqtl7.vercel.app</a></span>
         </div>
+        <div style="font-size: 8.5pt; color: #475569; margin-top: 2px;">Bengaluru, Karnataka, India</div>
     </div>
 
-    <!-- CAREER OBJECTIVE -->
-    <div class="section-title">Career Objective</div>
-    <p class="objective-text">
-        Driven Commerce undergraduate at Mount Carmel College specializing in Corporate Finance, DCF Valuation, 3-Statement Financial Modeling, and SQL Database Analytics. Seeking an entry-level Investment Banking / Private Equity / Equity Research Analyst role to leverage analytical SQL queries (PostgreSQL 18), financial modeling, and Power BI dashboards to deliver data-driven investment and valuation insights.
+    <!-- 2. PROFESSIONAL SUMMARY -->
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+        B.Com Commerce undergraduate at Mount Carmel College, Bangalore (2025–2028) with hands-on experience building DCF valuation models, FP&amp;A budget reports, SQL financial databases, and Power BI executive dashboards. NPTEL Corporate Finance certified. Actively targeting roles in Investment Banking, Private Equity, Equity Research, and Corporate Finance.
     </p>
 
-    <!-- EDUCATION -->
+    <!-- 3. PROJECTS & FINANCIAL MODELS -->
+    <div class="section-title">Projects & Financial Models</div>
+
+    <div class="proj-item">
+        <div class="proj-title">Project 1 &mdash; FP&amp;A Budget Variance Model</div>
+        <p class="proj-desc">Engineered a Q3 FP&amp;A Budget Variance Model in Excel analyzing 10 expense line items across 5 departments. Built KPI cards, Chart.js visualizations, and favorable/unfavorable variance flags to track budget performance in real time.</p>
+    </div>
+
+    <div class="proj-item">
+        <div class="proj-title">Project 2 &mdash; NexGen Tech DCF Valuation & Financial Model</div>
+        <p class="proj-desc">Built an integrated 3-Statement Pro Forma Financial Model (2026–2029) for a simulated tech company with dynamic Base, Bull, and Bear scenario switcher, EBITDA margin forecasting, WACC calculation, and a Two-Way DCF Sensitivity Matrix yielding a terminal valuation of ₹1,92,38,543.</p>
+    </div>
+
+    <div class="proj-item">
+        <div class="proj-title">Project 3 &mdash; Q3 Power BI Dashboard</div>
+        <p class="proj-desc">Designed an interactive Power BI Desktop Dashboard for Q3 budget vs. actual variance analysis featuring custom DAX measures, category slicers, clustered column visuals, donut charts, and green/red conditional formatting for instant variance identification.</p>
+    </div>
+
+    <div class="proj-item">
+        <div class="proj-title">Project 4 &mdash; Tech Giants SEC Financial Database</div>
+        <p class="proj-desc">Engineered a relational PostgreSQL 18 database ingesting 20 real SEC 10-K records (2021–2024) for 5 global tech titans (Apple, Microsoft, Amazon, Tesla, Alphabet), analyzing $1.70 trillion in 2024 sector revenue. Wrote advanced SQL queries using RANK() OVER window functions, EBITDA margin calculations, and GROUP BY aggregations. Integrated with Power BI Executive Dashboard featuring custom DAX measures and a conditional formatting heatmap.</p>
+    </div>
+
+    <!-- 4. SKILLS -->
+    <div class="section-title">Skills</div>
+    <div class="skills-list">
+        <div class="skill-item"><span class="skill-group-title">Financial Modeling & Valuation:</span> DCF Valuation, 3-Statement Pro Forma Modeling, Scenario Analysis & Stress Testing, Sensitivity Analysis, FP&A Budget Variance Auditing, WACC, NPV/IRR</div>
+        <div class="skill-item"><span class="skill-group-title">Data & Analytics:</span> SQL, PostgreSQL 18, Power BI, DAX Measures, Financial Data Engineering</div>
+        <div class="skill-item"><span class="skill-group-title">Tools:</span> Advanced MS Excel (XLOOKUP, VLOOKUP, Data Tables), MS PowerPoint, Google Sheets</div>
+        <div class="skill-item"><span class="skill-group-title">Finance Knowledge:</span> Corporate Finance, Equity Management, Capital Structure, Discounting & Compounding, Financial Statement Analysis, Accounting Principles</div>
+    </div>
+
+    <!-- 5. EDUCATION -->
     <div class="section-title">Education</div>
-    
+
     <div class="edu-item">
         <div class="edu-header">
-            <span>B.Com, Commerce</span>
-            <span>2025 – 2028</span>
-        </div>
-        <div class="edu-sub">
-            <span>Mount Carmel College, Bangalore</span>
-            <span>Undergraduate Degree</span>
+            <span>B.Com, Commerce &mdash; Mount Carmel College, Bangalore</span>
+            <span>2025 &ndash; 2028 (Ongoing)</span>
         </div>
     </div>
 
     <div class="edu-item">
         <div class="edu-header">
-            <span>Senior Secondary (XII), Karnataka State Board</span>
-            <span>2025</span>
-        </div>
-        <div class="edu-sub">
-            <span>The National PU College, Jayanagar &bull; Commerce Stream</span>
-            <span>Percentage: <strong>80.17%</strong></span>
+            <span>Senior Secondary XII Commerce &mdash; The National PU College, Jayanagar</span>
+            <span>2025 &bull; <strong style="color: #0f172a;">80.17%</strong></span>
         </div>
     </div>
 
     <div class="edu-item">
         <div class="edu-header">
-            <span>Secondary (X), CBSE</span>
-            <span>2023</span>
-        </div>
-        <div class="edu-sub">
-            <span>Narayana E Techno School</span>
-            <span>Percentage: <strong>86.40%</strong></span>
+            <span>Secondary X CBSE &mdash; Narayana E Techno School</span>
+            <span>2023 &bull; <strong style="color: #0f172a;">86.40% Distinction</strong></span>
         </div>
     </div>
 
-    <!-- CORPORATE FINANCE CASE STUDY & PROJECTS -->
-    <div class="section-title">Financial Modeling & Analytics Case Studies</div>
-
-    <div class="proj-item">
-        <div class="proj-header">
-            <span class="proj-title">Tech Giants SEC Financial Database & Power BI Dashboard</span>
-            <span class="proj-tag">POSTGRESQL 18 & POWER BI</span>
-        </div>
-        <ul class="proj-bullets">
-            <li>Engineered a relational PostgreSQL database processing 20 SEC 10-K filings (2021–2024) across Apple, Microsoft, Amazon, Alphabet, and Tesla.</li>
-            <li>Wrote Institutional SEC Financial SQL analytical queries calculating EBITDA margins, Cash Conversion Ratios, and <code>RANK() OVER</code> Window Functions ($1.70T sector revenue).</li>
-            <li>Integrated PostgreSQL dataset into an interactive Power BI Dashboard with custom DAX measures and green heatmap tables.</li>
-        </ul>
-    </div>
-
-    <div class="proj-item">
-        <div class="proj-header">
-            <span class="proj-title">NexGen Tech Financial Model & DCF Valuation</span>
-            <span class="proj-tag">EXCEL MODELING & VALUATION</span>
-        </div>
-        <ul class="proj-bullets">
-            <li>Engineered an integrated 4-year Pro Forma 3-Statement Model (Income Statement, Cash Flow, Balance Sheet) for 2026–2029.</li>
-            <li>Built dynamic Base, Bull, and Bear scenario switchers with automated EBITDA forecasts and Two-Way DCF Sensitivity Matrix (<strong>₹1,92,38,543</strong> Implied EV).</li>
-        </ul>
-    </div>
-
-    <div class="proj-item">
-        <div class="proj-header">
-            <span class="proj-title">Q3 Budget vs. Actual Variance Power BI Dashboard</span>
-            <span class="proj-tag">POWER BI & DAX</span>
-        </div>
-        <ul class="proj-bullets">
-            <li>Designed an interactive Power BI Desktop dashboard with category slicers, DAX KPI measures, and DAX green/red conditional formatting.</li>
-        </ul>
-    </div>
-
-    <!-- TRAININGS & CERTIFICATIONS -->
-    <div class="section-title">Trainings & Certifications</div>
+    <!-- 6. CERTIFICATIONS -->
+    <div class="section-title">Certifications</div>
     <div class="cert-item">
         <div class="cert-header">
-            <span>Corporate Finance Certification</span>
-            <span>Jul 2025 – Sep 2025</span>
+            <span>Corporate Finance &mdash; NPTEL Swayam</span>
+            <span>Jul 2025 &ndash; Sep 2025</span>
         </div>
-        <div class="cert-desc">
-            NPTEL, Swayam, Virtual &bull; Comprehensive certification covering Corporate Finance, Equity Management, Discounting & Compounding (TVM), NPV/IRR, and Valuation.
-        </div>
+        <p class="cert-desc">Completed 12-week certification covering DCF valuation, equity management, capital budgeting, corporate financial principles, and discounting & compounding methodologies.</p>
     </div>
 
-    <!-- SKILLS MATRIX (RANKED IN DECREASING FINANCE RELEVANCE) -->
-    <div class="section-title">Skills & Proficiencies</div>
-    <div class="skills-grid">
-        <div><span class="skill-group-title">Valuation & DCF:</span> <span class="skill-list">DCF Modeling, WACC, Terminal Growth ($g$), Two-Way Sensitivity</span></div>
-        <div><span class="skill-group-title">Financial Modeling:</span> <span class="skill-list">3-Statement Pro Forma Projections, Debt & CapEx Schedules</span></div>
-        <div><span class="skill-group-title">SQL & Database:</span> <span class="skill-list">SQL (PostgreSQL 18), Window Functions (RANK), Aggregations</span></div>
-        <div><span class="skill-group-title">FP&A & BI Analytics:</span> <span class="skill-list">Power BI Desktop, DAX Measures, Budget Variance Auditing</span></div>
-        <div><span class="skill-group-title">Corporate Finance:</span> <span class="skill-list">Discounting & Compounding (TVM), Equity Capital Structure</span></div>
-        <div><span class="skill-group-title">Tools & Decks:</span> <span class="skill-list">SQL, Advanced Excel (XLOOKUP), Executive PowerPoint Decks</span></div>
+    <!-- 7. EXTRACURRICULAR ACTIVITIES -->
+    <div class="section-title">Extracurricular Activities</div>
+    <div class="act-item">
+        <div class="act-header">
+            <span>Fest Registration Coordinator &mdash; Mount Carmel College</span>
+            <span>2025 &ndash; Present</span>
+        </div>
+        <p class="act-desc">Coordinated delegate registrations and managed Google Forms data pipeline for the college annual fest, overseeing event logistics and registration operations across multiple event days.</p>
     </div>
-
-    <!-- EXTRA CURRICULAR ACTIVITIES -->
-    <div class="section-title">Extra Curricular Activities</div>
-    <ul class="act-bullets">
-        <li><strong>College Fest Registration Operations:</strong> Managed delegate registration workflows, Google Forms data integration, and event logistics for Mount Carmel College Fest.</li>
-    </ul>
 
 </body>
 </html>
