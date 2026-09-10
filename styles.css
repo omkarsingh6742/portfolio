@@ -448,7 +448,7 @@ body.light-theme .card-header-black {
 .stats-black-banner { padding: 40px 0; background: #020305; border-bottom: 1px solid var(--border-color); }
 body.light-theme .stats-black-banner { background: #e2e8f0; }
 
-.stats-black-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+.stats-black-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; }
 .stat-num { font-family: var(--font-mono); font-size: 2.6rem; font-weight: 800; color: var(--accent-emerald); }
 .stat-lbl { font-size: 0.875rem; color: var(--text-secondary); font-weight: 600; }
 
@@ -832,7 +832,7 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
 @media (max-width: 900px) {
     .hero-black-grid { grid-template-columns: 1fr; }
     .contact-black-grid { grid-template-columns: 1fr; }
-    .stats-black-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-black-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
     .fpa-kpi-grid { grid-template-columns: 1fr; }
     .fpa-charts-grid { grid-template-columns: 1fr; }
     .excel-card-header { flex-direction: column; gap: 16px; align-items: flex-start; }
