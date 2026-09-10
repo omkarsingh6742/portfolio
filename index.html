@@ -563,10 +563,10 @@ FROM tech_giants_financials WHERE fiscal_year = 2024;
 
                             <div style="display: flex; flex-direction: column; gap: 10px;">
                                 <a href="project-techgiants-dashboard.html" class="btn-project-action btn-preview" style="width: 100%; text-align: center; justify-content: center;">
-                                    <i class="fa-solid fa-chart-column"></i> 📊 View BI Dashboard Details
+                                    <i class="fa-solid fa-chart-column"></i> View BI Dashboard Details
                                 </a>
                                 <button onclick="openModal('modalSqlScript')" class="btn-project-action btn-download-proj" style="cursor: pointer; width: 100%; text-align: center; justify-content: center; background: rgba(16, 185, 129, 0.15); border-color: var(--accent-emerald); color: var(--accent-emerald);">
-                                    <i class="fa-solid fa-terminal"></i> 🗄️ View PostgreSQL Script (.sql)
+                                    <i class="fa-solid fa-terminal"></i> View PostgreSQL Script (.sql)
                                 </button>
                             </div>
                         </div>
@@ -864,14 +864,38 @@ FROM tech_giants_financials WHERE fiscal_year = 2024;
 
     </main>
 
-    <!-- Executive Dark Footer -->
-    <footer class="footer-black">
-        <div class="container footer-inner-black">
-            <div class="footer-brand-black">
-                <strong><i class="fa-solid fa-vault text-gold"></i> OMKAR SINGH</strong> — Aspiring Investment Banking & Private Equity Analyst
+    <!-- Clean Professional Dark Footer -->
+    <footer class="footer-black" style="background: #04060a; border-top: 1px solid var(--border-color); padding: 40px 0 24px 0; text-align: center;">
+        <div class="container">
+            <!-- Brand Name & Subtitle -->
+            <div style="margin-bottom: 20px;">
+                <h3 style="margin: 0; font-size: 1.6rem; font-family: var(--font-heading);">
+                    <strong class="gradient-gold-text">Omkar Singh</strong>
+                </h3>
+                <div class="mono-text text-muted" style="font-size: 0.825rem; margin-top: 6px; letter-spacing: 0.5px;">
+                    Financial Analyst | Targeting Investment Banking & Private Equity
+                </div>
             </div>
-            <div class="footer-copy-black mono-text">
-                &copy; 2026 Omkar Singh. All Rights Reserved.
+
+            <!-- Three Icon Links Side by Side -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/omkarsng13/" target="_blank" rel="noopener noreferrer" class="btn-black btn-outline" style="font-size: 0.85rem; padding: 8px 16px; border-color: #0a66c2; color: #38bdf8;">
+                    <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
+                </a>
+                <a href="mailto:omkarsingh6742@gmail.com" class="btn-black btn-outline" style="font-size: 0.85rem; padding: 8px 16px; border-color: var(--accent-gold); color: var(--accent-gold);">
+                    <i class="fa-solid fa-envelope text-gold"></i> Email
+                </a>
+                <a href="Omkar_Singh_Resume.pdf" download="Omkar_Singh_Resume.pdf" class="btn-black btn-outline" style="font-size: 0.85rem; padding: 8px 16px; border-color: var(--accent-emerald); color: var(--accent-emerald);">
+                    <i class="fa-solid fa-file-pdf text-emerald"></i> Download Resume
+                </a>
+            </div>
+
+            <!-- Divider Line -->
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 24px 0 16px 0; opacity: 0.6;">
+
+            <!-- Copyright Line -->
+            <div class="mono-text text-muted" style="font-size: 0.8rem;">
+                &copy; 2025 Omkar Singh. All rights reserved.
             </div>
         </div>
     </footer>
