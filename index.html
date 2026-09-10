@@ -23,6 +23,14 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
     <style>
+        .hamburger-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+        .hamburger-btn span { display: block; width: 24px; height: 2px; background: var(--accent-gold); border-radius: 2px; transition: var(--transition); }
+        @media (max-width: 768px) {
+          .hamburger-btn { display: flex; }
+          .nav-links-black { display: none; flex-direction: column; position: fixed; top: 0; right: 0; height: 100vh; width: 75vw; max-width: 300px; background: rgba(7,10,15,0.98); backdrop-filter: blur(20px); padding: 80px 30px 30px; gap: 12px; z-index: 1000; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid rgba(245,158,11,0.2); }
+          .nav-links-black.open { display: flex; transform: translateX(0); }
+        }
+
         .case-study-container-box {
             background: rgba(13, 17, 23, 0.85);
             border: 2px solid var(--accent-gold);
@@ -287,6 +295,10 @@
                     <i class="fa-solid fa-sun icon-sun"></i>
                 </button>
             </div>
+
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+              <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -863,43 +875,6 @@ FROM tech_giants_financials WHERE fiscal_year = 2024;
 
     </main>
 
-    <!-- Clean Professional Dark Footer -->
-    <footer class="footer-black" style="background: #04060a; padding: 40px 0 24px 0; text-align: center;">
-        <div class="container">
-            <!-- Top: Thin horizontal divider line in gold accent color -->
-            <div style="border-top: 1px solid var(--accent-gold); margin-bottom: 28px; opacity: 0.6; width: 100%;"></div>
-
-            <!-- Center: OMKAR SINGH in bold with gold gradient styling -->
-            <div style="margin-bottom: 12px;">
-                <h3 style="margin: 0; font-size: 1.65rem; font-family: var(--font-heading); font-weight: 800; letter-spacing: 0.5px;">
-                    <strong class="gradient-gold-text">OMKAR SINGH</strong>
-                </h3>
-                <!-- Below that in small mono text: Financial Modeling & Valuation | Targeting IB & PE -->
-                <div class="mono-text text-muted" style="font-size: 0.825rem; margin-top: 6px; letter-spacing: 0.5px;">
-                    Financial Modeling &amp; Valuation | Targeting IB &amp; PE
-                </div>
-            </div>
-
-            <!-- Three Icon Buttons Side by Side -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px; margin-bottom: 24px; flex-wrap: wrap;">
-                <a href="https://www.linkedin.com/in/omkarsng13/" target="_blank" rel="noopener noreferrer" class="btn-black btn-outline" style="font-size: 0.85rem; padding: 8px 16px; border-color: #0a66c2; color: #38bdf8;">
-                    <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
-                </a>
-                <a href="mailto:omkarsingh6742@gmail.com" class="btn-black btn-outline" style="font-size: 0.85rem; padding: 8px 16px; border-color: var(--accent-gold); color: var(--accent-gold);">
-                    <i class="fa-solid fa-envelope text-gold"></i> Email
-                </a>
-                <a href="Omkar_Singh_Resume.pdf" download="Omkar_Singh_Resume.pdf" class="btn-black btn-outline" style="font-size: 0.85rem; padding: 8px 16px; border-color: var(--accent-emerald); color: var(--accent-emerald);">
-                    <i class="fa-solid fa-file-pdf text-emerald"></i> Download Resume
-                </a>
-            </div>
-
-            <!-- Bottom Line: © 2025 Omkar Singh. All rights reserved. -->
-            <div class="mono-text text-muted" style="font-size: 0.8rem; margin-top: 16px;">
-                &copy; 2025 Omkar Singh. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
     <!-- Toast Notifications -->
     <div id="toastContainer" class="toast-container"></div>
 
@@ -1013,7 +988,24 @@ ORDER BY fiscal_year ASC;
         </div>
     </div>
 
+    <script>
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const navLinks = document.querySelector('.nav-links-black');
+      hamburgerBtn.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+      navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => navLinks.classList.remove('open')); });
+    </script>
     <script src="app.js"></script>
+
+    <footer style="border-top: 1px solid rgba(245,158,11,0.3); margin-top: 60px; padding: 40px 20px; text-align: center; background: rgba(7,10,15,0.9);">
+      <p style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; background: linear-gradient(135deg, #f59e0b, #fcd34d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;">OMKAR SINGH</p>
+      <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px;">Financial Modeling & Valuation | Targeting IB & PE</p>
+      <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 24px;">
+        <a href="https://www.linkedin.com/in/omkarsng13/" target="_blank" style="color: #38bdf8; font-size: 1.4rem;"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:omkarsingh6742@gmail.com" style="color: var(--accent-gold); font-size: 1.4rem;"><i class="fa-solid fa-envelope"></i></a>
+        <a href="Omkar_Singh_Resume.pdf" download style="color: var(--accent-emerald); font-size: 1.4rem;"><i class="fa-solid fa-file-pdf"></i></a>
+      </div>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary);">© 2025 Omkar Singh. All rights reserved.</p>
+    </footer>
 </body>
 </html>
 
