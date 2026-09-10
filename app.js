@@ -131,33 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 3. Interactive Click Currency Explosion Engine
-    // ----------------------------------------------------------------------
-    const clickSymbols = ['₹', '$', '💸', '🪙', '📈', '💎', '₹', '$'];
-
-    document.addEventListener('click', (e) => {
-        for (let i = 0; i < 7; i++) {
-            const el = document.createElement('div');
-            el.className = 'click-particle';
-            el.textContent = clickSymbols[Math.floor(Math.random() * clickSymbols.length)];
-
-            const dx = (Math.random() - 0.5) * 140;
-            const dy = (Math.random() - 0.8) * 160;
-
-            el.style.left = `${e.clientX}px`;
-            el.style.top = `${e.clientY}px`;
-            el.style.setProperty('--dx', `${dx}px`);
-            el.style.setProperty('--dy', `${dy}px`);
-
-            document.body.appendChild(el);
-
-            setTimeout(() => {
-                el.remove();
-            }, 900);
-        }
-    });
-
-    // ----------------------------------------------------------------------
     // 4. Card 3D Perspective Tilt Effect
     // ----------------------------------------------------------------------
     const tiltCards = document.querySelectorAll('.tilt-card');

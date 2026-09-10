@@ -97,23 +97,6 @@ body {
     100% { transform: translateY(15px) rotate(-8deg) scale(0.57); }
 }
 
-/* Click Particle Explosion */
-.click-particle {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    font-family: var(--font-mono);
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: var(--accent-gold);
-    animation: popAndFade 0.9s ease-out forwards;
-    user-select: none;
-}
-
-@keyframes popAndFade {
-    0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
-    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.5) rotate(45deg); }
-}
 
 a { color: inherit; text-decoration: none; transition: var(--transition); }
 
