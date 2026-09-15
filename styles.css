@@ -652,7 +652,13 @@ body.light-theme .black-tag {
 .cert-pillars-black { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.9rem; color: var(--text-secondary); }
 
 /* Skills */
-.skills-grid-black { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.skills-grid-black { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 1200px) {
+    .skills-grid-black { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .skills-grid-black { grid-template-columns: 1fr; }
+}
 .skill-card-black { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
 .skill-icon-black { font-size: 1.8rem; margin-bottom: 12px; }
 .skill-card-black h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 8px; }
