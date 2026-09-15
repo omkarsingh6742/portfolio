@@ -380,12 +380,14 @@ body.light-theme .black-glass-card {
 .black-hero-title { font-family: var(--font-heading); font-size: 3.4rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
 .black-hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 30px; line-height: 1.7; }
 .hero-actions {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    gap: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
-@media (max-width: 600px) {
-    .hero-actions { grid-template-columns: 1fr; }
+.hero-actions .btn-black {
+    padding: 11px 18px;
+    font-size: 0.9rem;
 }
 
 .card-header-black {
