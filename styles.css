@@ -870,4 +870,56 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
 }
 
 
+/* ==========================================================================
+   SCROLL REVEAL TRANSITIONS
+   ========================================================================== */
+
+/* --- Scroll Progress Bar --- */
+#scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-emerald));
+    z-index: 10000;
+    border-radius: 0 2px 2px 0;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+/* --- Reveal base state (hidden before scroll) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.reveal-left  { transform: translateX(-40px); }
+.reveal.reveal-right { transform: translateX(40px); }
+.reveal.reveal-scale { transform: translateY(24px) scale(0.96); }
+
+/* --- Visible state (triggered by IntersectionObserver) --- */
+.reveal.visible {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+}
+
+/* --- Stagger delays for grid children --- */
+.reveal-stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 0.19s; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 0.26s; }
+.reveal-stagger > *:nth-child(5) { transition-delay: 0.33s; }
+.reveal-stagger > *:nth-child(6) { transition-delay: 0.40s; }
+.reveal-stagger > *:nth-child(7) { transition-delay: 0.47s; }
+.reveal-stagger > *:nth-child(8) { transition-delay: 0.54s; }
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    #scroll-progress-bar { display: none; }
+}
+
 

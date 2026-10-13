@@ -429,3 +429,100 @@ ORDER BY fiscal_year ASC;`;
     });
 }
 
+
+// =============================================================================
+// SCROLL REVEAL ENGINE + PROGRESS BAR
+// =============================================================================
+(function () {
+
+    // --- 1. Inject scroll progress bar element ---
+    const bar = document.createElement('div');
+    bar.id = 'scroll-progress-bar';
+    document.body.prepend(bar);
+
+    // --- 2. Update progress bar width on scroll ---
+    function updateProgressBar() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgressBar, { passive: true });
+
+    // --- 3. Tag elements with .reveal class ---
+    const selectors = [
+        // Section headings + subtitles
+        '.black-section-title',
+        '.black-section-subtitle',
+        // Cards & blocks
+        '.black-profile-card',
+        '.black-skill-card',
+        '.black-project-card',
+        '.black-project-card-fullwidth',
+        '.project-card-fullwidth',
+        '.black-stat-card',
+        '.black-contact-card',
+        '.black-timeline-item',
+        '.excel-model-card',
+        '.fpa-kpi-card',
+        '.fpa-chart-card',
+        '.case-study-container-box',
+    ];
+
+    selectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach((el, i) => {
+            el.classList.add('reveal');
+            // Alternate left/right for cards on wider grids for visual interest
+            if (i % 2 === 1 && el.matches('.black-stat-card, .black-contact-card')) {
+                el.classList.add('reveal-right');
+            }
+        });
+    });
+
+    // Tag grid/flex containers for stagger effect
+    const staggerContainers = [
+        '.skills-black-grid',
+        '.projects-black-grid',
+        '.stats-black-grid',
+        '.contact-black-grid',
+    ];
+    staggerContainers.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+            el.classList.add('reveal-stagger');
+        });
+    });
+
+    // --- 4. Hero section is always visible (no reveal) ---
+    document.querySelectorAll('.black-hero-section, .black-hero-section *')
+        .forEach(el => el.classList.remove('reveal', 'reveal-left', 'reveal-right', 'reveal-scale'));
+
+    // --- 5. IntersectionObserver to trigger .visible ---
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // animate once only
+                }
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px',
+        }
+    );
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // --- 6. Trigger immediately-visible elements (already in viewport on load) ---
+    setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                el.classList.add('visible');
+            }
+        });
+    }, 100);
+
+})();
+
