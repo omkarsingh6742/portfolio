@@ -250,7 +250,18 @@
         }
     </style>
 </head>
-<body class="dark-theme">
+<body class="dark-theme intro-active">
+    <noscript>
+        <style>
+            body.intro-active, body.intro-active * {
+                opacity: 1 !important;
+                transform: none !important;
+                pointer-events: auto !important;
+                overflow: auto !important;
+            }
+            #intro-floating-icons { display: none !important; }
+        </style>
+    </noscript>
 
     <!-- Interactive Background Money Particles Canvas -->
     <canvas id="bgCanvas" class="interactive-bg-canvas"></canvas>

@@ -576,3 +576,165 @@ ORDER BY fiscal_year ASC;`;
 
 })();
 
+
+
+// =============================================================================
+// INTRO SEQUENCE: SILKY SMOOTH CARD GLIDE TO RIGHT
+// =============================================================================
+(function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.body.classList.remove('intro-active');
+        return;
+    }
+
+    if (window.location.hash && window.location.hash !== '#about' && window.location.hash !== '#') {
+        document.body.classList.remove('intro-active');
+        return;
+    }
+
+    // 1. Floating finance particles in background
+    const symbols = ['₹', '$', '💸', '🪙', '📈', '💎', '📊', '💼', '🏦', '💹'];
+    const container = document.createElement('div');
+    container.id = 'intro-floating-icons';
+
+    for (let i = 0; i < 26; i++) {
+        const span = document.createElement('span');
+        span.className = 'intro-fly-icon';
+        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+        const left = Math.random() * 94 + 3;
+        const duration = 5.0 + Math.random() * 5.0;
+        const delay = -(Math.random() * duration);
+        const size = 1.0 + Math.random() * 1.3;
+        const isEmerald = i % 3 === 0;
+
+        span.style.left = `${left}%`;
+        span.style.animationDuration = `${duration}s`;
+        span.style.animationDelay = `${delay}s`;
+        span.style.fontSize = `${size}rem`;
+        span.style.color = isEmerald ? 'var(--accent-emerald)' : 'var(--accent-gold)';
+
+        container.appendChild(span);
+    }
+    document.body.appendChild(container);
+
+    // 2. Rolling financial stats counter
+    function rollFinancialStats() {
+        const statBoxes = document.querySelectorAll('.stat-num[data-target]');
+        statBoxes.forEach(box => {
+            const targetStr = box.getAttribute('data-target');
+            const targetVal = parseFloat(targetStr);
+            if (isNaN(targetVal)) return;
+
+            const isPercentage = box.textContent.includes('%');
+            const duration = 1200;
+            const startTime = performance.now();
+
+            function updateCount(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentVal = targetVal * easeProgress;
+
+                if (isPercentage) {
+                    box.textContent = currentVal.toFixed(2) + '%';
+                } else {
+                    box.textContent = Math.round(currentVal).toString();
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                } else {
+                    box.textContent = isPercentage ? targetVal.toFixed(2) + '%' : targetStr;
+                }
+            }
+            requestAnimationFrame(updateCount);
+        });
+    }
+
+    function initCardIntro() {
+        const card = document.querySelector('.hero-black-card-col .black-glass-card');
+        if (!card) {
+            document.body.classList.remove('intro-active');
+            container.remove();
+            return;
+        }
+
+        window.scrollTo(0, 0);
+
+        // Measure card natural resting position in pixels
+        const rect = card.getBoundingClientRect();
+        const targetX = (window.innerWidth - rect.width) / 2 - rect.left;
+        let targetY = (window.innerHeight - rect.height) / 2 - rect.top;
+
+        if (rect.top + targetY < 20) {
+            targetY = 20 - rect.top;
+        }
+
+        // Place card in center instantly with hardware acceleration
+        card.style.transition = 'none';
+        card.style.transform = `translate3d(${targetX.toFixed(2)}px, ${targetY.toFixed(2)}px, 0)`;
+        card.classList.add('intro-centered');
+
+        // Smooth fade-in of centered card
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                card.style.transition = 'opacity 0.4s ease';
+                card.style.opacity = '1';
+            });
+        });
+
+        let hasTransitioned = false;
+
+        function startGlide() {
+            if (hasTransitioned) return;
+            hasTransitioned = true;
+
+            // Fade out background floating intro icons
+            container.classList.add('fade-out');
+
+            // Pure buttery smooth slide to (0, 0) using GPU translate3d
+            card.style.transition = 'transform 1.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 1.3s ease, border-color 1.3s ease';
+            card.style.transform = 'translate3d(0, 0, 0)';
+            card.style.boxShadow = '';
+            card.style.borderColor = '';
+
+            // Reveal all other elements
+            document.body.classList.add('intro-revealing');
+
+            // Trigger rolling counters as card docks
+            setTimeout(() => {
+                rollFinancialStats();
+            }, 600);
+
+            // Final silent cleanup
+            setTimeout(() => {
+                document.body.classList.remove('intro-active', 'intro-revealing');
+                card.classList.remove('intro-centered');
+                card.style.transform = '';
+                card.style.transition = '';
+                card.style.pointerEvents = '';
+                card.style.zIndex = '';
+                card.style.boxShadow = '';
+                card.style.borderColor = '';
+                card.style.opacity = '';
+                container.remove();
+            }, 1500);
+        }
+
+        // Smooth 1.1s hold in center, then glide
+        const glideTimer = setTimeout(startGlide, 1100);
+
+        // Click anywhere to glide immediately
+        window.addEventListener('click', () => {
+            clearTimeout(glideTimer);
+            startGlide();
+        }, { once: true });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCardIntro);
+    } else {
+        initCardIntro();
+    }
+})();

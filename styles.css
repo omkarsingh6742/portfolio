@@ -940,3 +940,123 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
     .blend-card::after { display: none; }
 }
 
+/* ==========================================================================
+   PORTFOLIO INTRO SEQUENCE: SILKY SMOOTH CARD GLIDE
+   ========================================================================== */
+
+/* While intro is active, hide everything outside the profile card smoothly */
+body.intro-active .top-market-bar,
+body.intro-active .black-nav,
+body.intro-active .hero-black-content,
+body.intro-active .stats-black-banner,
+body.intro-active .black-section,
+body.intro-active footer {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0, 0.2, 1),
+                transform 0.9s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+body.intro-active .hero-black-section {
+    border-bottom-color: transparent;
+}
+
+/* Card initial state during intro */
+body.intro-active .hero-black-card-col .black-glass-card {
+    opacity: 0;
+}
+
+body.intro-active .hero-black-card-col .black-glass-card.intro-centered {
+    opacity: 1;
+    z-index: 100;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(245, 158, 11, 0.35);
+    border-color: rgba(245, 158, 11, 0.6);
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+/* Smooth reveal of surrounding page elements */
+body.intro-revealing .top-market-bar,
+body.intro-revealing .black-nav,
+body.intro-revealing .hero-black-content,
+body.intro-revealing .stats-black-banner,
+body.intro-revealing .black-section,
+body.intro-revealing footer {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+body.intro-revealing .hero-black-section {
+    border-bottom-color: var(--border-color);
+    transition: border-bottom-color 0.9s ease 0.3s;
+}
+
+/* Fluid stagger: top bar, nav, hero content glide in harmoniously */
+body.intro-revealing .top-market-bar     { transition-delay: 0.1s; }
+body.intro-revealing .black-nav          { transition-delay: 0.2s; }
+body.intro-revealing .hero-black-content { transition-delay: 0.3s; }
+body.intro-revealing .stats-black-banner { transition-delay: 0.45s; }
+body.intro-revealing .black-section      { transition-delay: 0.55s; }
+body.intro-revealing footer              { transition-delay: 0.65s; }
+
+/* Floating icons container: pure hardware-accelerated */
+#intro-floating-icons {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 1.0s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+#intro-floating-icons.fade-out {
+    opacity: 0;
+}
+
+.intro-fly-icon {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    pointer-events: none;
+    user-select: none;
+    animation: introFlyUp linear infinite;
+    text-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
+    will-change: transform, opacity;
+}
+
+@keyframes introFlyUp {
+    0% {
+        transform: translate3d(0, 105vh, 0) rotate(0deg);
+        opacity: 0;
+    }
+    12% {
+        opacity: 0.85;
+    }
+    85% {
+        opacity: 0.75;
+    }
+    100% {
+        transform: translate3d(0, -100px, 0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    body.intro-active .top-market-bar,
+    body.intro-active .black-nav,
+    body.intro-active .hero-black-content,
+    body.intro-active .stats-black-banner,
+    body.intro-active .black-section,
+    body.intro-active footer,
+    body.intro-active .hero-black-card-col .black-glass-card {
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+    #intro-floating-icons { display: none !important; }
+}
