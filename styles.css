@@ -874,20 +874,6 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
    SCROLL REVEAL TRANSITIONS
    ========================================================================== */
 
-/* --- Scroll Progress Bar --- */
-#scroll-progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent-gold), var(--accent-emerald));
-    z-index: 10000;
-    border-radius: 0 2px 2px 0;
-    transition: width 0.1s linear;
-    box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
-}
-
 /* --- Reveal base state (hidden before scroll) --- */
 .reveal {
     opacity: 0;
@@ -919,7 +905,38 @@ body.light-theme .footer-black { background: #e2e8f0; border-top-color: #cbd5e1;
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
-    #scroll-progress-bar { display: none; }
 }
 
+/* ==========================================================================
+   SCROLL-BLEND CARD STACK EFFECT
+   ========================================================================== */
+
+/* Cards that participate in the blend-stack get hardware-accelerated transforms */
+.blend-card {
+    will-change: transform, opacity, filter;
+    transition: transform 0.08s linear, opacity 0.08s linear, filter 0.08s linear;
+    transform-origin: center top;
+    position: relative;
+    z-index: 1;
+}
+
+/* Each card has a subtle top-edge fade overlay that darkens as the card exits */
+.blend-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to bottom, var(--bg-main) 0%, transparent 100%);
+    opacity: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    transition: opacity 0.08s linear;
+    z-index: 10;
+}
+
+/* Reduced motion: disable all blend-card transforms */
+@media (prefers-reduced-motion: reduce) {
+    .blend-card { transition: none !important; will-change: auto; }
+    .blend-card::after { display: none; }
+}
 

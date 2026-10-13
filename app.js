@@ -431,25 +431,11 @@ ORDER BY fiscal_year ASC;`;
 
 
 // =============================================================================
-// SCROLL REVEAL ENGINE + PROGRESS BAR
+// SCROLL REVEAL ENGINE
 // =============================================================================
 (function () {
 
-    // --- 1. Inject scroll progress bar element ---
-    const bar = document.createElement('div');
-    bar.id = 'scroll-progress-bar';
-    document.body.prepend(bar);
-
-    // --- 2. Update progress bar width on scroll ---
-    function updateProgressBar() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        bar.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', updateProgressBar, { passive: true });
-
-    // --- 3. Tag elements with .reveal class ---
+    // --- 1. Tag elements with .reveal class ---
     const selectors = [
         // Section headings + subtitles
         '.black-section-title',
@@ -523,6 +509,70 @@ ORDER BY fiscal_year ASC;`;
             }
         });
     }, 100);
+
+})();
+
+
+
+// =============================================================================
+// SCROLL-BLEND CARD STACK ENGINE
+// =============================================================================
+(function () {
+
+    const CARD_SELECTORS = [
+        '.project-card-premium',
+        '.project-card-fullwidth',
+        '.skill-card-black',
+        '.case-study-container-box',
+    ].join(', ');
+
+    const cards = Array.from(document.querySelectorAll(CARD_SELECTORS));
+    cards.forEach(card => card.classList.add('blend-card'));
+
+    // Tuning — wider zone = slower/smoother transition
+    const BLEND_ZONE  = 400;   // px of scroll travel for full effect
+    const MIN_SCALE   = 0.96;  // subtle 4% shrink
+    const MIN_OPACITY = 0.60;  // fade gently to 60%
+
+    // rAF-based loop — always runs at display refresh rate (60/120 fps)
+    let ticking = false;
+
+    function updateBlend() {
+        cards.forEach(card => {
+            const rect     = card.getBoundingClientRect();
+            const exitedBy = -rect.top; // positive = card top above viewport
+
+            if (exitedBy <= 0) {
+                card.style.transform = '';
+                card.style.opacity   = '';
+                card.style.filter    = '';
+                return;
+            }
+
+            // Ease: ease-out curve (x^0.5 makes early scroll feel faster, late scroll gentle)
+            const raw      = Math.min(exitedBy / BLEND_ZONE, 1);
+            const progress = Math.sqrt(raw);
+
+            const scale   = 1 - (1 - MIN_SCALE)   * progress;
+            const opacity = 1 - (1 - MIN_OPACITY)  * progress;
+
+            card.style.transform = 'scale(' + scale.toFixed(5) + ')';
+            card.style.opacity   = opacity.toFixed(5);
+            card.style.filter    = '';   // no blur — keeps text crisp
+        });
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateBlend);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Run once on load
+    updateBlend();
 
 })();
 
